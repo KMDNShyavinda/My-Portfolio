@@ -1,0 +1,192 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Design Tokens ─────────────────────────────────────── */
+:root {
+  /* Palette */
+  --color-ink:       #0a0a0a;
+  --color-paper:     #ffffff;
+  --color-fog:       #f7f7f6;
+  --color-void:      #0f0f0e;
+  --color-obsidian:  #1a1a18;
+  --color-slate:     #185FA5;
+  --color-sky-tint:  #E6F1FB;
+  --color-sky-text:  #0C447C;
+  --color-sage:      #1D9E75;
+  --color-amber-bg:  #FAEEDA;
+  --color-amber-text:#854F0B;
+  --color-teal-bg:   #E1F5EE;
+  --color-teal-text: #0F6E56;
+
+  /* Surfaces */
+  --surface-page:  var(--color-paper);
+  --surface-alt:   var(--color-fog);
+  --surface-card:  var(--color-paper);
+  --surface-raise: var(--color-fog);
+
+  /* Text */
+  --text-primary:   var(--color-ink);
+  --text-secondary: #4a4a48;
+  --text-muted:     #888780;
+
+  /* Borders */
+  --border-default: rgba(0, 0, 0, 0.08);
+  --border-strong:  rgba(0, 0, 0, 0.18);
+  --border-stronger:rgba(0, 0, 0, 0.40);
+
+  /* Spacing / radius */
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+  --radius-pill: 9999px;
+
+  /* Motion */
+  --dur-fast:   80ms;
+  --dur-snap:   120ms;
+  --dur-base:   200ms;
+  --dur-slow:   400ms;
+  --ease-out:   cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-snap:  cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-over:  cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Dark mode */
+[data-theme="dark"] {
+  --surface-page:  var(--color-void);
+  --surface-alt:   #141413;
+  --surface-card:  var(--color-obsidian);
+  --surface-raise: #222220;
+  --text-primary:  #f0efea;
+  --text-secondary:#a8a7a2;
+  --text-muted:    #5a5955;
+  --border-default:rgba(255, 255, 255, 0.07);
+  --border-strong: rgba(255, 255, 255, 0.12);
+  --border-stronger:rgba(255, 255, 255, 0.25);
+}
+
+/* ─── Base ───────────────────────────────────────────────── */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    background-color: var(--surface-page);
+    color: var(--text-primary);
+    font-family: var(--font-inter), system-ui, sans-serif;
+    transition: background-color var(--dur-base) var(--ease-snap),
+                color var(--dur-base) var(--ease-snap);
+  }
+
+  ::selection {
+    background: var(--color-sky-tint);
+    color: var(--color-sky-text);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-slate);
+    outline-offset: 2px;
+    border-radius: var(--radius-md);
+  }
+}
+
+/* ─── Utilities ──────────────────────────────────────────── */
+@layer utilities {
+  .bg-page    { background-color: var(--surface-page); }
+  .bg-alt     { background-color: var(--surface-alt); }
+  .bg-card    { background-color: var(--surface-card); }
+  .bg-raise   { background-color: var(--surface-raise); }
+
+  .text-primary   { color: var(--text-primary); }
+  .text-secondary { color: var(--text-secondary); }
+  .text-muted     { color: var(--text-muted); }
+  .text-accent    { color: var(--color-slate); }
+
+  .border-default  { border-color: var(--border-default); }
+  .border-strong   { border-color: var(--border-strong); }
+  .border-stronger { border-color: var(--border-stronger); }
+
+  .tracking-tight-hero { letter-spacing: -0.04em; }
+  .tracking-tight-h1   { letter-spacing: -0.03em; }
+  .tracking-tight-h2   { letter-spacing: -0.02em; }
+  .tracking-wide-label { letter-spacing: 0.06em; }
+}
+
+/* ─── Scroll-reveal animation ────────────────────────────── */
+@layer utilities {
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition:
+      opacity var(--dur-slow) var(--ease-out),
+      transform var(--dur-slow) var(--ease-out);
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ─── Reduced motion ─────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+}
+
+/* ─── Filter pill active ─────────────────────────────────── */
+.filter-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 14px;
+  border-radius: var(--radius-pill);
+  border: 0.5px solid var(--border-strong);
+  font-size: 13px;
+  color: var(--text-secondary);
+  background: transparent;
+  cursor: pointer;
+  transition:
+    background var(--dur-snap) var(--ease-snap),
+    color var(--dur-snap) var(--ease-snap),
+    border-color var(--dur-snap) var(--ease-snap),
+    transform var(--dur-fast) var(--ease-over);
+}
+
+.filter-pill:hover {
+  border-color: var(--border-stronger);
+  color: var(--text-primary);
+}
+
+.filter-pill.active {
+  background: var(--text-primary);
+  color: var(--surface-page);
+  border-color: var(--text-primary);
+}
+
+.filter-pill:active {
+  transform: scale(0.97);
+}
+
+/* ─── Timeline connector ─────────────────────────────────── */
+.tl-line {
+  position: absolute;
+  left: 0;
+  top: 12px;
+  bottom: 0;
+  width: 0.5px;
+  background: var(--border-stronger);
+}
+
+/* ─── Scrollbar (Webkit) ─────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 3px;
+}
