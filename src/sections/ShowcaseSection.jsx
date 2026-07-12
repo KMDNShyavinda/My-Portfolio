@@ -12,91 +12,59 @@ import {
   FaCodeBranch,
   FaCalendarAlt,
   FaPills,
-  FaBuilding,
-  FaChartLine,
-  FaShoppingCart,
-  FaComments,
+  FaHotel,
 } from "react-icons/fa";
+import { SiFigma } from "react-icons/si";
 
-// --- Your real projects -----------------------------------------------
-// Update tech/description/links as your projects evolve. Live demo links
-// are left blank until you deploy each project — the "Live Demo" button
-// is hidden automatically when liveLink is empty.
+// Projects directly mapped from the user's CV
 const projects = [
+  {
+    title: "Hotel Management System",
+    icon: FaHotel,
+    desc: "A full-stack web application handling reservations, room availability, customer records, and billing.",
+    longDesc:
+      "Developed a full-stack system streamlining hotel administration. Features complete CRUD operations with a MongoDB backend, custom dashboards, and user-friendly forms that reduce manual booking errors and improve operations.",
+    tech: ["React.js", "Node.js", "Express.js", "MongoDB"],
+    githubLink: "https://github.com/KMDNShyavinda/hotelManagement",
+    liveLink: "",
+    category: "Full-Stack",
+    gradient: "from-purple-500 to-pink-600",
+  },
   {
     title: "University Event Management System",
     icon: FaCalendarAlt,
-    desc: "A centralized platform for creating, managing, and registering for university events.",
+    desc: "A web-based platform for managing university events, registrations, scheduling, and attendance tracking.",
     longDesc:
-      "Built to simplify how university events are organized and attended. Organizers can create and publish events, manage registrations, and track attendance, while students can browse upcoming events, register in a click, and stay updated — all from one dashboard.",
-    tech: ["React", "Node.js", "Express.js", "MongoDB", "Tailwind CSS", "JWT"],
-    githubLink: `${personalInfo.github}/university-event-management-system`,
+      "Features a structured PostgreSQL database schema to ensure data integrity across concurrent events. Allows administrators to easily manage events and generate attendance reports for post-event record-keeping.",
+    tech: ["Python", "Node.js", "PostgreSQL"],
+    githubLink: "https://github.com/KMDNShyavinda/University-Event-Management-System",
     liveLink: "",
-    category: "Full-Stack",
+    category: "Web App",
     gradient: "from-blue-500 to-indigo-600",
   },
   {
-    title: "SafeDose MedGuide",
+    title: "SafeDose-MedGuide",
     icon: FaPills,
-    desc: "A medication guidance app that helps users track dosages and stay on top of prescriptions.",
+    desc: "A web platform for safe medication dosage management, prescription tracking, and guidance.",
     longDesc:
-      "SafeDose MedGuide helps users manage medication schedules, understand recommended dosage ranges, and receive reminders — aimed at reducing dosage errors and improving adherence, with a focus on clear, accessible information.",
-    tech: ["React", "Node.js", "Express.js", "MongoDB", "REST API"],
-    githubLink: `${personalInfo.github}/safedose-medguide`,
+      "Designed a reliable database for drug information and patient records. Integrates dosage calculation, safety alerts, and report generation to support clinical decisions and reduce dosage errors.",
+    tech: ["React.js", "Node.js", "Express.js", "MongoDB"],
+    githubLink: "https://github.com/KMDNShyavinda/safeDose-MedGuide",
     liveLink: "",
     category: "Healthcare",
     gradient: "from-green-500 to-teal-600",
   },
   {
-    title: "Hostel Management System",
-    icon: FaBuilding,
-    desc: "A system for managing student hostel operations — room allocation, residents, and payments.",
+    title: "Sri Lanka Railway Mobile UI Design",
+    icon: SiFigma,
+    desc: "A responsive, user-friendly mobile prototype design for a railway ticket booking system.",
     longDesc:
-      "Streamlines hostel administration by handling room allocation, resident records, payment tracking, and maintenance requests through role-based dashboards for administrators and residents.",
-    tech: ["React", "Express.js", "MySQL", "Node.js", "Tailwind CSS"],
-    githubLink: `${personalInfo.github}/hostel-management-system`,
+      "Applied modern UI/UX principles, including accessibility standards, visual hierarchies, and consistent design patterns, to deliver a polished Figma prototype demonstrating end-to-end booking flows across screens.",
+    tech: ["Figma", "UI/UX Design"],
+    githubLink: "https://github.com/KMDNShyavinda/Sri-Lanka-Railway-website-UI-for-Mobile-Clone-design-via-Figma",
     liveLink: "",
-    category: "Management System",
-    gradient: "from-purple-500 to-pink-600",
-  },
-  {
-    title: "Weekly Report Dashboard",
-    icon: FaChartLine,
-    desc: "An analytics dashboard for tracking and visualizing weekly performance reports.",
-    longDesc:
-      "Aggregates weekly data into clear charts and summaries, helping teams track progress, spot trends, and make faster, data-informed decisions from a single dashboard view.",
-    tech: ["React", "Node.js", "Express.js", "PostgreSQL", "Chart.js"],
-    githubLink: `${personalInfo.github}/weekly-report-dashboard`,
-    liveLink: "",
-    category: "Analytics",
-    gradient: "from-orange-500 to-red-600",
-  },
-  // --- Sample placeholders — swap these for your next real projects ---
-  {
-    title: "E-Commerce Web Application",
-    icon: FaShoppingCart,
-    desc: "A full-featured online store with product catalog, cart, and secure checkout.",
-    longDesc:
-      "Sample placeholder project. A typical full-stack e-commerce build with product browsing, cart management, and Stripe-powered checkout — replace with details of your own project when ready.",
-    tech: ["Next.js", "MongoDB", "Tailwind CSS", "Stripe"],
-    githubLink: `${personalInfo.github}/ecommerce-app`,
-    liveLink: "",
-    category: "E-Commerce",
-    gradient: "from-cyan-500 to-blue-600",
-    isPlaceholder: true,
-  },
-  {
-    title: "Real-Time Chat Application",
-    icon: FaComments,
-    desc: "A real-time messaging app with authentication and live updates.",
-    longDesc:
-      "Sample placeholder project. A real-time chat app using WebSockets for instant messaging, with user authentication and online-status indicators — replace with details of your own project when ready.",
-    tech: ["React", "Node.js", "Socket.io", "MongoDB"],
-    githubLink: `${personalInfo.github}/chat-app`,
-    liveLink: "",
-    category: "Utility",
-    gradient: "from-pink-500 to-rose-600",
-    isPlaceholder: true,
+    category: "UI/UX Design",
+    gradient: "from-orange-500 to-amber-500",
   },
 ];
 

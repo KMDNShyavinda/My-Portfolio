@@ -7,42 +7,35 @@ import { personalInfo } from "../constants";
 // placeholders — fill in your real results and years here.
 const education = [
   {
-    degree: "BSc in Computer Science ",
-    institution: personalInfo.university,
-    period: "2023 - Present",// TODO: replace with your actual start year
+    degree: "Bachelor of Science (BSc) in Computer Science",
+    institution: "Eastern University, Sri Lanka",
+    period: "2023 – Present",
     description:
-      "Specializing in Computer Science, Software Engineering,Networking and AI-Powered Applications.",
+      "Focusing on Computer Science, Software Engineering, and Full Stack Development.",
   },
 
   {
     degree: "Diploma in ICT & English",
     institution: "ICBT Campus, Sri Lanka",
-    period: "Jan 2022 - June 2022 ", // TODO: replace with your actual years
-    description: "",
+    period: "2022",
+    description: "Gained core fundamentals in Information Technology and Communication.",
   },
 
   {
-    degree: "G.C.E. Advanced Level — Physical Science Stream",
-    institution: "Mo/Medagama National Collage",
-    period: "2018 - 2020", // TODO: replace with your actual years
-    description: "Combined Mathematics (C) | Physics (C) | Chemistry (C) ",
+    degree: "G.C.E. Advanced Level – Physical Science Stream",
+    institution: "Mo/Medagama National School",
+    period: "2019 – 2021",
+    description: "Physical Science Stream (Combined Mathematics, Physics, Chemistry).",
   },
-  {
-    degree: "G.C.E. Ordinary Level",
-    institution: "Mo/Medagama National Collage",
-    period: "2017", // TODO: replace with your actual year
-    description: " ",
-  },
-
 ];
 
 const interests = [
+  "Web Development",
+  "Network Automation",
+  "Cloud Networking (AWS)",
   "Full-Stack Development",
   "Software Engineering",
   "UI/UX Design",
-  "Databases",
-  "Networking",
-  "AI-Powered Applications",
 ];
 
 const About = () => {

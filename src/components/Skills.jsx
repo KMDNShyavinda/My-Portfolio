@@ -3,12 +3,9 @@ import { motion } from "framer-motion";
 import AnimatedBackground from "./AnimatedBackground";
 import {
   SiJavascript,
-  SiTypescript,
   SiPython,
   SiCplusplus,
   SiReact,
-  SiNextdotjs,
-  SiTailwindcss,
   SiNodedotjs,
   SiExpress,
   SiMongodb,
@@ -16,65 +13,75 @@ import {
   SiPostgresql,
   SiGit,
   SiGithub,
-  SiDocker,
   SiFigma,
+  SiPhp,
+  SiHtml5,
+  SiCss,
 } from "react-icons/si";
-import { FaJava, FaNetworkWired } from "react-icons/fa";
+import { FaJava, FaNetworkWired, FaBrain, FaCode, FaTerminal } from "react-icons/fa";
+import { DiVisualstudio } from "react-icons/di";
 
-// Skill proficiency levels are reasonable starting estimates for a 3rd-year
-// student — adjust these numbers to reflect your own confidence level.
+// Skill categories mapped directly from the CV
 const skillCategories = [
   {
     category: "Languages",
     icon: "💻",
     skills: [
-      { name: "JavaScript", level: 88, Icon: SiJavascript, color: "#F7DF1E" },
-      { name: "TypeScript", level: 78, Icon: SiTypescript, color: "#3178C6" },
-      { name: "Python", level: 80, Icon: SiPython, color: "#3776AB" },
-      { name: "Java", level: 75, Icon: FaJava, color: "#f89820" },
-      { name: "C++", level: 70, Icon: SiCplusplus, color: "#00599C" },
+      { name: "JavaScript", level: 90, Icon: SiJavascript, color: "#F7DF1E" },
+      { name: "Python", level: 85, Icon: SiPython, color: "#3776AB" },
+      { name: "Java", level: 80, Icon: FaJava, color: "#f89820" },
+      { name: "C++", level: 75, Icon: SiCplusplus, color: "#00599C" },
+      { name: "PHP", level: 80, Icon: SiPhp, color: "#777BB4" },
     ],
   },
   {
-    category: "Frontend Development",
+    category: "Frontend",
     icon: "🎨",
     skills: [
-      { name: "React", level: 88, Icon: SiReact, color: "#61DAFB" },
-      { name: "Next.js", level: 75, Icon: SiNextdotjs, color: "#000000" },
-      {
-        name: "Tailwind CSS",
-        level: 85,
-        Icon: SiTailwindcss,
-        color: "#06B6D4",
-      },
+      { name: "React.js", level: 90, Icon: SiReact, color: "#61DAFB" },
+      { name: "JavaScript", level: 90, Icon: SiJavascript, color: "#F7DF1E" },
+      { name: "HTML5", level: 92, Icon: SiHtml5, color: "#E34F26" },
+      { name: "CSS", level: 88, Icon: SiCss, color: "#1572B6" },
     ],
   },
   {
-    category: "Backend Development",
+    category: "Backend",
     icon: "⚙️",
     skills: [
-      { name: "Node.js", level: 82, Icon: SiNodedotjs, color: "#339933" },
-      { name: "Express.js", level: 80, Icon: SiExpress, color: "#000000" },
-      { name: "REST API", level: 83, Icon: FaNetworkWired, color: "#6366F1" },
+      { name: "Node.js", level: 85, Icon: SiNodedotjs, color: "#339933" },
+      { name: "Express.js", level: 85, Icon: SiExpress, color: "#000000" },
+      { name: "REST API Development", level: 88, Icon: FaNetworkWired, color: "#6366F1" },
+      { name: "PHP", level: 80, Icon: SiPhp, color: "#777BB4" },
     ],
   },
   {
     category: "Databases",
     icon: "🗄️",
     skills: [
-      { name: "MongoDB", level: 78, Icon: SiMongodb, color: "#47A248" },
-      { name: "MySQL", level: 80, Icon: SiMysql, color: "#4479A1" },
-      { name: "PostgreSQL", level: 72, Icon: SiPostgresql, color: "#4169E1" },
+      { name: "MySQL", level: 85, Icon: SiMysql, color: "#4479A1" },
+      { name: "MongoDB", level: 80, Icon: SiMongodb, color: "#47A248" },
+      { name: "PostgreSQL", level: 82, Icon: SiPostgresql, color: "#4169E1" },
     ],
   },
   {
-    category: "Tools & Design",
+    category: "Tools & Platforms",
     icon: "🛠️",
     skills: [
-      { name: "Git", level: 85, Icon: SiGit, color: "#F05032" },
-      { name: "GitHub", level: 85, Icon: SiGithub, color: "#181717" },
-      { name: "Docker", level: 68, Icon: SiDocker, color: "#2496ED" },
-      { name: "Figma", level: 75, Icon: SiFigma, color: "#F24E1E" },
+      { name: "Git", level: 88, Icon: SiGit, color: "#F05032" },
+      { name: "GitHub", level: 90, Icon: SiGithub, color: "#181717" },
+      { name: "Visual Studio Code", level: 92, Icon: DiVisualstudio, color: "#007ACC" },
+      { name: "Figma", level: 80, Icon: SiFigma, color: "#F24E1E" },
+    ],
+  },
+  {
+    category: "CS Fundamentals",
+    icon: "🧠",
+    skills: [
+      { name: "Problem Solving", level: 88, Icon: FaBrain, color: "#EC4899" },
+      { name: "Data Structures", level: 85, Icon: FaCode, color: "#10B981" },
+      { name: "Algorithms", level: 85, Icon: FaTerminal, color: "#F59E0B" },
+      { name: "OOP", level: 88, Icon: FaCode, color: "#6366F1" },
+      { name: "SDLC", level: 82, Icon: FaNetworkWired, color: "#3B82F6" },
     ],
   },
 ];
