@@ -29,6 +29,7 @@ const projects = [
     liveLink: "",
     category: "Full-Stack",
     gradient: "from-purple-500 to-pink-600",
+    image: "/images/hotel-management.png",
   },
   {
     title: "University Event Management System",
@@ -41,6 +42,7 @@ const projects = [
     liveLink: "",
     category: "Web App",
     gradient: "from-blue-500 to-indigo-600",
+    image: "/images/event-management.png",
   },
   {
     title: "SafeDose-MedGuide",
@@ -53,6 +55,7 @@ const projects = [
     liveLink: "",
     category: "Healthcare",
     gradient: "from-green-500 to-teal-600",
+    image: "/images/safedose.png",
   },
   {
     title: "Sri Lanka Railway Mobile UI Design",
@@ -65,6 +68,7 @@ const projects = [
     liveLink: "",
     category: "UI/UX Design",
     gradient: "from-orange-500 to-amber-500",
+    image: "/images/railway-design.png",
   },
 ];
 
@@ -89,11 +93,19 @@ const ProjectCard = ({ project, index, hoveredIndex, setHoveredIndex }) => {
         />
 
         <div className="relative z-10 p-6 flex flex-col flex-1">
-          {/* Visual header (icon on gradient) */}
+          {/* Visual header (image or icon on gradient) */}
           <div
             className={`relative overflow-hidden rounded-2xl mb-6 h-44 flex items-center justify-center bg-gradient-to-br ${project.gradient} shadow-inner`}
           >
-            <Icon className="text-6xl text-white/90 drop-shadow-md transition-transform duration-500 group-hover:scale-105" />
+            {project.image ? (
+              <img
+                src={project.image}
+                alt={project.title}
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+            ) : (
+              <Icon className="text-6xl text-white/90 drop-shadow-md transition-transform duration-500 group-hover:scale-105" />
+            )}
 
             <div className="absolute top-3 left-3 px-3 py-1 bg-black/20 backdrop-blur-md text-white text-xs font-semibold rounded-lg">
               {project.category}
@@ -106,7 +118,7 @@ const ProjectCard = ({ project, index, hoveredIndex, setHoveredIndex }) => {
             )}
 
             {/* Hover overlay with visual click support */}
-            <div className="absolute inset-0 flex items-center justify-center gap-4 bg-black/25 opacity-0 group-hover:opacity-100 transition-all duration-300 backdrop-blur-[2px]">
+            <div className="absolute inset-0 flex items-center justify-center gap-4 bg-black/25 opacity-0 group-hover:opacity-100 transition-all duration-300">
               {project.liveLink && (
                 <a
                   href={project.liveLink}
