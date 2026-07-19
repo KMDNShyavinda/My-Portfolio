@@ -22,18 +22,23 @@ const Hero = () => {
   const bubblesRef = useRef(null);
 
   useEffect(() => {
-    let angle = 0;
+    let ringAngle = 0;
+    let bubblesAngle = 0;
     let rafId;
-    // Slower rotation: 360deg / (8s * 60fps) ≈ 0.75deg per frame
+
     const spin = () => {
-      angle = (angle + 0.75) % 360;
+      // Rotate clockwise: 0.75deg per frame
+      ringAngle = (ringAngle + 0.75) % 360;
+      // Rotate counter-clockwise: 0.15deg per frame (0.2x speed)
+      bubblesAngle = (bubblesAngle - 0.15) % 360;
+
       if (ringRef.current) {
-        ringRef.current.style.transform = `rotate(${angle}deg)`;
+        ringRef.current.style.transform = `rotate(${ringAngle}deg)`;
         ringRef.current.style.transformOrigin = "center";
       }
       if (bubblesRef.current) {
-        // Spin counter-clockwise at a very slow 0.2x speed for a calm, premium aesthetic
-        bubblesRef.current.style.transform = `rotate(${-angle * 0.2}deg)`;
+        // Driven independently to prevent any periodic reset jumps/breaks
+        bubblesRef.current.style.transform = `rotate(${bubblesAngle}deg)`;
         bubblesRef.current.style.transformOrigin = "center";
       }
       rafId = requestAnimationFrame(spin);
