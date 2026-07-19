@@ -55,9 +55,54 @@ const Hero = () => {
         ringRef.current.style.transformOrigin = "center";
       }
 
-      // 2. Physical drift simulation: bounce icons off screen boundaries
+      // 2. Physical drift simulation: boundaries check
       const width = window.innerWidth;
       const height = window.innerHeight;
+
+      // 3. Elastic circle-circle collision response between all pairs of icons
+      for (let i = 0; i < states.length; i++) {
+        for (let j = i + 1; j < states.length; j++) {
+          const s1 = states[i];
+          const s2 = states[j];
+          if (!s1 || !s2) continue;
+
+          const dx = s2.x - s1.x;
+          const dy = s2.y - s1.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          const minDist = size; // 64px (collision diameter)
+
+          if (dist < minDist) {
+            // Collision normal vector
+            const nx = dx / (dist || 1);
+            const ny = dy / (dist || 1);
+
+            // Resolve overlapping positions (push them apart to avoid getting stuck)
+            const overlap = minDist - dist;
+            s1.x -= nx * (overlap / 2);
+            s1.y -= ny * (overlap / 2);
+            s2.x += nx * (overlap / 2);
+            s2.y += ny * (overlap / 2);
+
+            // Elastic bounce impulse calculation
+            const rvx = s2.vx - s1.vx;
+            const rvy = s2.vy - s1.vy;
+            const velAlongNormal = rvx * nx + rvy * ny;
+
+            // Only bounce if they are moving towards each other
+            if (velAlongNormal < 0) {
+              const impulse = -velAlongNormal;
+              s1.vx -= nx * impulse;
+              s1.vy -= ny * impulse;
+              s2.vx += nx * impulse;
+              s2.vy += ny * impulse;
+
+              // Introduce minor spin variation on contact for organic realism
+              s1.vrot += (Math.random() - 0.5) * 0.1;
+              s2.vrot += (Math.random() - 0.5) * 0.1;
+            }
+          }
+        }
+      }
 
       iconElements.forEach((el, index) => {
         const state = states[index];
@@ -67,7 +112,7 @@ const Hero = () => {
           state.y += state.vy;
           state.rot += state.vrot;
 
-          // Horizontal bounce
+          // Horizontal bounce off walls
           if (state.x < 0) {
             state.x = 0;
             state.vx *= -1;
@@ -76,7 +121,7 @@ const Hero = () => {
             state.vx *= -1;
           }
 
-          // Vertical bounce
+          // Vertical bounce off walls
           if (state.y < 0) {
             state.y = 0;
             state.vy *= -1;
