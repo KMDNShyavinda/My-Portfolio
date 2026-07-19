@@ -78,72 +78,72 @@ const Hero = () => {
         <div className="absolute inset-0 pointer-events-none overflow-hidden select-none z-0">
           {/* React (Left, top-middle) */}
           <motion.div
-            className="absolute left-[8%] top-[25%] opacity-15 dark:opacity-10 text-[#61dafb] filter blur-[1.5px]"
-            animate={{ y: [0, -25, 0], x: [0, 10, 0], rotate: [0, 360] }}
-            transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute left-[8%] top-[25%] opacity-25 dark:opacity-20 text-[#61dafb] filter blur-[1px]"
+            animate={{ y: [0, -60, 30, 0], x: [0, 40, -30, 0], rotate: [0, 180, 360] }}
+            transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
           >
             <FaReact className="w-12 h-12 md:w-16 md:h-16" />
           </motion.div>
 
           {/* VS Code (Right, top) */}
           <motion.div
-            className="absolute right-[12%] top-[15%] opacity-15 dark:opacity-10 text-[#007acc] filter blur-[1.5px]"
-            animate={{ y: [0, 20, 0], x: [0, -15, 0], rotate: [0, -360] }}
-            transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute right-[12%] top-[15%] opacity-25 dark:opacity-20 text-[#007acc] filter blur-[1px]"
+            animate={{ y: [0, 50, -40, 0], x: [0, -50, 20, 0], rotate: [0, -180, -360] }}
+            transition={{ duration: 28, repeat: Infinity, ease: "easeInOut" }}
           >
             <VscCode className="w-12 h-12 md:w-16 md:h-16" />
           </motion.div>
 
           {/* Figma (Left, bottom) */}
           <motion.div
-            className="absolute left-[12%] top-[70%] opacity-15 dark:opacity-10 text-[#F24E1E] filter blur-[1.5px]"
-            animate={{ y: [0, -20, 0], x: [0, -10, 0], rotate: [0, 360] }}
-            transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute left-[12%] top-[70%] opacity-25 dark:opacity-20 text-[#F24E1E] filter blur-[1px]"
+            animate={{ y: [0, -40, 50, 0], x: [0, -30, 60, 0], rotate: [0, 180, 360] }}
+            transition={{ duration: 26, repeat: Infinity, ease: "easeInOut" }}
           >
             <FaFigma className="w-12 h-12 md:w-16 md:h-16" />
           </motion.div>
 
           {/* JavaScript (Right, middle-bottom) */}
           <motion.div
-            className="absolute right-[18%] top-[65%] opacity-15 dark:opacity-10 text-[#f7df1e] filter blur-[1.5px]"
-            animate={{ y: [0, 25, 0], x: [0, 15, 0], rotate: [360, 0] }}
-            transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute right-[18%] top-[65%] opacity-25 dark:opacity-20 text-[#f7df1e] filter blur-[1px]"
+            animate={{ y: [0, 60, -30, 0], x: [0, 40, -40, 0], rotate: [360, 180, 0] }}
+            transition={{ duration: 24, repeat: Infinity, ease: "easeInOut" }}
           >
             <FaJs className="w-12 h-12 md:w-16 md:h-16" />
           </motion.div>
 
           {/* Java (Left, top) */}
           <motion.div
-            className="absolute left-[26%] top-[10%] opacity-15 dark:opacity-10 text-[#e76f00] filter blur-[1.5px]"
-            animate={{ y: [0, -15, 0], x: [0, 10, 0], rotate: [0, -360] }}
-            transition={{ duration: 17, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute left-[26%] top-[10%] opacity-25 dark:opacity-20 text-[#e76f00] filter blur-[1px]"
+            animate={{ y: [0, -50, 40, 0], x: [0, 30, -50, 0], rotate: [0, -180, -360] }}
+            transition={{ duration: 27, repeat: Infinity, ease: "easeInOut" }}
           >
             <FaJava className="w-12 h-12 md:w-16 md:h-16" />
           </motion.div>
 
           {/* .NET (Right, middle-top) */}
           <motion.div
-            className="absolute right-[28%] top-[35%] opacity-15 dark:opacity-10 text-[#512bd4] filter blur-[1.5px]"
-            animate={{ y: [0, 20, 0], x: [0, -10, 0], rotate: [0, 360] }}
-            transition={{ duration: 19, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute right-[28%] top-[35%] opacity-25 dark:opacity-20 text-[#512bd4] filter blur-[1px]"
+            animate={{ y: [0, 40, -60, 0], x: [0, -40, 30, 0], rotate: [0, 180, 360] }}
+            transition={{ duration: 29, repeat: Infinity, ease: "easeInOut" }}
           >
             <SiDotnet className="w-12 h-12 md:w-16 md:h-16" />
           </motion.div>
 
           {/* GitHub (Center, top-ish) */}
           <motion.div
-            className="absolute left-[45%] top-[8%] opacity-15 dark:opacity-10 text-gray-400 dark:text-gray-200 filter blur-[1.5px]"
-            animate={{ y: [0, -20, 0], x: [0, 15, 0], rotate: [360, 0] }}
-            transition={{ duration: 21, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute left-[45%] top-[8%] opacity-25 dark:opacity-20 text-gray-400 dark:text-gray-200 filter blur-[1px]"
+            animate={{ y: [0, -50, 30, 0], x: [0, 50, -20, 0], rotate: [360, 180, 0] }}
+            transition={{ duration: 31, repeat: Infinity, ease: "easeInOut" }}
           >
             <FaGithub className="w-12 h-12 md:w-16 md:h-16" />
           </motion.div>
 
           {/* HTML5 (Center-left, bottom) */}
           <motion.div
-            className="absolute left-[40%] top-[82%] opacity-15 dark:opacity-10 text-[#e34f26] filter blur-[1.5px]"
-            animate={{ y: [0, 20, 0], x: [0, -15, 0], rotate: [0, 360] }}
-            transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute left-[40%] top-[82%] opacity-25 dark:opacity-20 text-[#e34f26] filter blur-[1px]"
+            animate={{ y: [0, 50, -50, 0], x: [0, -40, 40, 0], rotate: [0, 180, 360] }}
+            transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
           >
             <FaHtml5 className="w-12 h-12 md:w-16 md:h-16" />
           </motion.div>
