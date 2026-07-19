@@ -175,12 +175,12 @@ const Hero = () => {
         <div className="absolute top-40 right-10 w-96 h-96 bg-indigo-500/5 dark:bg-indigo-600/5 rounded-full blur-3xl opacity-30"></div>
 
         {/* Animated and slightly blurred floating tech background icons */}
-        <div 
-          ref={bgIconsRef} 
-          className="fixed inset-0 pointer-events-none overflow-hidden select-none z-0 opacity-[0.10] dark:opacity-[0.06]"
+        <div
+          ref={bgIconsRef}
+          className="fixed inset-0 pointer-events-none overflow-hidden select-none z-0 opacity-[0.10] dark:opacity-[0.07]"
         >
           {/* React */}
-          <div className="absolute left-0 top-0 text-blue-500 dark:text-cyan-400 filter blur-[1.25px]">
+          <div className="absolute left-0 top-0 text-blue-500 dark:text-cyan-400 filter blur-[10.25px]">
             <FaReact className="w-12 h-12 md:w-16 md:h-16" />
           </div>
 
@@ -300,7 +300,8 @@ const Hero = () => {
                    */}
                   <linearGradient id="ringGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                     <stop offset="0%" stopColor="#3b82f6" /> {/* Vibrant Neon Blue */}
-                    <stop offset="50%" stopColor="#1e40af" /> {/* Deep Royal Blue */}
+                    <stop offset="33%" stopColor="#8b5cf6" /> {/* Electric Violet */}
+                    <stop offset="66%" stopColor="#ec4899" /> {/* Hot Pink */}
                     <stop offset="100%" stopColor="#00f5a0" /> {/* High-Contrast Emerald Mint */}
                   </linearGradient>
                 </defs>
