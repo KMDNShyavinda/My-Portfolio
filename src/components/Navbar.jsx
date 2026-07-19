@@ -76,7 +76,7 @@ const Navbar = () => {
           </motion.a>
 
           {/* Desktop Menu */}
-          <div className="hidden lg:flex items-center space-x-5 xl:space-x-6">
+          <div className="hidden lg:flex items-center space-x-2 xl:space-x-3">
             {navItems.map((item, index) => (
               <motion.a
                 key={item.name}
@@ -84,8 +84,8 @@ const Navbar = () => {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.08 }}
-                whileHover={{ scale: 1.05, y: -1 }}
-                className="relative text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-semibold transition-all after:content-[''] after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:bg-gradient-to-r after:from-blue-500 after:to-cyan-400 hover:after:w-full after:transition-all after:duration-300"
+                whileHover={{ scale: 1.05 }}
+                className="px-3 py-1.5 rounded-full border border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-cyan-400 hover:border-blue-500 dark:hover:border-cyan-400 hover:bg-blue-500/5 dark:hover:bg-cyan-400/5 text-[13px] xl:text-sm font-semibold transition-all duration-300"
               >
                 {item.name}
               </motion.a>
