@@ -12,7 +12,7 @@ import Skills from "./components/Skills";
 import About from "./components/About";
 import Contact from "./sections/Contact";
 import Footer from "./components/Footer";
-import ChatBox from "./components/ChatBox";
+import TawkTo from "./components/TawkTo";
 import { personalInfo } from "./constants";
 
 // TODO: replace with your real deployed domain once you have one.
@@ -92,7 +92,7 @@ const App = () => {
         <Contact />
       </main>
       <Footer />
-      <ChatBox />
+      <TawkTo />
     </MotionConfig>
   );
 };
