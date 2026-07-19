@@ -218,16 +218,16 @@ const Hero = () => {
                   to { transform: rotate(0deg); }
                 }
                 @keyframes bubbleFloat1 {
-                  0%, 100% { transform: translateY(0px) scale(1); }
-                  50% { transform: translateY(-7px) scale(1.08); }
+                  0%, 100% { transform: translate(-50%, -50%) translateY(0px) scale(1); }
+                  50% { transform: translate(-50%, -50%) translateY(-5px) scale(1.08); }
                 }
                 @keyframes bubbleFloat2 {
-                  0%, 100% { transform: translateY(0px) scale(1); }
-                  50% { transform: translateY(5px) scale(0.92); }
+                  0%, 100% { transform: translate(-50%, -50%) translateY(0px) scale(1); }
+                  50% { transform: translate(-50%, -50%) translateY(5px) scale(0.92); }
                 }
                 @keyframes bubbleFloat3 {
-                  0%, 100% { transform: translateY(0px) scale(1); }
-                  50% { transform: translateY(-5px) scale(1.06); }
+                  0%, 100% { transform: translate(-50%, -50%) translateY(0px) scale(1); }
+                  50% { transform: translate(-50%, -50%) translateY(-4px) scale(1.06); }
                 }
               `}} />
 
@@ -243,12 +243,13 @@ const Hero = () => {
                   pointerEvents: "none"
                 }}
               >
-                {/* Bubble 1 (12px, top-center: ~90°) */}
+                {/* Bubble 1 (12px, top-center: exactly 90° on the ring path) */}
                 <div
                   style={{
                     position: "absolute",
-                    top: "-2%",
-                    left: "48.2%",
+                    top: "3.2%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
                     width: "12px",
                     height: "12px",
                     borderRadius: "50%",
@@ -258,12 +259,13 @@ const Hero = () => {
                   }}
                 />
 
-                {/* Bubble 2 (12px, bottom-right: ~330°) */}
+                {/* Bubble 2 (12px, bottom-right: exactly 330° on the ring path) */}
                 <div
                   style={{
                     position: "absolute",
-                    top: "74%",
-                    left: "87.5%",
+                    top: "73.4%",
+                    left: "90.53%",
+                    transform: "translate(-50%, -50%)",
                     width: "12px",
                     height: "12px",
                     borderRadius: "50%",
@@ -273,12 +275,13 @@ const Hero = () => {
                   }}
                 />
 
-                {/* Bubble 3 (12px, bottom-left: ~210°) */}
+                {/* Bubble 3 (12px, bottom-left: exactly 210° on the ring path) */}
                 <div
                   style={{
                     position: "absolute",
-                    top: "74%",
-                    left: "9.5%",
+                    top: "73.4%",
+                    left: "9.47%",
+                    transform: "translate(-50%, -50%)",
                     width: "12px",
                     height: "12px",
                     borderRadius: "50%",
