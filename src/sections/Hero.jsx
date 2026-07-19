@@ -299,10 +299,35 @@ const Hero = () => {
                    * Blue → Cyan → Green → Blue, each as a crisp solid band.
                    */}
                   <linearGradient id="ringGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#3b82f6" /> {/* Vibrant Neon Blue */}
-                    <stop offset="33%" stopColor="#8b5cf6" /> {/* Electric Violet */}
-                    <stop offset="66%" stopColor="#ec4899" /> {/* Hot Pink */}
-                    <stop offset="100%" stopColor="#00f5a0" /> {/* High-Contrast Emerald Mint */}
+                    {/* Segment 1: Neon Blue */}
+                    <stop offset="0%" stopColor="#3b82f6" stopOpacity="1" />
+                    <stop offset="20%" stopColor="#3b82f6" stopOpacity="1" />
+                    <stop offset="20%" stopColor="#3b82f6" stopOpacity="0" />
+                    
+                    {/* Gap 1 (Transparent) */}
+                    <stop offset="25%" stopColor="#8b5cf6" stopOpacity="0" />
+                    
+                    {/* Segment 2: Electric Violet */}
+                    <stop offset="25%" stopColor="#8b5cf6" stopOpacity="1" />
+                    <stop offset="45%" stopColor="#8b5cf6" stopOpacity="1" />
+                    <stop offset="45%" stopColor="#8b5cf6" stopOpacity="0" />
+                    
+                    {/* Gap 2 (Transparent) */}
+                    <stop offset="50%" stopColor="#ec4899" stopOpacity="0" />
+                    
+                    {/* Segment 3: Hot Pink */}
+                    <stop offset="50%" stopColor="#ec4899" stopOpacity="1" />
+                    <stop offset="70%" stopColor="#ec4899" stopOpacity="1" />
+                    <stop offset="70%" stopColor="#ec4899" stopOpacity="0" />
+                    
+                    {/* Gap 3 (Transparent) */}
+                    <stop offset="75%" stopColor="#00f5a0" stopOpacity="0" />
+                    
+                    {/* Segment 4: Emerald Mint */}
+                    <stop offset="75%" stopColor="#00f5a0" stopOpacity="1" />
+                    <stop offset="95%" stopColor="#00f5a0" stopOpacity="1" />
+                    <stop offset="95%" stopColor="#00f5a0" stopOpacity="0" />
+                    <stop offset="100%" stopColor="#00f5a0" stopOpacity="0" />
                   </linearGradient>
                 </defs>
                 {/*
