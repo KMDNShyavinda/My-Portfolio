@@ -128,7 +128,7 @@ const Hero = () => {
               <svg
                 ref={ringRef}
                 className="absolute pointer-events-none"
-                style={{ inset: "-7px", width: "calc(100% + 14px)", height: "calc(100% + 14px)", zIndex: 10 }}
+                style={{ inset: "-7px", width: "calc(100% + 14px)", height: "calc(100% + 14px)", zIndex: 35 }}
                 viewBox="0 0 220 220"
                 xmlns="http://www.w3.org/2000/svg"
               >
