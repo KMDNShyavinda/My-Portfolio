@@ -2,8 +2,8 @@ import React, { useRef, useEffect } from "react";
 import { TypeAnimation } from "react-type-animation";
 import { motion } from "framer-motion";
 import { personalInfo } from "../constants";
-import { FaReact, FaJs, FaHtml5, FaGithub, FaFigma, FaJava } from "react-icons/fa";
-import { SiDotnet } from "react-icons/si";
+import { FaReact, FaJs, FaHtml5, FaGithub, FaFigma, FaJava, FaLaravel, FaPython, FaDatabase } from "react-icons/fa";
+import { SiDotnet, SiMysql } from "react-icons/si";
 import { VscCode } from "react-icons/vsc";
 
 // Interleave each rotating role with a 2s pause for react-type-animation's sequence prop.
@@ -172,6 +172,26 @@ const Hero = () => {
           {/* HTML5 */}
           <div className="absolute left-0 top-0 opacity-25 dark:opacity-20 text-[#e34f26] filter blur-[1px]">
             <FaHtml5 className="w-12 h-12 md:w-16 md:h-16" />
+          </div>
+
+          {/* Laravel */}
+          <div className="absolute left-0 top-0 opacity-25 dark:opacity-20 text-[#FF2D20] filter blur-[1px]">
+            <FaLaravel className="w-12 h-12 md:w-16 md:h-16" />
+          </div>
+
+          {/* Python */}
+          <div className="absolute left-0 top-0 opacity-25 dark:opacity-20 text-[#3776AB] filter blur-[1px]">
+            <FaPython className="w-12 h-12 md:w-16 md:h-16" />
+          </div>
+
+          {/* Database */}
+          <div className="absolute left-0 top-0 opacity-25 dark:opacity-20 text-[#44B78B] filter blur-[1px]">
+            <FaDatabase className="w-12 h-12 md:w-16 md:h-16" />
+          </div>
+
+          {/* SQL (MySQL logo) */}
+          <div className="absolute left-0 top-0 opacity-25 dark:opacity-20 text-[#00758F] filter blur-[1px]">
+            <SiMysql className="w-12 h-12 md:w-16 md:h-16" />
           </div>
         </div>
         <div className="absolute bottom-20 left-20 w-80 h-80 bg-cyan-500/5 dark:bg-cyan-600/5 rounded-full blur-3xl opacity-40"></div>
