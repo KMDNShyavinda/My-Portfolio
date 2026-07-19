@@ -180,62 +180,62 @@ const Hero = () => {
           className="fixed inset-0 pointer-events-none overflow-hidden select-none z-0"
         >
           {/* React */}
-          <div className="absolute left-0 top-0 opacity-25 dark:opacity-20 text-blue-500 dark:text-cyan-400 filter blur-[1.25px]">
+          <div className="absolute left-0 top-0 opacity-[0.10] dark:opacity-[0.06] text-blue-500 dark:text-cyan-400 filter blur-[1.25px]">
             <FaReact className="w-12 h-12 md:w-16 md:h-16" />
           </div>
 
           {/* VS Code */}
-          <div className="absolute left-0 top-0 opacity-25 dark:opacity-20 text-blue-500 dark:text-cyan-400 filter blur-[1.25px]">
+          <div className="absolute left-0 top-0 opacity-[0.10] dark:opacity-[0.06] text-blue-500 dark:text-cyan-400 filter blur-[1.25px]">
             <VscCode className="w-12 h-12 md:w-16 md:h-16" />
           </div>
 
           {/* Figma */}
-          <div className="absolute left-0 top-0 opacity-25 dark:opacity-20 text-blue-500 dark:text-cyan-400 filter blur-[1.25px]">
+          <div className="absolute left-0 top-0 opacity-[0.10] dark:opacity-[0.06] text-blue-500 dark:text-cyan-400 filter blur-[1.25px]">
             <FaFigma className="w-12 h-12 md:w-16 md:h-16" />
           </div>
 
           {/* JavaScript */}
-          <div className="absolute left-0 top-0 opacity-25 dark:opacity-20 text-blue-500 dark:text-cyan-400 filter blur-[1.25px]">
+          <div className="absolute left-0 top-0 opacity-[0.10] dark:opacity-[0.06] text-blue-500 dark:text-cyan-400 filter blur-[1.25px]">
             <FaJs className="w-12 h-12 md:w-16 md:h-16" />
           </div>
 
           {/* Java */}
-          <div className="absolute left-0 top-0 opacity-25 dark:opacity-20 text-blue-500 dark:text-cyan-400 filter blur-[1.25px]">
+          <div className="absolute left-0 top-0 opacity-[0.10] dark:opacity-[0.06] text-blue-500 dark:text-cyan-400 filter blur-[1.25px]">
             <FaJava className="w-12 h-12 md:w-16 md:h-16" />
           </div>
 
           {/* .NET */}
-          <div className="absolute left-0 top-0 opacity-25 dark:opacity-20 text-blue-500 dark:text-cyan-400 filter blur-[1.25px]">
+          <div className="absolute left-0 top-0 opacity-[0.10] dark:opacity-[0.06] text-blue-500 dark:text-cyan-400 filter blur-[1.25px]">
             <SiDotnet className="w-12 h-12 md:w-16 md:h-16" />
           </div>
 
           {/* GitHub */}
-          <div className="absolute left-0 top-0 opacity-25 dark:opacity-20 text-blue-500 dark:text-cyan-400 filter blur-[1.25px]">
+          <div className="absolute left-0 top-0 opacity-[0.10] dark:opacity-[0.06] text-blue-500 dark:text-cyan-400 filter blur-[1.25px]">
             <FaGithub className="w-12 h-12 md:w-16 md:h-16" />
           </div>
 
           {/* HTML5 */}
-          <div className="absolute left-0 top-0 opacity-25 dark:opacity-20 text-blue-500 dark:text-cyan-400 filter blur-[1.25px]">
+          <div className="absolute left-0 top-0 opacity-[0.10] dark:opacity-[0.06] text-blue-500 dark:text-cyan-400 filter blur-[1.25px]">
             <FaHtml5 className="w-12 h-12 md:w-16 md:h-16" />
           </div>
 
           {/* Laravel */}
-          <div className="absolute left-0 top-0 opacity-25 dark:opacity-20 text-blue-500 dark:text-cyan-400 filter blur-[1.25px]">
+          <div className="absolute left-0 top-0 opacity-[0.10] dark:opacity-[0.06] text-blue-500 dark:text-cyan-400 filter blur-[1.25px]">
             <FaLaravel className="w-12 h-12 md:w-16 md:h-16" />
           </div>
 
           {/* Python */}
-          <div className="absolute left-0 top-0 opacity-25 dark:opacity-20 text-blue-500 dark:text-cyan-400 filter blur-[1.25px]">
+          <div className="absolute left-0 top-0 opacity-[0.10] dark:opacity-[0.06] text-blue-500 dark:text-cyan-400 filter blur-[1.25px]">
             <FaPython className="w-12 h-12 md:w-16 md:h-16" />
           </div>
 
           {/* Database */}
-          <div className="absolute left-0 top-0 opacity-25 dark:opacity-20 text-blue-500 dark:text-cyan-400 filter blur-[1.25px]">
+          <div className="absolute left-0 top-0 opacity-[0.10] dark:opacity-[0.06] text-blue-500 dark:text-cyan-400 filter blur-[1.25px]">
             <FaDatabase className="w-12 h-12 md:w-16 md:h-16" />
           </div>
 
           {/* SQL (MySQL logo) */}
-          <div className="absolute left-0 top-0 opacity-25 dark:opacity-20 text-blue-500 dark:text-cyan-400 filter blur-[1.25px]">
+          <div className="absolute left-0 top-0 opacity-[0.10] dark:opacity-[0.06] text-blue-500 dark:text-cyan-400 filter blur-[1.25px]">
             <SiMysql className="w-12 h-12 md:w-16 md:h-16" />
           </div>
         </div>
