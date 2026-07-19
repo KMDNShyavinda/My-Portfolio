@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from "react";
 import { TypeAnimation } from "react-type-animation";
 import { motion } from "framer-motion";
 import { personalInfo } from "../constants";
+import { FaReact, FaJs, FaHtml5 } from "react-icons/fa";
 
 // Interleave each rotating role with a 2s pause for react-type-animation's sequence prop.
 const typingSequence = personalInfo.taglineRoles.flatMap((role) => [
@@ -244,53 +245,77 @@ const Hero = () => {
                   pointerEvents: "none"
                 }}
               >
-                {/* Bubble 1 (12px, top-center: touching the outer edge of the gradient ring) */}
+                {/* Bubble 1 (React Icon, top-center) */}
                 <div
                   style={{
                     position: "absolute",
                     top: "1.0%",
                     left: "50%",
                     transform: "translate(-50%, -50%)",
-                    width: "12px",
-                    height: "12px",
+                    width: "28px",
+                    height: "28px",
                     borderRadius: "50%",
-                    background: "linear-gradient(135deg, #3b82f6, #00f5a0)",
-                    boxShadow: "0 0 8px rgba(0, 245, 160, 0.8), inset 0 1px 2px rgba(255, 255, 255, 0.5)",
-                    animation: "bubbleFloat1 3.5s ease-in-out infinite"
+                    background: "rgba(11, 14, 31, 0.95)",
+                    border: "1.5px solid #00f5a0",
+                    boxShadow: "0 0 10px rgba(0, 245, 160, 0.5)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    animation: "bubbleFloat1 3.5s ease-in-out infinite",
+                    pointerEvents: "auto"
                   }}
-                />
+                  title="React"
+                >
+                  <FaReact style={{ color: "#61dafb", fontSize: "14px" }} />
+                </div>
 
-                {/* Bubble 2 (12px, bottom-right: touching the outer edge of the gradient ring) */}
+                {/* Bubble 2 (JavaScript Icon, bottom-right) */}
                 <div
                   style={{
                     position: "absolute",
                     top: "74.5%",
                     left: "92.43%",
                     transform: "translate(-50%, -50%)",
-                    width: "12px",
-                    height: "12px",
+                    width: "28px",
+                    height: "28px",
                     borderRadius: "50%",
-                    background: "linear-gradient(135deg, #3b82f6, #00f5a0)",
-                    boxShadow: "0 0 8px rgba(0, 245, 160, 0.8), inset 0 1px 2px rgba(255, 255, 255, 0.5)",
-                    animation: "bubbleFloat2 4.2s ease-in-out infinite"
+                    background: "rgba(11, 14, 31, 0.95)",
+                    border: "1.5px solid #3b82f6",
+                    boxShadow: "0 0 10px rgba(59, 130, 246, 0.5)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    animation: "bubbleFloat2 4.2s ease-in-out infinite",
+                    pointerEvents: "auto"
                   }}
-                />
+                  title="JavaScript"
+                >
+                  <FaJs style={{ color: "#f7df1e", fontSize: "14px" }} />
+                </div>
 
-                {/* Bubble 3 (12px, bottom-left: touching the outer edge of the gradient ring) */}
+                {/* Bubble 3 (HTML5 Icon, bottom-left) */}
                 <div
                   style={{
                     position: "absolute",
                     top: "74.5%",
                     left: "7.57%",
                     transform: "translate(-50%, -50%)",
-                    width: "12px",
-                    height: "12px",
+                    width: "28px",
+                    height: "28px",
                     borderRadius: "50%",
-                    background: "linear-gradient(135deg, #3b82f6, #00f5a0)",
-                    boxShadow: "0 0 8px rgba(0, 245, 160, 0.8), inset 0 1px 2px rgba(255, 255, 255, 0.5)",
-                    animation: "bubbleFloat3 3.8s ease-in-out infinite"
+                    background: "rgba(11, 14, 31, 0.95)",
+                    border: "1.5px solid #00f5a0",
+                    boxShadow: "0 0 10px rgba(0, 245, 160, 0.5)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    animation: "bubbleFloat3 3.8s ease-in-out infinite",
+                    pointerEvents: "auto"
                   }}
-                />
+                  title="HTML5"
+                >
+                  <FaHtml5 style={{ color: "#e34f26", fontSize: "14px" }} />
+                </div>
               </div>
             </motion.div>
           </motion.div>
