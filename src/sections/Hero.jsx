@@ -212,7 +212,8 @@ const Hero = () => {
               </div>
 
               {/* Injection of premium Keyframes for Orbit and Floating Bubble Effects */}
-              <style dangerouslySetInnerHTML={{__html: `
+              <style dangerouslySetInnerHTML={{
+                __html: `
                 @keyframes spinOrbitCounter {
                   from { transform: rotate(360deg); }
                   to { transform: rotate(0deg); }
@@ -231,7 +232,7 @@ const Hero = () => {
                 }
               `}} />
 
-              {/* Orbiting Neon Bubbles Container (Z-index: 45, driven by bubblesRef loop, matches SVG ring inset exactly) */}
+              {/* Orbiting Neon Bubbles Container (Z-index: 5, driven by bubblesRef loop, matches SVG ring inset exactly) */}
               <div
                 ref={bubblesRef}
                 style={{
@@ -239,15 +240,15 @@ const Hero = () => {
                   inset: "-7px",
                   width: "calc(100% + 14px)",
                   height: "calc(100% + 14px)",
-                  zIndex: 45,
+                  zIndex: 5,
                   pointerEvents: "none"
                 }}
               >
-                {/* Bubble 1 (12px, top-center: positioned on the outer edge of the ring) */}
+                {/* Bubble 1 (12px, top-center: touching the outer edge of the gradient ring) */}
                 <div
                   style={{
                     position: "absolute",
-                    top: "-2.5%",
+                    top: "1.0%",
                     left: "50%",
                     transform: "translate(-50%, -50%)",
                     width: "12px",
@@ -259,12 +260,12 @@ const Hero = () => {
                   }}
                 />
 
-                {/* Bubble 2 (12px, bottom-right: positioned on the outer edge of the ring) */}
+                {/* Bubble 2 (12px, bottom-right: touching the outer edge of the gradient ring) */}
                 <div
                   style={{
                     position: "absolute",
-                    top: "76.25%",
-                    left: "95.47%",
+                    top: "74.5%",
+                    left: "92.43%",
                     transform: "translate(-50%, -50%)",
                     width: "12px",
                     height: "12px",
@@ -275,12 +276,12 @@ const Hero = () => {
                   }}
                 />
 
-                {/* Bubble 3 (12px, bottom-left: positioned on the outer edge of the ring) */}
+                {/* Bubble 3 (12px, bottom-left: touching the outer edge of the gradient ring) */}
                 <div
                   style={{
                     position: "absolute",
-                    top: "76.25%",
-                    left: "4.53%",
+                    top: "74.5%",
+                    left: "7.57%",
                     transform: "translate(-50%, -50%)",
                     width: "12px",
                     height: "12px",
