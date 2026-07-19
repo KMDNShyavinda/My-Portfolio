@@ -345,53 +345,61 @@ const Hero = () => {
                 </div>
               </div>
 
-              {/* Status Badge (Z-index: 40, on top of everything, moves back and forth in 3D) */}
+              {/* 3D sliding wrapper for the badge (Z-index: 40, sweeps 30 degrees back and forth) */}
               <motion.div
                 animate={{
-                  scale: [1, 1.12, 1],
-                  z: [0, 45, 0],
-                  rotateX: [0, 6, -6, 0],
-                  rotateY: [0, -6, 6, 0],
-                  boxShadow: [
-                    "0 10px 15px -3px rgba(99, 102, 241, 0.3), 0 4px 6px -2px rgba(99, 102, 241, 0.15)",
-                    "0 25px 30px -5px rgba(99, 102, 241, 0.65), 0 15px 20px -7px rgba(99, 102, 241, 0.35)",
-                    "0 10px 15px -3px rgba(99, 102, 241, 0.3), 0 4px 6px -2px rgba(99, 102, 241, 0.15)"
-                  ]
+                  rotate: [-15, 15, -15]
                 }}
                 transition={{
-                  duration: 4.5,
+                  duration: 6,
                   repeat: Infinity,
                   ease: "easeInOut"
                 }}
-                style={{
-                  transformStyle: "preserve-3d"
-                }}
-                className="absolute bottom-[12%] right-[12%] translate-x-1/4 translate-y-1/4 inline-flex items-center gap-2 bg-[#0b0e1f]/90 border border-[#6366f1] py-1.5 px-3.5 md:py-2 md:px-4.5 rounded-full shadow-lg pointer-events-auto z-40 backdrop-blur-sm"
+                className="absolute inset-0 z-40 pointer-events-none"
               >
-                {/* Indigo Pulsing Dot wrapper */}
-                <span className="relative flex h-2.5 w-2.5">
-                  <motion.span
-                    animate={{
-                      scale: [1, 2.2, 1],
-                      opacity: [0.5, 0, 0.5],
-                    }}
-                    transition={{
-                      duration: 1.6,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    }}
-                    className="absolute inline-flex h-full w-full rounded-full bg-indigo-400"
-                    style={{
-                      boxShadow: "0 0 6px 2px rgba(99, 102, 241, 0.5)"
-                    }}
-                  />
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-indigo-400" />
-                </span>
+                {/* Status Badge (Positioned at bottom-right of the circle, counter-rotates to stay upright) */}
+                <motion.div
+                  animate={{
+                    rotate: [15, -15, 15], // Cancel out the wrapper rotation so text stays upright
+                    scale: [1, 1.08, 1],   // Subtle 3D breathe scale
+                    boxShadow: [
+                      "0 10px 15px -3px rgba(99, 102, 241, 0.3), 0 4px 6px -2px rgba(99, 102, 241, 0.15)",
+                      "0 20px 25px -5px rgba(99, 102, 241, 0.5), 0 10px 10px -5px rgba(99, 102, 241, 0.3)",
+                      "0 10px 15px -3px rgba(99, 102, 241, 0.3), 0 4px 6px -2px rgba(99, 102, 241, 0.15)"
+                    ]
+                  }}
+                  transition={{
+                    duration: 6,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                  className="absolute bottom-[12%] right-[12%] translate-x-1/4 translate-y-1/4 inline-flex items-center gap-2 bg-[#0b0e1f]/90 border border-[#6366f1] py-1.5 px-3.5 md:py-2 md:px-4.5 rounded-full shadow-lg pointer-events-auto backdrop-blur-sm"
+                >
+                  {/* Indigo Pulsing Dot wrapper */}
+                  <span className="relative flex h-2.5 w-2.5">
+                    <motion.span
+                      animate={{
+                        scale: [1, 2.2, 1],
+                        opacity: [0.5, 0, 0.5],
+                      }}
+                      transition={{
+                        duration: 1.6,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
+                      className="absolute inline-flex h-full w-full rounded-full bg-indigo-400"
+                      style={{
+                        boxShadow: "0 0 6px 2px rgba(99, 102, 241, 0.5)"
+                      }}
+                    />
+                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-indigo-400" />
+                  </span>
 
-                {/* Badge Text */}
-                <span className="text-[11px] md:text-[12px] font-bold text-indigo-200 tracking-wide whitespace-nowrap">
-                  Open to work
-                </span>
+                  {/* Badge Text */}
+                  <span className="text-[11px] md:text-[12px] font-bold text-indigo-200 tracking-wide whitespace-nowrap">
+                    Open to work
+                  </span>
+                </motion.div>
               </motion.div>
 
             </motion.div>
