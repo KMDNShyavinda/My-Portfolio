@@ -3,7 +3,8 @@ import { TypeAnimation } from "react-type-animation";
 import { motion } from "framer-motion";
 import { personalInfo } from "../constants";
 import { FaReact, FaJs, FaHtml5, FaGithub, FaFigma, FaJava } from "react-icons/fa";
-import { SiDotnet, SiVisualstudiocode } from "react-icons/si";
+import { SiDotnet } from "react-icons/si";
+import { VscCode } from "react-icons/vsc";
 
 // Interleave each rotating role with a 2s pause for react-type-animation's sequence prop.
 const typingSequence = personalInfo.taglineRoles.flatMap((role) => [
@@ -279,7 +280,7 @@ const Hero = () => {
                   }}
                   title="VS Code"
                 >
-                  <SiVisualstudiocode style={{ color: "#007acc", fontSize: "24px", filter: "drop-shadow(0 0 8px rgba(0, 122, 204, 0.85))" }} />
+                  <VscCode style={{ color: "#007acc", fontSize: "24px", filter: "drop-shadow(0 0 8px rgba(0, 122, 204, 0.85))" }} />
                 </div>
 
                 {/* 3. Figma Icon (middle-right: 0°) */}
