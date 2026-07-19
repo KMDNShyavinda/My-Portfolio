@@ -24,15 +24,15 @@ const Hero = () => {
   useEffect(() => {
     let angle = 0;
     let rafId;
-    // 360deg / (4s * 60fps) ≈ 1.5deg per frame
+    // Slower rotation: 360deg / (8s * 60fps) ≈ 0.75deg per frame
     const spin = () => {
-      angle = (angle + 1.5) % 360;
+      angle = (angle + 0.75) % 360;
       if (ringRef.current) {
         ringRef.current.style.transform = `rotate(${angle}deg)`;
         ringRef.current.style.transformOrigin = "center";
       }
       if (bubblesRef.current) {
-        // Spin counter-clockwise at half speed for premium dynamic parallax depth
+        // Spin counter-clockwise at 0.5x speed for premium dynamic parallax depth
         bubblesRef.current.style.transform = `rotate(${-angle * 0.5}deg)`;
         bubblesRef.current.style.transformOrigin = "center";
       }
@@ -226,57 +226,59 @@ const Hero = () => {
                 }
               `}} />
 
-              {/* Orbiting Neon Bubbles Container (Z-index: 45, driven by bubblesRef loop) */}
+              {/* Orbiting Neon Bubbles Container (Z-index: 45, driven by bubblesRef loop, matches SVG ring inset exactly) */}
               <div
                 ref={bubblesRef}
                 style={{
                   position: "absolute",
-                  inset: "-16px",
+                  inset: "-7px",
+                  width: "calc(100% + 14px)",
+                  height: "calc(100% + 14px)",
                   zIndex: 45,
                   pointerEvents: "none"
                 }}
               >
-                {/* Large Premium Bubble (28px) */}
+                {/* Bubble 1 (22px, positioned exactly on the ring at top-right) */}
                 <div
                   style={{
                     position: "absolute",
-                    top: "8%",
-                    left: "82%",
-                    width: "28px",
-                    height: "28px",
+                    top: "12%",
+                    left: "80%",
+                    width: "22px",
+                    height: "22px",
                     borderRadius: "50%",
                     background: "linear-gradient(135deg, #3b82f6, #00f5a0)",
-                    boxShadow: "0 0 16px rgba(0, 245, 160, 0.85), inset 0 3px 5px rgba(255, 255, 255, 0.6)",
+                    boxShadow: "0 0 14px rgba(0, 245, 160, 0.8), inset 0 2px 4px rgba(255, 255, 255, 0.5)",
                     animation: "bubbleFloat1 3.5s ease-in-out infinite"
                   }}
                 />
 
-                {/* Medium Premium Bubble (22px) */}
+                {/* Bubble 2 (22px, positioned exactly on the ring at bottom-left) */}
                 <div
                   style={{
                     position: "absolute",
-                    top: "84%",
+                    top: "80%",
                     left: "12%",
                     width: "22px",
                     height: "22px",
                     borderRadius: "50%",
                     background: "linear-gradient(135deg, #3b82f6, #00f5a0)",
-                    boxShadow: "0 0 14px rgba(0, 245, 160, 0.75), inset 0 2px 4px rgba(255, 255, 255, 0.6)",
+                    boxShadow: "0 0 14px rgba(0, 245, 160, 0.8), inset 0 2px 4px rgba(255, 255, 255, 0.5)",
                     animation: "bubbleFloat2 4.2s ease-in-out infinite"
                   }}
                 />
 
-                {/* Medium-Small Premium Bubble (18px) */}
+                {/* Bubble 3 (22px, positioned exactly on the ring at middle-left/top-left) */}
                 <div
                   style={{
                     position: "absolute",
-                    top: "45%",
-                    left: "-5%",
-                    width: "18px",
-                    height: "18px",
+                    top: "23%",
+                    left: "8%",
+                    width: "22px",
+                    height: "22px",
                     borderRadius: "50%",
                     background: "linear-gradient(135deg, #3b82f6, #00f5a0)",
-                    boxShadow: "0 0 12px rgba(0, 245, 160, 0.75), inset 0 2px 3px rgba(255, 255, 255, 0.5)",
+                    boxShadow: "0 0 14px rgba(0, 245, 160, 0.8), inset 0 2px 4px rgba(255, 255, 255, 0.5)",
                     animation: "bubbleFloat3 3.8s ease-in-out infinite"
                   }}
                 />
