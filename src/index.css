@@ -526,3 +526,15 @@ html.dark .glass-effect {
   background-color: rgba(14, 17, 29, 0.75);
   border-bottom: 1px solid rgba(30, 41, 59, 0.5);
 }
+
+/* Hide default Tawk.to chat bubble, minimize helper bubbles, and branding pill elements */
+iframe[title="chat widget"],
+iframe[title="Chat widget"],
+iframe[title="chat widget"] + iframe,
+iframe[title="Chat widget"] + iframe,
+iframe[src*="embed.tawk.to"]:not([title="chat window"]):not([title="Chat window"]) {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
