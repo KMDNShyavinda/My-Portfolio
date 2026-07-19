@@ -32,8 +32,8 @@ const Hero = () => {
         ringRef.current.style.transformOrigin = "center";
       }
       if (bubblesRef.current) {
-        // Spin counter-clockwise at 0.5x speed for premium dynamic parallax depth
-        bubblesRef.current.style.transform = `rotate(${-angle * 0.5}deg)`;
+        // Spin counter-clockwise at a very slow 0.2x speed for a calm, premium aesthetic
+        bubblesRef.current.style.transform = `rotate(${-angle * 0.2}deg)`;
         bubblesRef.current.style.transformOrigin = "center";
       }
       rafId = requestAnimationFrame(spin);
