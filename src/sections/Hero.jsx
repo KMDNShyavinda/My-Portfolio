@@ -57,8 +57,8 @@ const Hero = () => {
         ringRef.current.style.transformOrigin = "center";
       }
 
-      // 2. Animate the 'Open to work' status badge along the circular arc (sweeps -15deg to +15deg)
-      const badgeAngle = Math.sin(ringAngle * 0.03) * 15;
+      // 2. Animate the 'Open to work' status badge along the circular arc (sweeps -10deg to +10deg)
+      const badgeAngle = Math.sin(ringAngle * 0.03) * 10;
       if (badgeWrapperRef.current) {
         badgeWrapperRef.current.style.transform = `rotate(${badgeAngle}deg)`;
         badgeWrapperRef.current.style.transformOrigin = "center";
