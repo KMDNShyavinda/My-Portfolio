@@ -23,6 +23,8 @@ const Hero = () => {
   // AND Framer Motion's own reduced-motion handling. The ONLY guaranteed way to rotate/float.
   const ringRef = useRef(null);
   const bgIconsRef = useRef(null);
+  const badgeWrapperRef = useRef(null);
+  const badgeRef = useRef(null);
 
   useEffect(() => {
     let ringAngle = 0;
@@ -55,7 +57,18 @@ const Hero = () => {
         ringRef.current.style.transformOrigin = "center";
       }
 
-      // 2. Physical drift simulation: boundaries check
+      // 2. Animate the 'Open to work' status badge along the circular arc (sweeps -15deg to +15deg)
+      const badgeAngle = Math.sin(ringAngle * 0.03) * 15;
+      if (badgeWrapperRef.current) {
+        badgeWrapperRef.current.style.transform = `rotate(${badgeAngle}deg)`;
+        badgeWrapperRef.current.style.transformOrigin = "center";
+      }
+      if (badgeRef.current) {
+        const scaleVal = 1 + Math.sin(ringAngle * 0.05) * 0.04;
+        badgeRef.current.style.transform = `rotate(${-badgeAngle}deg) scale(${scaleVal})`;
+      }
+
+      // 3. Physical drift simulation: boundaries check
       const width = window.innerWidth;
       const height = window.innerHeight;
 
@@ -345,35 +358,15 @@ const Hero = () => {
                 </div>
               </div>
 
-              {/* 3D sliding wrapper for the badge (Z-index: 40, sweeps 30 degrees back and forth) */}
-              <motion.div
-                animate={{
-                  rotate: [-15, 15, -15]
-                }}
-                transition={{
-                  duration: 6,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
+              {/* 3D sliding wrapper for the badge (Z-index: 40, sweeps 30 degrees back and forth driven by JS RAF loop) */}
+              <div
+                ref={badgeWrapperRef}
                 className="absolute inset-0 z-40 pointer-events-none"
               >
                 {/* Status Badge (Positioned at bottom-right of the circle, counter-rotates to stay upright) */}
-                <motion.div
-                  animate={{
-                    rotate: [15, -15, 15], // Cancel out the wrapper rotation so text stays upright
-                    scale: [1, 1.08, 1],   // Subtle 3D breathe scale
-                    boxShadow: [
-                      "0 10px 15px -3px rgba(99, 102, 241, 0.3), 0 4px 6px -2px rgba(99, 102, 241, 0.15)",
-                      "0 20px 25px -5px rgba(99, 102, 241, 0.5), 0 10px 10px -5px rgba(99, 102, 241, 0.3)",
-                      "0 10px 15px -3px rgba(99, 102, 241, 0.3), 0 4px 6px -2px rgba(99, 102, 241, 0.15)"
-                    ]
-                  }}
-                  transition={{
-                    duration: 6,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                  className="absolute bottom-[12%] right-[12%] translate-x-1/4 translate-y-1/4 inline-flex items-center gap-2 bg-[#0b0e1f]/90 border border-[#6366f1] py-1.5 px-3.5 md:py-2 md:px-4.5 rounded-full shadow-lg pointer-events-auto backdrop-blur-sm"
+                <div
+                  ref={badgeRef}
+                  className="absolute bottom-[12%] right-[12%] translate-x-1/4 translate-y-1/4 inline-flex items-center gap-2 bg-[#0b0e1f]/90 border border-[#6366f1] py-1.5 px-3.5 md:py-2 md:px-4.5 rounded-full shadow-lg pointer-events-auto backdrop-blur-sm shadow-indigo-500/30"
                 >
                   {/* Indigo Pulsing Dot wrapper */}
                   <span className="relative flex h-2.5 w-2.5">
@@ -399,8 +392,8 @@ const Hero = () => {
                   <span className="text-[11px] md:text-[12px] font-bold text-indigo-200 tracking-wide whitespace-nowrap">
                     Open to work
                   </span>
-                </motion.div>
-              </motion.div>
+                </div>
+              </div>
 
             </motion.div>
           </motion.div>
