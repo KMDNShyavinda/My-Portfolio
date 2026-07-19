@@ -2,7 +2,8 @@ import React, { useRef, useEffect } from "react";
 import { TypeAnimation } from "react-type-animation";
 import { motion } from "framer-motion";
 import { personalInfo } from "../constants";
-import { FaReact, FaJs, FaHtml5 } from "react-icons/fa";
+import { FaReact, FaJs, FaHtml5, FaGithub, FaFigma, FaJava } from "react-icons/fa";
+import { SiDotnet, SiVisualstudiocode } from "react-icons/si";
 
 // Interleave each rotating role with a 2s pause for react-type-animation's sequence prop.
 const typingSequence = personalInfo.taglineRoles.flatMap((role) => [
@@ -245,7 +246,7 @@ const Hero = () => {
                   pointerEvents: "none"
                 }}
               >
-                {/* Bubble 1 (React Icon, top-center) */}
+                {/* 1. React Icon (top-center: 90°) */}
                 <div
                   style={{
                     position: "absolute",
@@ -263,12 +264,12 @@ const Hero = () => {
                   <FaReact style={{ color: "#61dafb", fontSize: "24px", filter: "drop-shadow(0 0 8px rgba(97, 218, 251, 0.85))" }} />
                 </div>
 
-                {/* Bubble 2 (JavaScript Icon, bottom-right) */}
+                {/* 2. VS Code Icon (top-right: 45°) */}
                 <div
                   style={{
                     position: "absolute",
-                    top: "74.5%",
-                    left: "92.43%",
+                    top: "15.4%",
+                    left: "84.6%",
                     transform: "translate(-50%, -50%)",
                     display: "flex",
                     alignItems: "center",
@@ -276,22 +277,112 @@ const Hero = () => {
                     animation: "bubbleFloat2 4.2s ease-in-out infinite",
                     pointerEvents: "auto"
                   }}
-                  title="JavaScript"
+                  title="VS Code"
                 >
-                  <FaJs style={{ color: "#f7df1e", fontSize: "24px", filter: "drop-shadow(0 0 8px rgba(247, 223, 30, 0.85))" }} />
+                  <SiVisualstudiocode style={{ color: "#007acc", fontSize: "24px", filter: "drop-shadow(0 0 8px rgba(0, 122, 204, 0.85))" }} />
                 </div>
 
-                {/* Bubble 3 (HTML5 Icon, bottom-left) */}
+                {/* 3. Figma Icon (middle-right: 0°) */}
                 <div
                   style={{
                     position: "absolute",
-                    top: "74.5%",
-                    left: "7.57%",
+                    top: "50%",
+                    left: "99%",
                     transform: "translate(-50%, -50%)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
                     animation: "bubbleFloat3 3.8s ease-in-out infinite",
+                    pointerEvents: "auto"
+                  }}
+                  title="Figma"
+                >
+                  <FaFigma style={{ color: "#F24E1E", fontSize: "24px", filter: "drop-shadow(0 0 8px rgba(242, 78, 30, 0.85))" }} />
+                </div>
+
+                {/* 4. JavaScript Icon (bottom-right: 315° / -45°) */}
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "84.6%",
+                    left: "84.6%",
+                    transform: "translate(-50%, -50%)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    animation: "bubbleFloat1 3.5s ease-in-out infinite",
+                    pointerEvents: "auto"
+                  }}
+                  title="JavaScript"
+                >
+                  <FaJs style={{ color: "#f7df1e", fontSize: "24px", filter: "drop-shadow(0 0 8px rgba(247, 223, 30, 0.85))" }} />
+                </div>
+
+                {/* 5. Java Icon (bottom-center: 270° / -90°) */}
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "99%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    animation: "bubbleFloat2 4.2s ease-in-out infinite",
+                    pointerEvents: "auto"
+                  }}
+                  title="Java"
+                >
+                  <FaJava style={{ color: "#e76f00", fontSize: "24px", filter: "drop-shadow(0 0 8px rgba(231, 111, 0, 0.85))" }} />
+                </div>
+
+                {/* 6. .NET Icon (bottom-left: 225° / -135°) */}
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "84.6%",
+                    left: "15.4%",
+                    transform: "translate(-50%, -50%)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    animation: "bubbleFloat3 3.8s ease-in-out infinite",
+                    pointerEvents: "auto"
+                  }}
+                  title=".NET"
+                >
+                  <SiDotnet style={{ color: "#512bd4", fontSize: "24px", filter: "drop-shadow(0 0 8px rgba(81, 43, 212, 0.85))" }} />
+                </div>
+
+                {/* 7. GitHub Icon (middle-left: 180°) */}
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "50%",
+                    left: "1.0%",
+                    transform: "translate(-50%, -50%)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    animation: "bubbleFloat1 3.5s ease-in-out infinite",
+                    pointerEvents: "auto"
+                  }}
+                  title="GitHub"
+                >
+                  <FaGithub style={{ color: "#ffffff", fontSize: "24px", filter: "drop-shadow(0 0 8px rgba(255, 255, 255, 0.85))" }} />
+                </div>
+
+                {/* 8. HTML5 Icon (top-left: 135°) */}
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "15.4%",
+                    left: "15.4%",
+                    transform: "translate(-50%, -50%)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    animation: "bubbleFloat2 4.2s ease-in-out infinite",
                     pointerEvents: "auto"
                   }}
                   title="HTML5"
