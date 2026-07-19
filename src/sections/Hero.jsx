@@ -252,12 +252,6 @@ const Hero = () => {
                     top: "1.0%",
                     left: "50%",
                     transform: "translate(-50%, -50%)",
-                    width: "28px",
-                    height: "28px",
-                    borderRadius: "50%",
-                    background: "rgba(11, 14, 31, 0.95)",
-                    border: "1.5px solid #00f5a0",
-                    boxShadow: "0 0 10px rgba(0, 245, 160, 0.5)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -266,7 +260,7 @@ const Hero = () => {
                   }}
                   title="React"
                 >
-                  <FaReact style={{ color: "#61dafb", fontSize: "14px" }} />
+                  <FaReact style={{ color: "#61dafb", fontSize: "24px", filter: "drop-shadow(0 0 8px rgba(97, 218, 251, 0.85))" }} />
                 </div>
 
                 {/* Bubble 2 (JavaScript Icon, bottom-right) */}
@@ -276,12 +270,6 @@ const Hero = () => {
                     top: "74.5%",
                     left: "92.43%",
                     transform: "translate(-50%, -50%)",
-                    width: "28px",
-                    height: "28px",
-                    borderRadius: "50%",
-                    background: "rgba(11, 14, 31, 0.95)",
-                    border: "1.5px solid #3b82f6",
-                    boxShadow: "0 0 10px rgba(59, 130, 246, 0.5)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -290,7 +278,7 @@ const Hero = () => {
                   }}
                   title="JavaScript"
                 >
-                  <FaJs style={{ color: "#f7df1e", fontSize: "14px" }} />
+                  <FaJs style={{ color: "#f7df1e", fontSize: "24px", filter: "drop-shadow(0 0 8px rgba(247, 223, 30, 0.85))" }} />
                 </div>
 
                 {/* Bubble 3 (HTML5 Icon, bottom-left) */}
@@ -300,12 +288,6 @@ const Hero = () => {
                     top: "74.5%",
                     left: "7.57%",
                     transform: "translate(-50%, -50%)",
-                    width: "28px",
-                    height: "28px",
-                    borderRadius: "50%",
-                    background: "rgba(11, 14, 31, 0.95)",
-                    border: "1.5px solid #00f5a0",
-                    boxShadow: "0 0 10px rgba(0, 245, 160, 0.5)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -314,7 +296,7 @@ const Hero = () => {
                   }}
                   title="HTML5"
                 >
-                  <FaHtml5 style={{ color: "#e34f26", fontSize: "14px" }} />
+                  <FaHtml5 style={{ color: "#e34f26", fontSize: "24px", filter: "drop-shadow(0 0 8px rgba(227, 79, 38, 0.85))" }} />
                 </div>
               </div>
             </motion.div>
