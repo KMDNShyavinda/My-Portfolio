@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap");
 @import "tailwindcss";
 
-@custom-variant dark (&:where(.dark, .dark *));
+@variant dark (&:where(.dark, .dark *));
 
 :root {
   --gradient: radial-gradient(circle, #e5e5e5 0%, #fff 100%);
@@ -68,6 +68,9 @@ section {
   --color-black-200: #161b2e;
   --color-blue-50: #94a3b8;
   --color-blue-100: #1e293b;
+
+  /* Deep navy — page background for dark premium sections */
+  --color-deep-navy: #0b0f19;
 }
 
 @layer utilities {
@@ -523,4 +526,3 @@ html.dark .glass-effect {
   background-color: rgba(14, 17, 29, 0.75);
   border-bottom: 1px solid rgba(30, 41, 59, 0.5);
 }
-

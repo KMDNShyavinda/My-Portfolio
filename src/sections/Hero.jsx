@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import { TypeAnimation } from "react-type-animation";
 import { motion } from "framer-motion";
 import { personalInfo } from "../constants";
@@ -16,6 +16,32 @@ const quickStats = [
 ];
 
 const Hero = () => {
+  // Direct requestAnimationFrame loop — completely bypasses CSS prefers-reduced-motion
+  // AND Framer Motion's own reduced-motion handling. The ONLY guaranteed way to rotate.
+  const ringRef = useRef(null);
+  const bubblesRef = useRef(null);
+
+  useEffect(() => {
+    let angle = 0;
+    let rafId;
+    // 360deg / (4s * 60fps) ≈ 1.5deg per frame
+    const spin = () => {
+      angle = (angle + 1.5) % 360;
+      if (ringRef.current) {
+        ringRef.current.style.transform = `rotate(${angle}deg)`;
+        ringRef.current.style.transformOrigin = "center";
+      }
+      if (bubblesRef.current) {
+        // Spin counter-clockwise at half speed for premium dynamic parallax depth
+        bubblesRef.current.style.transform = `rotate(${-angle * 0.5}deg)`;
+        bubblesRef.current.style.transformOrigin = "center";
+      }
+      rafId = requestAnimationFrame(spin);
+    };
+    rafId = requestAnimationFrame(spin);
+    return () => cancelAnimationFrame(rafId);
+  }, []);
+
   return (
     <section
       id="home"
@@ -72,7 +98,7 @@ const Hero = () => {
               className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 aspect-square cursor-pointer"
             >
               {/* Dynamic Pulsing Background Glow */}
-              <motion.div 
+              <motion.div
                 animate={{
                   scale: [1, 1.06, 1],
                   opacity: [0.5, 0.8, 0.5],
@@ -83,14 +109,56 @@ const Hero = () => {
                   repeatType: "reverse",
                   ease: "easeInOut",
                 }}
-                className="absolute inset-0 bg-gradient-to-tr from-blue-500/20 to-cyan-500/20 dark:from-blue-500/10 dark:to-cyan-400/10 rounded-full blur-3xl pointer-events-none" 
+                className="absolute inset-0 bg-gradient-to-tr from-blue-500/20 to-cyan-500/20 dark:from-blue-500/10 dark:to-cyan-400/10 rounded-full blur-3xl pointer-events-none"
               />
-              
-              {/* Image Frame Container */}
-              <div className="relative w-full h-full rounded-full border border-gray-200/80 dark:border-gray-800/80 bg-white/80 dark:bg-gray-900/80 p-3 shadow-2xl transition-all duration-500 group-hover:border-blue-500/40 dark:group-hover:border-cyan-400/40 overflow-hidden backdrop-blur-md">
+
+              {/*
+               * Rotating SVG Ring — RAF-driven, bypasses ALL CSS/Framer Motion
+               * reduced-motion overrides. No strokeDasharray = full 360° ring,
+               * no gaps. 4-stop gradient cycles Blue→Cyan→Green→Blue so both
+               * ends of the stroke meet seamlessly.
+               * SVG extends -10px outside the parent so the ring sits slightly
+               * outside the photo border for a larger, more prominent look.
+               */}
+              <svg
+                ref={ringRef}
+                className="absolute pointer-events-none"
+                style={{ inset: "-7px", width: "calc(100% + 14px)", height: "calc(100% + 14px)", zIndex: 10 }}
+                viewBox="0 0 220 220"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <defs>
+                  {/*
+                   * Hard-stop pairs: two stops at the same offset create an
+                   * instant color switch with zero blending between segments.
+                   * Blue → Cyan → Green → Blue, each as a crisp solid band.
+                   */}
+                  <linearGradient id="ringGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#3b82f6" /> {/* Vibrant Neon Blue */}
+                    <stop offset="50%" stopColor="#1e40af" /> {/* Deep Royal Blue */}
+                    <stop offset="100%" stopColor="#00f5a0" /> {/* High-Contrast Emerald Mint */}
+                  </linearGradient>
+                </defs>
+                {/*
+                  viewBox 220×220, cx/cy=110, r=103
+                  strokeWidth=8 → stroke sits from r 99→107, well within 0–220
+                  No strokeDasharray → full unbroken 360° ring
+                */}
+                <circle
+                  cx="110"
+                  cy="110"
+                  r="103"
+                  fill="none"
+                  stroke="url(#ringGradient)"
+                  strokeWidth="8"
+                />
+              </svg>
+
+              {/* Image Frame Container (Z-index: 30, above the rotating border, inset-[6px] for gap) */}
+              <div className="absolute inset-[6px] z-30 rounded-full border-4 border-gray-50 dark:border-gray-950 bg-white/80 dark:bg-gray-900/80 p-3 shadow-2xl transition-all duration-400 group-hover:scale-[1.03] overflow-hidden backdrop-blur-md">
                 {/* Glow ring effect inside the frame on hover */}
                 <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-transparent via-blue-500/10 to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
-                
+
                 <div className="w-full h-full bg-gray-50 dark:bg-gray-950 rounded-full overflow-hidden relative">
                   <img
                     src={import.meta.env.BASE_URL + "images/my.png"}
@@ -108,6 +176,110 @@ const Hero = () => {
                     </span>
                   </div>
                 </div>
+              </div>
+
+              {/* Status Badge (Z-index: 40, on top of everything) */}
+              <div className="absolute bottom-[12%] right-[12%] translate-x-1/4 translate-y-1/4 inline-flex items-center gap-2 bg-[#0b0e1f]/90 border border-[#6366f1] py-1.5 px-3.5 md:py-2 md:px-4.5 rounded-full shadow-lg shadow-indigo-500/20 pointer-events-auto z-40 backdrop-blur-sm">
+                {/* Indigo Pulsing Dot wrapper */}
+                <span className="relative flex h-2.5 w-2.5">
+                  <motion.span
+                    animate={{
+                      scale: [1, 2.2, 1],
+                      opacity: [0.5, 0, 0.5],
+                    }}
+                    transition={{
+                      duration: 1.6,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                    className="absolute inline-flex h-full w-full rounded-full bg-indigo-400"
+                    style={{
+                      boxShadow: "0 0 6px 2px rgba(99, 102, 241, 0.5)"
+                    }}
+                  />
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-indigo-400" />
+                </span>
+
+                {/* Badge Text */}
+                <span className="text-[11px] md:text-[12px] font-bold text-indigo-200 tracking-wide whitespace-nowrap">
+                  Open to work
+                </span>
+              </div>
+
+              {/* Injection of premium Keyframes for Orbit and Floating Bubble Effects */}
+              <style dangerouslySetInnerHTML={{__html: `
+                @keyframes spinOrbitCounter {
+                  from { transform: rotate(360deg); }
+                  to { transform: rotate(0deg); }
+                }
+                @keyframes bubbleFloat1 {
+                  0%, 100% { transform: translateY(0px) scale(1); }
+                  50% { transform: translateY(-7px) scale(1.08); }
+                }
+                @keyframes bubbleFloat2 {
+                  0%, 100% { transform: translateY(0px) scale(1); }
+                  50% { transform: translateY(5px) scale(0.92); }
+                }
+                @keyframes bubbleFloat3 {
+                  0%, 100% { transform: translateY(0px) scale(1); }
+                  50% { transform: translateY(-5px) scale(1.06); }
+                }
+              `}} />
+
+              {/* Orbiting Neon Bubbles Container (Z-index: 45, driven by bubblesRef loop) */}
+              <div
+                ref={bubblesRef}
+                style={{
+                  position: "absolute",
+                  inset: "-16px",
+                  zIndex: 45,
+                  pointerEvents: "none"
+                }}
+              >
+                {/* Large Premium Bubble (28px) */}
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "8%",
+                    left: "82%",
+                    width: "28px",
+                    height: "28px",
+                    borderRadius: "50%",
+                    background: "linear-gradient(135deg, #3b82f6, #00f5a0)",
+                    boxShadow: "0 0 16px rgba(0, 245, 160, 0.85), inset 0 3px 5px rgba(255, 255, 255, 0.6)",
+                    animation: "bubbleFloat1 3.5s ease-in-out infinite"
+                  }}
+                />
+
+                {/* Medium Premium Bubble (22px) */}
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "84%",
+                    left: "12%",
+                    width: "22px",
+                    height: "22px",
+                    borderRadius: "50%",
+                    background: "linear-gradient(135deg, #3b82f6, #00f5a0)",
+                    boxShadow: "0 0 14px rgba(0, 245, 160, 0.75), inset 0 2px 4px rgba(255, 255, 255, 0.6)",
+                    animation: "bubbleFloat2 4.2s ease-in-out infinite"
+                  }}
+                />
+
+                {/* Medium-Small Premium Bubble (18px) */}
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "45%",
+                    left: "-5%",
+                    width: "18px",
+                    height: "18px",
+                    borderRadius: "50%",
+                    background: "linear-gradient(135deg, #3b82f6, #00f5a0)",
+                    boxShadow: "0 0 12px rgba(0, 245, 160, 0.75), inset 0 2px 3px rgba(255, 255, 255, 0.5)",
+                    animation: "bubbleFloat3 3.8s ease-in-out infinite"
+                  }}
+                />
               </div>
             </motion.div>
           </motion.div>
