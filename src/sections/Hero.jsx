@@ -238,47 +238,47 @@ const Hero = () => {
                   pointerEvents: "none"
                 }}
               >
-                {/* Bubble 1 (22px, positioned exactly on the ring at top-right) */}
+                {/* Bubble 1 (12px, positioned exactly on the ring at top-right) */}
                 <div
                   style={{
                     position: "absolute",
                     top: "12%",
                     left: "80%",
-                    width: "22px",
-                    height: "22px",
+                    width: "12px",
+                    height: "12px",
                     borderRadius: "50%",
                     background: "linear-gradient(135deg, #3b82f6, #00f5a0)",
-                    boxShadow: "0 0 14px rgba(0, 245, 160, 0.8), inset 0 2px 4px rgba(255, 255, 255, 0.5)",
+                    boxShadow: "0 0 8px rgba(0, 245, 160, 0.8), inset 0 1px 2px rgba(255, 255, 255, 0.5)",
                     animation: "bubbleFloat1 3.5s ease-in-out infinite"
                   }}
                 />
 
-                {/* Bubble 2 (22px, positioned exactly on the ring at bottom-left) */}
+                {/* Bubble 2 (12px, positioned exactly on the ring at bottom-left) */}
                 <div
                   style={{
                     position: "absolute",
                     top: "80%",
                     left: "12%",
-                    width: "22px",
-                    height: "22px",
+                    width: "12px",
+                    height: "12px",
                     borderRadius: "50%",
                     background: "linear-gradient(135deg, #3b82f6, #00f5a0)",
-                    boxShadow: "0 0 14px rgba(0, 245, 160, 0.8), inset 0 2px 4px rgba(255, 255, 255, 0.5)",
+                    boxShadow: "0 0 8px rgba(0, 245, 160, 0.8), inset 0 1px 2px rgba(255, 255, 255, 0.5)",
                     animation: "bubbleFloat2 4.2s ease-in-out infinite"
                   }}
                 />
 
-                {/* Bubble 3 (22px, positioned exactly on the ring at middle-left/top-left) */}
+                {/* Bubble 3 (12px, positioned exactly on the ring at middle-left/top-left) */}
                 <div
                   style={{
                     position: "absolute",
                     top: "23%",
                     left: "8%",
-                    width: "22px",
-                    height: "22px",
+                    width: "12px",
+                    height: "12px",
                     borderRadius: "50%",
                     background: "linear-gradient(135deg, #3b82f6, #00f5a0)",
-                    boxShadow: "0 0 14px rgba(0, 245, 160, 0.8), inset 0 2px 4px rgba(255, 255, 255, 0.5)",
+                    boxShadow: "0 0 8px rgba(0, 245, 160, 0.8), inset 0 1px 2px rgba(255, 255, 255, 0.5)",
                     animation: "bubbleFloat3 3.8s ease-in-out infinite"
                   }}
                 />
