@@ -28,38 +28,65 @@ const Hero = () => {
     let ringAngle = 0;
     let rafId;
 
-    // Cache the background icon children once on mount to maximize performance
+    // Cache elements and set screen-wide boundary properties
     const iconElements = bgIconsRef.current ? Array.from(bgIconsRef.current.children) : [];
+    const size = 64; // Size of icon bounding box
 
-    // Individual floating parameters: [yScale, xScale, yFreq, xFreq, rotDirection]
-    const params = [
-      [90, 70, 0.015, 0.012, 0.3],   // React
-      [70, -80, 0.012, 0.016, -0.2], // VS Code
-      [-80, 70, 0.014, 0.018, 0.25], // Figma
-      [80, -60, 0.018, 0.011, -0.3], // JS
-      [-70, 80, 0.011, 0.014, -0.25],// Java
-      [60, -70, 0.016, 0.013, 0.35],  // .NET
-      [-80, 60, 0.013, 0.015, -0.15], // GitHub
-      [70, -65, 0.015, 0.017, 0.2]    // HTML5
-    ];
+    // Initialize physical floating states (random position and direction across the screen)
+    const states = iconElements.map(() => {
+      const vx = (Math.random() - 0.5) * 0.8;
+      const vy = (Math.random() - 0.5) * 0.8;
+      return {
+        x: Math.random() * (window.innerWidth - size),
+        y: Math.random() * (window.innerHeight - size),
+        // Ensure they are moving at a minimum visible speed
+        vx: Math.abs(vx) < 0.25 ? (vx < 0 ? -0.45 : 0.45) : vx,
+        vy: Math.abs(vy) < 0.25 ? (vy < 0 ? -0.45 : 0.45) : vy,
+        rot: Math.random() * 360,
+        vrot: (Math.random() - 0.5) * 0.2
+      };
+    });
 
     const spin = () => {
-      // Rotate clockwise: 0.75deg per frame
+      // 1. Rotate clockwise: 0.75deg per frame
       ringAngle = (ringAngle + 0.75) % 360;
-
       if (ringRef.current) {
         ringRef.current.style.transform = `rotate(${ringAngle}deg)`;
         ringRef.current.style.transformOrigin = "center";
       }
 
-      // Smoothly float each icon along its path (bypasses reduced-motion blocks)
+      // 2. Physical drift simulation: bounce icons off screen boundaries
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+
       iconElements.forEach((el, index) => {
-        if (el && params[index]) {
-          const [yScale, xScale, yFreq, xFreq, rotSpeed] = params[index];
-          const yOffset = Math.sin(ringAngle * yFreq * 10) * yScale;
-          const xOffset = Math.cos(ringAngle * xFreq * 10) * xScale;
-          const rot = ringAngle * rotSpeed * 10;
-          el.style.transform = `translate(${xOffset}px, ${yOffset}px) rotate(${rot}deg)`;
+        const state = states[index];
+        if (el && state) {
+          // Physics step
+          state.x += state.vx;
+          state.y += state.vy;
+          state.rot += state.vrot;
+
+          // Horizontal bounce
+          if (state.x < 0) {
+            state.x = 0;
+            state.vx *= -1;
+          } else if (state.x > width - size) {
+            state.x = width - size;
+            state.vx *= -1;
+          }
+
+          // Vertical bounce
+          if (state.y < 0) {
+            state.y = 0;
+            state.vy *= -1;
+          } else if (state.y > height - size) {
+            state.y = height - size;
+            state.vy *= -1;
+          }
+
+          // Apply coordinates instantly
+          el.style.transform = `translate(${state.x}px, ${state.y}px) rotate(${state.rot}deg)`;
         }
       });
 
@@ -107,43 +134,43 @@ const Hero = () => {
           ref={bgIconsRef} 
           className="fixed inset-0 pointer-events-none overflow-hidden select-none z-0"
         >
-          {/* React (Left, top-middle) */}
-          <div className="absolute left-[8%] top-[25%] opacity-25 dark:opacity-20 text-[#61dafb] filter blur-[1px] transition-transform duration-300 ease-out">
+          {/* React */}
+          <div className="absolute left-0 top-0 opacity-25 dark:opacity-20 text-[#61dafb] filter blur-[1px]">
             <FaReact className="w-12 h-12 md:w-16 md:h-16" />
           </div>
 
-          {/* VS Code (Right, top) */}
-          <div className="absolute right-[12%] top-[15%] opacity-25 dark:opacity-20 text-[#007acc] filter blur-[1px] transition-transform duration-300 ease-out">
+          {/* VS Code */}
+          <div className="absolute left-0 top-0 opacity-25 dark:opacity-20 text-[#007acc] filter blur-[1px]">
             <VscCode className="w-12 h-12 md:w-16 md:h-16" />
           </div>
 
-          {/* Figma (Left, bottom) */}
-          <div className="absolute left-[12%] top-[70%] opacity-25 dark:opacity-20 text-[#F24E1E] filter blur-[1px] transition-transform duration-300 ease-out">
+          {/* Figma */}
+          <div className="absolute left-0 top-0 opacity-25 dark:opacity-20 text-[#F24E1E] filter blur-[1px]">
             <FaFigma className="w-12 h-12 md:w-16 md:h-16" />
           </div>
 
-          {/* JavaScript (Right, middle-bottom) */}
-          <div className="absolute right-[18%] top-[65%] opacity-25 dark:opacity-20 text-[#f7df1e] filter blur-[1px] transition-transform duration-300 ease-out">
+          {/* JavaScript */}
+          <div className="absolute left-0 top-0 opacity-25 dark:opacity-20 text-[#f7df1e] filter blur-[1px]">
             <FaJs className="w-12 h-12 md:w-16 md:h-16" />
           </div>
 
-          {/* Java (Left, top) */}
-          <div className="absolute left-[26%] top-[10%] opacity-25 dark:opacity-20 text-[#e76f00] filter blur-[1px] transition-transform duration-300 ease-out">
+          {/* Java */}
+          <div className="absolute left-0 top-0 opacity-25 dark:opacity-20 text-[#e76f00] filter blur-[1px]">
             <FaJava className="w-12 h-12 md:w-16 md:h-16" />
           </div>
 
-          {/* .NET (Right, middle-top) */}
-          <div className="absolute right-[28%] top-[35%] opacity-25 dark:opacity-20 text-[#512bd4] filter blur-[1px] transition-transform duration-300 ease-out">
+          {/* .NET */}
+          <div className="absolute left-0 top-0 opacity-25 dark:opacity-20 text-[#512bd4] filter blur-[1px]">
             <SiDotnet className="w-12 h-12 md:w-16 md:h-16" />
           </div>
 
-          {/* GitHub (Center, top-ish) */}
-          <div className="absolute left-[45%] top-[8%] opacity-25 dark:opacity-20 text-gray-400 dark:text-gray-200 filter blur-[1px] transition-transform duration-300 ease-out">
+          {/* GitHub */}
+          <div className="absolute left-0 top-0 opacity-25 dark:opacity-20 text-gray-400 dark:text-gray-200 filter blur-[1px]">
             <FaGithub className="w-12 h-12 md:w-16 md:h-16" />
           </div>
 
-          {/* HTML5 (Center-left, bottom) */}
-          <div className="absolute left-[40%] top-[82%] opacity-25 dark:opacity-20 text-[#e34f26] filter blur-[1px] transition-transform duration-300 ease-out">
+          {/* HTML5 */}
+          <div className="absolute left-0 top-0 opacity-25 dark:opacity-20 text-[#e34f26] filter blur-[1px]">
             <FaHtml5 className="w-12 h-12 md:w-16 md:h-16" />
           </div>
         </div>
