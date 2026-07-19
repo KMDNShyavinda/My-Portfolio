@@ -84,8 +84,9 @@ const Navbar = () => {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.08 }}
-                whileHover={{ scale: 1.05 }}
-                className="px-3 py-1.5 rounded-full border border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-cyan-400 hover:border-blue-500 dark:hover:border-cyan-400 hover:bg-blue-500/5 dark:hover:bg-cyan-400/5 text-[13px] xl:text-sm font-semibold transition-all duration-300"
+                whileHover={{ scale: 1.06, y: -2, transition: { type: "spring", stiffness: 400, damping: 15 } }}
+                whileTap={{ scale: 0.95 }}
+                className="px-3 py-1.5 rounded-full border border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-cyan-400 hover:border-blue-500/60 dark:hover:border-cyan-400/60 hover:bg-blue-500/5 dark:hover:bg-cyan-400/5 hover:shadow-[0_4px_12px_-2px_rgba(59,130,246,0.25)] dark:hover:shadow-[0_4px_12px_-2px_rgba(34,211,238,0.2)] text-[13px] xl:text-sm font-semibold transition-all duration-300"
               >
                 {item.name}
               </motion.a>
