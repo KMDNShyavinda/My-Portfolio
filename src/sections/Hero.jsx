@@ -243,12 +243,12 @@ const Hero = () => {
                   pointerEvents: "none"
                 }}
               >
-                {/* Bubble 1 (12px, positioned exactly on the ring at top-right) */}
+                {/* Bubble 1 (12px, top-center: ~90°) */}
                 <div
                   style={{
                     position: "absolute",
-                    top: "12%",
-                    left: "80%",
+                    top: "-2%",
+                    left: "48.2%",
                     width: "12px",
                     height: "12px",
                     borderRadius: "50%",
@@ -258,12 +258,12 @@ const Hero = () => {
                   }}
                 />
 
-                {/* Bubble 2 (12px, positioned exactly on the ring at bottom-left) */}
+                {/* Bubble 2 (12px, bottom-right: ~330°) */}
                 <div
                   style={{
                     position: "absolute",
-                    top: "80%",
-                    left: "12%",
+                    top: "74%",
+                    left: "87.5%",
                     width: "12px",
                     height: "12px",
                     borderRadius: "50%",
@@ -273,12 +273,12 @@ const Hero = () => {
                   }}
                 />
 
-                {/* Bubble 3 (12px, positioned exactly on the ring at middle-left/top-left) */}
+                {/* Bubble 3 (12px, bottom-left: ~210°) */}
                 <div
                   style={{
                     position: "absolute",
-                    top: "23%",
-                    left: "8%",
+                    top: "74%",
+                    left: "9.5%",
                     width: "12px",
                     height: "12px",
                     borderRadius: "50%",
