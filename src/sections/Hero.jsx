@@ -20,12 +20,28 @@ const quickStats = [
 
 const Hero = () => {
   // Direct requestAnimationFrame loop — completely bypasses CSS prefers-reduced-motion
-  // AND Framer Motion's own reduced-motion handling. The ONLY guaranteed way to rotate.
+  // AND Framer Motion's own reduced-motion handling. The ONLY guaranteed way to rotate/float.
   const ringRef = useRef(null);
+  const bgIconsRef = useRef(null);
 
   useEffect(() => {
     let ringAngle = 0;
     let rafId;
+
+    // Cache the background icon children once on mount to maximize performance
+    const iconElements = bgIconsRef.current ? Array.from(bgIconsRef.current.children) : [];
+
+    // Individual floating parameters: [yScale, xScale, yFreq, xFreq, rotDirection]
+    const params = [
+      [90, 70, 0.015, 0.012, 0.3],   // React
+      [70, -80, 0.012, 0.016, -0.2], // VS Code
+      [-80, 70, 0.014, 0.018, 0.25], // Figma
+      [80, -60, 0.018, 0.011, -0.3], // JS
+      [-70, 80, 0.011, 0.014, -0.25],// Java
+      [60, -70, 0.016, 0.013, 0.35],  // .NET
+      [-80, 60, 0.013, 0.015, -0.15], // GitHub
+      [70, -65, 0.015, 0.017, 0.2]    // HTML5
+    ];
 
     const spin = () => {
       // Rotate clockwise: 0.75deg per frame
@@ -35,6 +51,18 @@ const Hero = () => {
         ringRef.current.style.transform = `rotate(${ringAngle}deg)`;
         ringRef.current.style.transformOrigin = "center";
       }
+
+      // Smoothly float each icon along its path (bypasses reduced-motion blocks)
+      iconElements.forEach((el, index) => {
+        if (el && params[index]) {
+          const [yScale, xScale, yFreq, xFreq, rotSpeed] = params[index];
+          const yOffset = Math.sin(ringAngle * yFreq * 10) * yScale;
+          const xOffset = Math.cos(ringAngle * xFreq * 10) * xScale;
+          const rot = ringAngle * rotSpeed * 10;
+          el.style.transform = `translate(${xOffset}px, ${yOffset}px) rotate(${rot}deg)`;
+        }
+      });
+
       rafId = requestAnimationFrame(spin);
     };
     rafId = requestAnimationFrame(spin);
@@ -75,78 +103,49 @@ const Hero = () => {
         <div className="absolute top-40 right-10 w-96 h-96 bg-indigo-500/5 dark:bg-indigo-600/5 rounded-full blur-3xl opacity-30"></div>
 
         {/* Animated and slightly blurred floating tech background icons */}
-        <div className="fixed inset-0 pointer-events-none overflow-hidden select-none z-0">
+        <div 
+          ref={bgIconsRef} 
+          className="fixed inset-0 pointer-events-none overflow-hidden select-none z-0"
+        >
           {/* React (Left, top-middle) */}
-          <motion.div
-            className="absolute left-[8%] top-[25%] opacity-25 dark:opacity-20 text-[#61dafb] filter blur-[1px]"
-            animate={{ y: [0, -110, 60, 0], x: [0, 80, -60, 0], rotate: [0, 180, 360] }}
-            transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
-          >
+          <div className="absolute left-[8%] top-[25%] opacity-25 dark:opacity-20 text-[#61dafb] filter blur-[1px] transition-transform duration-300 ease-out">
             <FaReact className="w-12 h-12 md:w-16 md:h-16" />
-          </motion.div>
+          </div>
 
           {/* VS Code (Right, top) */}
-          <motion.div
-            className="absolute right-[12%] top-[15%] opacity-25 dark:opacity-20 text-[#007acc] filter blur-[1px]"
-            animate={{ y: [0, 90, -70, 0], x: [0, -90, 40, 0], rotate: [0, -180, -360] }}
-            transition={{ duration: 28, repeat: Infinity, ease: "easeInOut" }}
-          >
+          <div className="absolute right-[12%] top-[15%] opacity-25 dark:opacity-20 text-[#007acc] filter blur-[1px] transition-transform duration-300 ease-out">
             <VscCode className="w-12 h-12 md:w-16 md:h-16" />
-          </motion.div>
+          </div>
 
           {/* Figma (Left, bottom) */}
-          <motion.div
-            className="absolute left-[12%] top-[70%] opacity-25 dark:opacity-20 text-[#F24E1E] filter blur-[1px]"
-            animate={{ y: [0, -80, 100, 0], x: [0, -60, 90, 0], rotate: [0, 180, 360] }}
-            transition={{ duration: 26, repeat: Infinity, ease: "easeInOut" }}
-          >
+          <div className="absolute left-[12%] top-[70%] opacity-25 dark:opacity-20 text-[#F24E1E] filter blur-[1px] transition-transform duration-300 ease-out">
             <FaFigma className="w-12 h-12 md:w-16 md:h-16" />
-          </motion.div>
+          </div>
 
           {/* JavaScript (Right, middle-bottom) */}
-          <motion.div
-            className="absolute right-[18%] top-[65%] opacity-25 dark:opacity-20 text-[#f7df1e] filter blur-[1px]"
-            animate={{ y: [0, 100, -60, 0], x: [0, 70, -70, 0], rotate: [360, 180, 0] }}
-            transition={{ duration: 24, repeat: Infinity, ease: "easeInOut" }}
-          >
+          <div className="absolute right-[18%] top-[65%] opacity-25 dark:opacity-20 text-[#f7df1e] filter blur-[1px] transition-transform duration-300 ease-out">
             <FaJs className="w-12 h-12 md:w-16 md:h-16" />
-          </motion.div>
+          </div>
 
           {/* Java (Left, top) */}
-          <motion.div
-            className="absolute left-[26%] top-[10%] opacity-25 dark:opacity-20 text-[#e76f00] filter blur-[1px]"
-            animate={{ y: [0, -90, 70, 0], x: [0, 60, -90, 0], rotate: [0, -180, -360] }}
-            transition={{ duration: 27, repeat: Infinity, ease: "easeInOut" }}
-          >
+          <div className="absolute left-[26%] top-[10%] opacity-25 dark:opacity-20 text-[#e76f00] filter blur-[1px] transition-transform duration-300 ease-out">
             <FaJava className="w-12 h-12 md:w-16 md:h-16" />
-          </motion.div>
+          </div>
 
           {/* .NET (Right, middle-top) */}
-          <motion.div
-            className="absolute right-[28%] top-[35%] opacity-25 dark:opacity-20 text-[#512bd4] filter blur-[1px]"
-            animate={{ y: [0, 70, -100, 0], x: [0, -80, 60, 0], rotate: [0, 180, 360] }}
-            transition={{ duration: 29, repeat: Infinity, ease: "easeInOut" }}
-          >
+          <div className="absolute right-[28%] top-[35%] opacity-25 dark:opacity-20 text-[#512bd4] filter blur-[1px] transition-transform duration-300 ease-out">
             <SiDotnet className="w-12 h-12 md:w-16 md:h-16" />
-          </motion.div>
+          </div>
 
           {/* GitHub (Center, top-ish) */}
-          <motion.div
-            className="absolute left-[45%] top-[8%] opacity-25 dark:opacity-20 text-gray-400 dark:text-gray-200 filter blur-[1px]"
-            animate={{ y: [0, -90, 50, 0], x: [0, 90, -40, 0], rotate: [360, 180, 0] }}
-            transition={{ duration: 31, repeat: Infinity, ease: "easeInOut" }}
-          >
+          <div className="absolute left-[45%] top-[8%] opacity-25 dark:opacity-20 text-gray-400 dark:text-gray-200 filter blur-[1px] transition-transform duration-300 ease-out">
             <FaGithub className="w-12 h-12 md:w-16 md:h-16" />
-          </motion.div>
+          </div>
 
           {/* HTML5 (Center-left, bottom) */}
-          <motion.div
-            className="absolute left-[40%] top-[82%] opacity-25 dark:opacity-20 text-[#e34f26] filter blur-[1px]"
-            animate={{ y: [0, 90, -90, 0], x: [0, -70, 70, 0], rotate: [0, 180, 360] }}
-            transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
-          >
+          <div className="absolute left-[40%] top-[82%] opacity-25 dark:opacity-20 text-[#e34f26] filter blur-[1px] transition-transform duration-300 ease-out">
             <FaHtml5 className="w-12 h-12 md:w-16 md:h-16" />
-          </motion.div>
+          </div>
         </div>
         <div className="absolute bottom-20 left-20 w-80 h-80 bg-cyan-500/5 dark:bg-cyan-600/5 rounded-full blur-3xl opacity-40"></div>
       </div>
