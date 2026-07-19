@@ -22,8 +22,8 @@ import { useEffect } from "react";
  */
 
 // ⚠️ REPLACE THESE WITH YOUR REAL TAWK.TO IDs
-const TAWK_PROPERTY_ID = "YOUR_PROPERTY_ID"; // e.g. "64a1b2c3d4e5f6a7b8c9d0e1"
-const TAWK_WIDGET_ID = "YOUR_WIDGET_ID";     // e.g. "1h4abcdefg" (default is usually "default")
+const TAWK_PROPERTY_ID = "6a5d15d4aa83a11d48ca4eb9";
+const TAWK_WIDGET_ID = "1jttpqid3";
 
 const TawkTo = () => {
   useEffect(() => {
