@@ -20,30 +20,46 @@ const TawkTo = () => {
     window.Tawk_API = window.Tawk_API || {};
     window.Tawk_LoadStart = new Date();
 
-    // Hide the default widget on load
-    window.Tawk_API.onLoad = () => {
+    const initializeTawk = () => {
       setIsLoaded(true);
-      // Hide the default Tawk.to widget bubble
-      window.Tawk_API.hideWidget();
+      if (window.Tawk_API.hideWidget) {
+        window.Tawk_API.hideWidget();
+      }
     };
 
-    // Also hide when chat window is closed by user
+    // Check if already loaded to prevent race conditions
+    if (window.Tawk_API.hideWidget) {
+      initializeTawk();
+    } else {
+      window.Tawk_API.onLoad = initializeTawk;
+    }
+
+    // Also hide default bubble when chat window is minimized by user
     window.Tawk_API.onChatMinimized = () => {
-      window.Tawk_API.hideWidget();
+      if (window.Tawk_API.hideWidget) {
+        window.Tawk_API.hideWidget();
+      }
     };
 
-    // Inject the Tawk.to script
-    const script = document.createElement("script");
-    script.async = true;
-    script.src = `https://embed.tawk.to/${TAWK_PROPERTY_ID}/${TAWK_WIDGET_ID}`;
-    script.charset = "UTF-8";
-    script.setAttribute("crossorigin", "*");
-    document.head.appendChild(script);
+    // Check if script is already present in head
+    const existingScript = document.querySelector(`script[src*="embed.tawk.to"]`);
+    let script = existingScript;
+
+    if (!existingScript) {
+      // Inject the Tawk.to script
+      script = document.createElement("script");
+      script.async = true;
+      script.src = `https://embed.tawk.to/${TAWK_PROPERTY_ID}/${TAWK_WIDGET_ID}`;
+      script.charset = "UTF-8";
+      script.setAttribute("crossorigin", "*");
+      document.head.appendChild(script);
+    }
 
     return () => {
-      if (script.parentNode) script.parentNode.removeChild(script);
-      delete window.Tawk_API;
-      delete window.Tawk_LoadStart;
+      // Only clean up script if we created it and it's present
+      if (!existingScript && script && script.parentNode) {
+        script.parentNode.removeChild(script);
+      }
     };
   }, []);
 
