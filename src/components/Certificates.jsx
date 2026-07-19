@@ -157,10 +157,10 @@ export default function Certificates() {
               key={category}
               onClick={() => setFilter(category)}
               aria-pressed={filter === category}
-              className={`px-5 py-2.5 rounded-xl font-semibold text-sm transition-all duration-300 transform hover:scale-[1.02] ${
+              className={`px-5 py-2.5 rounded-full font-semibold text-sm transition-all duration-300 transform hover:scale-[1.02] ${
                 filter === category
-                  ? "bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-md"
-                  : "bg-white/40 dark:bg-gray-800/30 backdrop-blur-sm text-gray-700 dark:text-gray-300 border border-gray-250/50 dark:border-gray-800/80 hover:border-blue-500/20 dark:hover:border-cyan-500/20"
+                  ? "bg-gradient-to-r from-blue-500 to-cyan-500 border border-blue-400/20 dark:border-cyan-400/10 text-white shadow-md"
+                  : "border border-gray-300 dark:border-gray-700 bg-white/60 dark:bg-gray-900/60 text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-cyan-400 hover:border-blue-500 dark:hover:border-cyan-400 hover:bg-blue-500/5 dark:hover:bg-cyan-400/5 shadow-sm"
               }`}
             >
               {category}

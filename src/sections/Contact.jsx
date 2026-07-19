@@ -376,7 +376,7 @@ const Contact = () => {
                 className={`w-full py-4 rounded-xl font-semibold shadow-md transition-all duration-300 ${
                   isSubmitting
                     ? "bg-gray-400 dark:bg-gray-800 cursor-not-allowed text-gray-200 dark:text-gray-400"
-                    : "bg-gradient-to-r from-blue-500 via-indigo-500 to-cyan-500 hover:shadow-lg text-white"
+                    : "bg-gradient-to-r from-blue-500 via-indigo-500 to-cyan-500 border border-blue-400/20 dark:border-cyan-400/10 hover:shadow-indigo-500/25 hover:shadow-lg text-white"
                 }`}
               >
                 {isSubmitting ? (
