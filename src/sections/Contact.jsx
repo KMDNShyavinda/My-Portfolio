@@ -30,17 +30,18 @@ const Contact = () => {
     }
   }, [submitStatus]);
 
-  // TODO: replace these with your real EmailJS credentials
-  // (https://www.emailjs.com/) once you've set up a service + template.
   const EMAILJS_CONFIG = {
-    SERVICE_ID: "",
-    TEMPLATE_ID: "",
-    PUBLIC_KEY: "",
+    SERVICE_ID: import.meta.env.VITE_EMAILJS_SERVICE_ID || "",
+    TEMPLATE_ID: import.meta.env.VITE_EMAILJS_TEMPLATE_ID || "",
+    PUBLIC_KEY: import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "",
   };
   const isEmailConfigured =
     EMAILJS_CONFIG.SERVICE_ID &&
     EMAILJS_CONFIG.TEMPLATE_ID &&
-    EMAILJS_CONFIG.PUBLIC_KEY;
+    EMAILJS_CONFIG.PUBLIC_KEY &&
+    !EMAILJS_CONFIG.SERVICE_ID.includes("your_service_id") &&
+    !EMAILJS_CONFIG.TEMPLATE_ID.includes("your_template_id") &&
+    !EMAILJS_CONFIG.PUBLIC_KEY.includes("your_public_key");
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
