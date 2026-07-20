@@ -8,7 +8,10 @@ import {
   FaEnvelope,
   FaArrowUp,
   FaHeart,
+  FaWhatsapp,
+  FaInstagram,
 } from "react-icons/fa";
+import { FaThreads } from "react-icons/fa6";
 
 const quickLinks = [
   { name: "Home", href: "#home" },
@@ -23,6 +26,9 @@ const socialLinks = [
   { name: "GitHub", Icon: FaGithub, url: personalInfo.github },
   { name: "LinkedIn", Icon: FaLinkedin, url: personalInfo.linkedin },
   { name: "Facebook", Icon: FaFacebook, url: personalInfo.facebook },
+  { name: "WhatsApp", Icon: FaWhatsapp, url: personalInfo.whatsapp },
+  { name: "Instagram", Icon: FaInstagram, url: personalInfo.instagram },
+  { name: "Threads", Icon: FaThreads, url: personalInfo.threads },
   { name: "Email", Icon: FaEnvelope, url: `mailto:${personalInfo.email}` },
 ];
 

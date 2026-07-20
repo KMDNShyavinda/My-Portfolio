@@ -23,6 +23,9 @@ export const personalInfo = {
   github: "https://github.com/KMDNShyavinda",
   linkedin: "https://www.linkedin.com/in/kmdnshyavinda/",
   facebook: "https://www.facebook.com/share/1BX7hCgwWu/",
+  whatsapp: "https://wa.me/message/DSYNMBA2MM7OE1",
+  instagram: "https://www.instagram.com/dinu_niroshan?igsh=MWU0YnV6Mmk3cWl0cg%3D%3D&utm_source=qr",
+  threads: "https://www.threads.net/@dinu_niroshan",
 
   // CV file — replace public/files/Dinuka_Niroshan_CV.pdf with your real resume
   cvPath: "/files/Shyavinda_SE.pdf",

@@ -10,7 +10,10 @@ import {
   FaLinkedin,
   FaGithub,
   FaFacebook,
+  FaWhatsapp,
+  FaInstagram,
 } from "react-icons/fa";
+import { FaThreads } from "react-icons/fa6";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -104,6 +107,13 @@ const Contact = () => {
       color: "from-green-500 to-emerald-500",
     },
     {
+      Icon: FaWhatsapp,
+      title: "WhatsApp",
+      value: personalInfo.phone,
+      link: personalInfo.whatsapp,
+      color: "from-teal-500 to-green-500",
+    },
+    {
       Icon: FaMapMarkerAlt,
       title: "Location",
       value: personalInfo.location,
@@ -137,6 +147,24 @@ const Contact = () => {
       Icon: FaFacebook,
       url: personalInfo.facebook,
       color: "hover:bg-sky-500",
+    },
+    {
+      name: "WhatsApp",
+      Icon: FaWhatsapp,
+      url: personalInfo.whatsapp,
+      color: "hover:bg-green-500",
+    },
+    {
+      name: "Instagram",
+      Icon: FaInstagram,
+      url: personalInfo.instagram,
+      color: "hover:bg-pink-600",
+    },
+    {
+      name: "Threads",
+      Icon: FaThreads,
+      url: personalInfo.threads,
+      color: "hover:bg-black dark:hover:bg-zinc-800",
     },
   ];
 
