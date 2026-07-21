@@ -15,11 +15,25 @@ import {
   FaHotel,
   FaGavel,
   FaCalculator,
+  FaChartPie,
 } from "react-icons/fa";
 import { SiFigma } from "react-icons/si";
 
 // Projects directly mapped from the user's CV
 const projects = [
+  {
+    title: "Task & Analytics Management System",
+    icon: FaChartPie,
+    desc: "A full-stack Mini ERP & task management platform with JWT auth, CRUD workflows, and interactive analytics dashboards.",
+    longDesc:
+      "Built with React, TypeScript, Node.js/Express, and MongoDB. Features secure JWT authentication, team productivity analytics, Recharts data visualization (status & priority breakdowns), and a responsive dark burgundy theme.",
+    tech: ["React.js", "TypeScript", "Node.js", "MongoDB", "Tailwind CSS"],
+    githubLink: "https://github.com/KMDNShyavinda/task-analytics-management-system",
+    liveLink: "",
+    category: "Full-Stack",
+    gradient: "from-rose-600 to-red-700",
+    image: "/images/task-analytics.png",
+  },
   {
     title: "TimberCalc Pro",
     icon: FaCalculator,
