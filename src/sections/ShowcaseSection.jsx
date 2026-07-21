@@ -13,11 +13,25 @@ import {
   FaCalendarAlt,
   FaPills,
   FaHotel,
+  FaGavel,
 } from "react-icons/fa";
 import { SiFigma } from "react-icons/si";
 
 // Projects directly mapped from the user's CV
 const projects = [
+  {
+    title: "Integrated Judicial Management System",
+    icon: FaGavel,
+    desc: "A full-stack judicial case, evidence, and prison management system streamlining the criminal justice lifecycle.",
+    longDesc:
+      "Streamlines the criminal justice lifecycle through secure digital workflows, role-based access control (Citizen, Police, Prosecutor, Court, Judge, Prison), digital evidence handling, and automated case tracking from incident filing to inmate release.",
+    tech: ["React.js", "Node.js", "Express.js", "MongoDB"],
+    githubLink: "https://github.com/KMDNShyavinda/integrated-judicial-management-system",
+    liveLink: "",
+    category: "Full-Stack",
+    gradient: "from-blue-600 to-indigo-600",
+    image: "/images/judicial-system.png",
+  },
   {
     title: "Hotel Management System",
     icon: FaHotel,
