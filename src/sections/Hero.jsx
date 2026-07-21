@@ -13,7 +13,7 @@ const typingSequence = personalInfo.taglineRoles.flatMap((role) => [
 ]);
 
 const quickStats = [
-  { number: "5+", label: "Projects" },
+  { number: "6+", label: "Projects" },
   { number: "15+", label: "Tech Stack" },
   { number: "3rd Year", label: "Undergraduate" },
 ];

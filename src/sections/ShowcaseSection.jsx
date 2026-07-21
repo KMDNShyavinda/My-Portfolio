@@ -14,11 +14,25 @@ import {
   FaPills,
   FaHotel,
   FaGavel,
+  FaCalculator,
 } from "react-icons/fa";
 import { SiFigma } from "react-icons/si";
 
 // Projects directly mapped from the user's CV
 const projects = [
+  {
+    title: "TimberCalc Pro",
+    icon: FaCalculator,
+    desc: "A smart timber volume calculator and universal unit conversion system for accurate measurement, inventory & pricing.",
+    longDesc:
+      "Enables accurate cubic volume calculations, multi-unit conversions (CFT, m³, CF, Kg), timber species pricing management, and calculation history tracking tailored for timber businesses and industrial supply chains.",
+    tech: ["React.js", "Node.js", "Express.js", "MongoDB"],
+    githubLink: "https://github.com/KMDNShyavinda/TimberCalc-Pro",
+    liveLink: "",
+    category: "Full-Stack",
+    gradient: "from-emerald-600 to-teal-600",
+    image: "/images/timber-calc.png",
+  },
   {
     title: "Integrated Judicial Management System",
     icon: FaGavel,
