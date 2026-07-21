@@ -16,11 +16,25 @@ import {
   FaGavel,
   FaCalculator,
   FaChartPie,
+  FaChartLine,
 } from "react-icons/fa";
 import { SiFigma } from "react-icons/si";
 
 // Projects directly mapped from the user's CV
 const projects = [
+  {
+    title: "Weekly Report Generator & Team Dashboard",
+    icon: FaChartLine,
+    desc: "A MERN team management platform featuring role-based access, automated weekly reporting, Gemini AI assistant & analytics.",
+    longDesc:
+      "Built with React, TypeScript, Node.js/Express, MongoDB, and Gemini AI. Provides team submission tracking, efficiency analytics, project progress monitoring, and an interactive AI assistant for status inquiries.",
+    tech: ["React.js", "TypeScript", "Node.js", "MongoDB", "Gemini AI"],
+    githubLink: "https://github.com/KMDNShyavinda/weekly-report-dashboard",
+    liveLink: "",
+    category: "Full-Stack",
+    gradient: "from-blue-500 to-indigo-600",
+    image: "/images/weekly-report.png",
+  },
   {
     title: "Task & Analytics Management System",
     icon: FaChartPie,
