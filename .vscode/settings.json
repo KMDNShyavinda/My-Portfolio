@@ -1,3 +1,15 @@
 {
-    "accessibility.signalOptions.debouncePositionChanges": false
+    "accessibility.signalOptions.debouncePositionChanges": false,
+    "editor.wordSeparators": "`~!@#%^&*()-=+[{]}\\|;:'\",.<>/?",
+    "editor.quickSuggestions": {
+        "other": [
+            ""
+        ],
+        "comments": [
+            ""
+        ],
+        "strings": [
+            ""
+        ]
+    }
 }

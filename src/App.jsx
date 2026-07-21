@@ -1,18 +1,23 @@
 import React from "react";
 import { MotionConfig } from "framer-motion";
-import Hero from "./sections/Hero";
-import ShowcaseSection from "./sections/ShowcaseSection";
-import Navbar from "./components/Navbar";
-import Experience from "./sections/Experience";
-import Services from "./sections/Services";
-import Achievements from "./sections/Achievements";
 import { Helmet } from "react-helmet-async";
-import Certificates from "./components/Certificates";
-import Skills from "./components/Skills";
-import About from "./components/About";
-import Contact from "./sections/Contact";
+
+// Layout & Integration Components
+import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import TawkTo from "./components/TawkTo";
+
+// Page Section Components
+import Hero from "./sections/Hero";
+import About from "./sections/About";
+import Skills from "./sections/Skills";
+import Experience from "./sections/Experience";
+import ShowcaseSection from "./sections/ShowcaseSection";
+import Services from "./sections/Services";
+import Certificates from "./sections/Certificates";
+import Achievements from "./sections/Achievements";
+import Contact from "./sections/Contact";
+
 import { personalInfo } from "./constants";
 
 // TODO: replace with your real deployed domain once you have one.

@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import AnimatedBackground from "./AnimatedBackground";
+import AnimatedBackground from "../components/AnimatedBackground";
 import { personalInfo } from "../constants";
 
 // Education timeline. Grades/dates are intentionally left as neutral
