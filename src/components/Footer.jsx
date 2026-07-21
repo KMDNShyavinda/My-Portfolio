@@ -40,7 +40,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="relative bg-gray-50 dark:bg-gray-950 text-gray-600 dark:text-gray-400 overflow-hidden border-t border-gray-150 dark:border-gray-900/60">
+    <footer className="relative bg-gray-50 dark:bg-gray-950 text-gray-600 dark:text-gray-400 overflow-hidden border-t border-gray-200 dark:border-gray-900/60">
       {/* Decorative gradient glow */}
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-blue-500/30 to-transparent"></div>
       <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-gradient-to-br from-blue-500/5 to-cyan-500/5 rounded-full blur-3xl pointer-events-none"></div>
@@ -69,7 +69,7 @@ const Footer = () => {
                 <li key={link.name}>
                   <a
                     href={link.href}
-                    className="text-sm text-gray-550 hover:text-blue-550 dark:text-gray-400 dark:hover:text-cyan-400 font-semibold transition-colors"
+                    className="text-sm text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-cyan-400 font-semibold transition-colors"
                   >
                     {link.name}
                   </a>
@@ -83,7 +83,7 @@ const Footer = () => {
             <h4 className="text-gray-900 dark:text-white font-semibold mb-4">Get In Touch</h4>
             <a
               href={`mailto:${personalInfo.email}`}
-              className="text-sm text-gray-550 hover:text-blue-550 dark:text-gray-400 dark:hover:text-cyan-400 font-semibold transition-colors block mb-1"
+              className="text-sm text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-cyan-400 font-semibold transition-colors block mb-1"
             >
               {personalInfo.email}
             </a>

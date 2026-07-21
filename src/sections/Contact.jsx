@@ -260,7 +260,7 @@ const Contact = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   whileHover={{ x: 6, scale: 1.01 }}
-                  className="flex items-center gap-4 p-4 bg-white/40 dark:bg-gray-800/30 backdrop-blur-sm rounded-3xl border border-gray-250/50 dark:border-gray-800/80 hover:border-blue-500/20 dark:hover:border-cyan-500/20 transition-all duration-300 group cursor-pointer"
+                  className="flex items-center gap-4 p-4 bg-white/40 dark:bg-gray-800/30 backdrop-blur-sm rounded-3xl border border-gray-200/50 dark:border-gray-800/80 hover:border-blue-500/20 dark:hover:border-cyan-500/20 transition-all duration-300 group cursor-pointer"
                 >
                   <div
                     className={`w-12 h-12 bg-gradient-to-r ${info.color} rounded-2xl flex items-center justify-center shadow-md group-hover:scale-105 transition-transform duration-300`}
@@ -297,7 +297,7 @@ const Contact = () => {
                     aria-label={social.name}
                     whileHover={{ scale: 1.05, y: -3 }}
                     whileTap={{ scale: 0.98 }}
-                    className={`w-12 h-12 bg-white/40 dark:bg-gray-800/30 border border-gray-250/50 dark:border-gray-800/80 rounded-2xl flex items-center justify-center text-lg ${social.color} text-gray-600 dark:text-gray-300 hover:text-white transition-all duration-300 shadow-sm backdrop-blur-sm`}
+                    className={`w-12 h-12 bg-white/40 dark:bg-gray-800/30 border border-gray-200/50 dark:border-gray-800/80 rounded-2xl flex items-center justify-center text-lg ${social.color} text-gray-600 dark:text-gray-300 hover:text-white transition-all duration-300 shadow-sm backdrop-blur-sm`}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -314,7 +314,7 @@ const Contact = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-white/40 dark:bg-gray-800/30 border border-gray-250/50 dark:border-gray-800/80 backdrop-blur-sm rounded-3xl p-6 md:p-8 shadow-md"
+            className="bg-white/40 dark:bg-gray-800/30 border border-gray-200/50 dark:border-gray-800/80 backdrop-blur-sm rounded-3xl p-6 md:p-8 shadow-md"
           >
             <h3 className="text-2xl font-bold mb-6 text-gray-950 dark:text-white">
               Send Message
@@ -353,7 +353,7 @@ const Contact = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3.5 border border-gray-200 dark:border-gray-800 rounded-xl focus:ring-1 focus:ring-blue-500 dark:focus:ring-cyan-400 focus:border-transparent bg-white/70 dark:bg-gray-900/50 text-gray-955 dark:text-white transition-all duration-300 placeholder-gray-400 dark:placeholder-gray-600 font-medium"
+                    className="w-full px-4 py-3.5 border border-gray-200 dark:border-gray-800 rounded-xl focus:ring-1 focus:ring-blue-500 dark:focus:ring-cyan-400 focus:border-transparent bg-white/70 dark:bg-gray-900/50 text-gray-900 dark:text-white transition-all duration-300 placeholder-gray-400 dark:placeholder-gray-600 font-medium"
                     placeholder="Enter your email"
                   />
                 </div>
@@ -373,7 +373,7 @@ const Contact = () => {
                   value={formData.subject}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3.5 border border-gray-200 dark:border-gray-800 rounded-xl focus:ring-1 focus:ring-blue-500 dark:focus:ring-cyan-400 focus:border-transparent bg-white/70 dark:bg-gray-900/50 text-gray-955 dark:text-white transition-all duration-300 placeholder-gray-400 dark:placeholder-gray-600 font-medium"
+                  className="w-full px-4 py-3.5 border border-gray-200 dark:border-gray-800 rounded-xl focus:ring-1 focus:ring-blue-500 dark:focus:ring-cyan-400 focus:border-transparent bg-white/70 dark:bg-gray-900/50 text-gray-900 dark:text-white transition-all duration-300 placeholder-gray-400 dark:placeholder-gray-600 font-medium"
                   placeholder="What's this about?"
                 />
               </div>
@@ -392,7 +392,7 @@ const Contact = () => {
                   onChange={handleChange}
                   required
                   rows="6"
-                  className="w-full px-4 py-3.5 border border-gray-200 dark:border-gray-800 rounded-xl focus:ring-1 focus:ring-blue-500 dark:focus:ring-cyan-400 focus:border-transparent bg-white/70 dark:bg-gray-900/50 text-gray-955 dark:text-white transition-all duration-300 resize-vertical placeholder-gray-400 dark:placeholder-gray-600 font-medium"
+                  className="w-full px-4 py-3.5 border border-gray-200 dark:border-gray-800 rounded-xl focus:ring-1 focus:ring-blue-500 dark:focus:ring-cyan-400 focus:border-transparent bg-white/70 dark:bg-gray-900/50 text-gray-900 dark:text-white transition-all duration-300 resize-vertical placeholder-gray-400 dark:placeholder-gray-600 font-medium"
                   placeholder="Tell me about your project or just say hello..."
                 />
               </div>

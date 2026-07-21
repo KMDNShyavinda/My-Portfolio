@@ -206,7 +206,7 @@ export default function Certificates() {
                       </div>
 
                       {/* Category Badge */}
-                      <div className="inline-flex items-center gap-2 px-3 py-1 bg-gray-50 dark:bg-gray-850 rounded-lg mb-4 border border-gray-200/50 dark:border-gray-800/60">
+                      <div className="inline-flex items-center gap-2 px-3 py-1 bg-gray-100 dark:bg-gray-800/80 rounded-lg mb-4 border border-gray-200/50 dark:border-gray-700/60">
                         <FaAward className="text-xs text-blue-500 dark:text-cyan-400" />
                         <span className="text-[10px] font-bold text-gray-600 dark:text-gray-300 uppercase tracking-wider">
                           {cert.category}
@@ -229,7 +229,7 @@ export default function Certificates() {
                         {cert.skills.map((skill) => (
                           <span
                             key={skill}
-                            className="px-2.5 py-1 bg-gray-55 dark:bg-gray-850 text-gray-600 dark:text-gray-300 text-xs font-semibold rounded-lg border border-gray-200/50 dark:border-gray-800/80"
+                            className="px-2.5 py-1 bg-gray-100 dark:bg-gray-800/80 text-gray-700 dark:text-gray-200 text-xs font-semibold rounded-lg border border-gray-200/60 dark:border-gray-700/80 shadow-sm"
                           >
                             {skill}
                           </span>
@@ -259,7 +259,7 @@ export default function Certificates() {
                 Explore My Complete Profile
               </h3>
 
-              <p className="text-gray-605 dark:text-gray-400 mb-8 max-w-2xl mx-auto leading-relaxed text-sm font-medium">
+              <p className="text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto leading-relaxed text-sm font-medium">
                 Discover all my certifications, professional achievements, and
                 continuous learning journey across various platforms.
               </p>
@@ -280,7 +280,7 @@ export default function Certificates() {
 
                 <a
                   href="#contact"
-                  className="group inline-flex items-center justify-center px-6 py-3.5 border border-gray-250 dark:border-gray-850 hover:bg-gray-55 dark:hover:bg-gray-800 text-gray-800 dark:text-gray-150 font-semibold rounded-xl shadow-sm hover:shadow-md transform hover:scale-[1.01] transition-all duration-300 relative overflow-hidden"
+                  className="group inline-flex items-center justify-center px-6 py-3.5 border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-800 dark:text-gray-200 font-semibold rounded-xl shadow-sm hover:shadow-md transform hover:scale-[1.01] transition-all duration-300 relative overflow-hidden"
                 >
                   <div className="relative flex items-center gap-3">
                     <FaCertificate className="text-lg" />

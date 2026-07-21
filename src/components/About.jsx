@@ -85,7 +85,7 @@ const About = () => {
 
               {/* Quick Facts */}
               <div className="grid grid-cols-2 gap-4 mt-8">
-                <div className="bg-white/40 dark:bg-gray-800/30 backdrop-blur-sm p-4 rounded-2xl border border-gray-250/50 dark:border-gray-800/80 hover:border-blue-500/20 dark:hover:border-cyan-500/20 transition-all duration-300">
+                <div className="bg-white/40 dark:bg-gray-800/30 backdrop-blur-sm p-4 rounded-2xl border border-gray-200/50 dark:border-gray-800/80 hover:border-blue-500/20 dark:hover:border-cyan-500/20 transition-all duration-300">
                   <div className="text-xl mb-1">🎓</div>
                   <h4 className="font-bold text-gray-800 dark:text-white text-sm">
                     Education
@@ -94,7 +94,7 @@ const About = () => {
                     BSc Computer Science
                   </p>
                 </div>
-                <div className="bg-white/40 dark:bg-gray-800/30 backdrop-blur-sm p-4 rounded-2xl border border-gray-250/50 dark:border-gray-800/80 hover:border-purple-500/20 dark:hover:border-indigo-500/20 transition-all duration-300">
+                <div className="bg-white/40 dark:bg-gray-800/30 backdrop-blur-sm p-4 rounded-2xl border border-gray-200/50 dark:border-gray-800/80 hover:border-purple-500/20 dark:hover:border-indigo-500/20 transition-all duration-300">
                   <div className="text-xl mb-1">💼</div>
                   <h4 className="font-bold text-gray-800 dark:text-white text-sm">
                     Focus
