@@ -23,6 +23,19 @@ import { SiFigma } from "react-icons/si";
 // Projects directly mapped from the user's CV
 const projects = [
   {
+    title: "Maison Ceylon — Restaurant Management System",
+    icon: FaPills,
+    desc: "Full-stack restaurant POS & management system with real-time KDS, inventory, and interactive floor plan.",
+    longDesc:
+      "Maison Ceylon is an enterprise-grade restaurant POS and management platform featuring role-based access control, a fast POS terminal, interactive floor plans, real-time Kitchen Display System (KDS) via WebSockets, and inventory/stock tracking.",
+    tech: ["React", "Spring Boot", "PostgreSQL", "Tailwind CSS", "WebSockets"],
+    githubLink: "https://github.com/KMDNShyavinda/restaurant",
+    liveLink: "",
+    category: "Full-Stack",
+    gradient: "from-yellow-500 to-amber-500",
+    image: "/images/maison-ceylon-hero.png",
+  },
+  {
     title: "Integrated Judicial Management System",
     icon: FaGavel,
     desc: "A full-stack judicial case, evidence, and prison management system streamlining the criminal justice lifecycle.",
