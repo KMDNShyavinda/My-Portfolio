@@ -258,7 +258,7 @@ const ProjectCard = ({ project, index, hoveredIndex, setHoveredIndex }) => {
               href={project.githubLink}
               target="_blank"
               rel="noopener noreferrer"
-              className={`group/btn relative inline-flex items-center justify-center w-full px-4 py-3 bg-gradient-to-r ${project.gradient} text-white font-semibold rounded-xl shadow-md hover:shadow-lg hover:scale-[1.02] transition-all duration-300 overflow-hidden`}
+              className="group/btn relative inline-flex items-center justify-center w-full px-4 py-3 bg-white/70 dark:bg-gray-900/70 hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-800 dark:text-gray-100 font-semibold rounded-xl border border-gray-200/80 dark:border-gray-700/80 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 overflow-hidden"
             >
               <span className="relative flex items-center justify-center gap-2 z-10 text-sm">
                 <FaGithub />
@@ -272,7 +272,7 @@ const ProjectCard = ({ project, index, hoveredIndex, setHoveredIndex }) => {
                 href={project.liveLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group/btn relative inline-flex items-center justify-center w-full px-4 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-semibold rounded-xl shadow-md hover:shadow-lg hover:scale-[1.02] transition-all duration-300 overflow-hidden"
+                className={`group/btn relative inline-flex items-center justify-center w-full px-4 py-3 bg-gradient-to-r ${project.gradient} text-white font-semibold rounded-xl shadow-md hover:shadow-lg hover:scale-[1.02] transition-all duration-300 overflow-hidden`}
               >
                 <span className="relative flex items-center justify-center gap-2 z-10 text-sm">
                   <FaExternalLinkAlt className="text-xs" />
