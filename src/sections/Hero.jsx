@@ -190,7 +190,7 @@ const Hero = () => {
         {/* Animated and slightly blurred floating tech background icons */}
         <div
           ref={bgIconsRef}
-          className="fixed inset-0 pointer-events-none overflow-hidden select-none z-0 opacity-[0.10] dark:opacity-[0.07]"
+          className="fixed inset-0 pointer-events-none overflow-hidden select-none z-0 opacity-[0.75] dark:opacity-[0.09]"
         >
           {/* React */}
           <div className="absolute left-0 top-0 text-blue-500 dark:text-cyan-400 filter blur-[10.25px]">

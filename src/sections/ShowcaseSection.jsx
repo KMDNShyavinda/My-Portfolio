@@ -164,7 +164,7 @@ const ProjectCard = ({ project, index, hoveredIndex, setHoveredIndex }) => {
         <div className="relative z-10 p-6 flex flex-col flex-1">
           {/* Visual header (image or icon on gradient) */}
           <div
-            className={`relative overflow-hidden rounded-2xl mb-6 h-44 flex items-center justify-center bg-gradient-to-br ${project.gradient} shadow-inner`}
+            className={`relative overflow-hidden rounded-2xl mb-6 aspect-[16/9] w-full flex items-center justify-center bg-gradient-to-br ${project.gradient} shadow-inner`}
           >
             {project.image ? (
               <img
@@ -176,7 +176,7 @@ const ProjectCard = ({ project, index, hoveredIndex, setHoveredIndex }) => {
               <Icon className="text-6xl text-white/90 drop-shadow-md transition-transform duration-500 group-hover:scale-105" />
             )}
 
-            <div className="absolute top-3 left-3 px-3 py-1 bg-black/20 backdrop-blur-md text-white text-xs font-semibold rounded-lg">
+            <div className="absolute top-2.5 right-2.5 px-2.5 py-1 bg-black/40 dark:bg-black/60 backdrop-blur-md text-white text-xs font-semibold rounded-lg z-10 shadow-sm border border-white/10 pointer-events-none">
               {project.category}
             </div>
 
