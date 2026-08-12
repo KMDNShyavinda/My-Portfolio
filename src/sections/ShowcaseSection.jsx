@@ -109,7 +109,7 @@ const projects = [
       "Built with React, TypeScript, Node.js/Express, and MongoDB. Features secure JWT authentication, team productivity analytics, Recharts data visualization (status & priority breakdowns), and a responsive dark burgundy theme.",
     tech: ["React.js", "TypeScript", "Node.js", "MongoDB", "Tailwind CSS"],
     githubLink: "https://github.com/KMDNShyavinda/task-analytics-management-system",
-    liveLink: "#",
+    liveLink: "https://task-analytics-management-system.vercel.app/login",
     category: "Full-Stack",
     gradient: "from-rose-600 to-red-700",
     image: "/images/task-analytics.png",
