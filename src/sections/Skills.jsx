@@ -4,8 +4,11 @@ import AnimatedBackground from "../components/AnimatedBackground";
 import {
   SiJavascript,
   SiPython,
-  SiCplusplus,
   SiReact,
+  SiTypescript,
+  SiHtml5,
+  SiTailwindcss,
+  SiPhp,
   SiNodedotjs,
   SiExpress,
   SiMongodb,
@@ -13,75 +16,83 @@ import {
   SiPostgresql,
   SiGit,
   SiGithub,
-  SiFigma,
-  SiPhp,
-  SiHtml5,
-  SiCss,
+  SiDocker,
+  SiPostman,
+  SiSwagger,
+  SiSpringboot,
+  SiSpringsecurity,
+  SiJetbrains,
+  SiJenkins,
+  SiKubernetes,
 } from "react-icons/si";
-import { FaJava, FaNetworkWired, FaBrain, FaCode, FaTerminal } from "react-icons/fa";
+import { FaJava, FaBrain, FaInfinity, FaDatabase, FaCss3Alt } from "react-icons/fa";
 import { DiVisualstudio } from "react-icons/di";
 
-// Skill categories mapped directly from the CV
+// Skill categories incorporating user skills
 const skillCategories = [
   {
-    category: "Languages",
-    icon: "💻",
-    skills: [
-      { name: "JavaScript", level: 90, Icon: SiJavascript, color: "#F7DF1E" },
-      { name: "Python", level: 85, Icon: SiPython, color: "#3776AB" },
-      { name: "Java", level: 80, Icon: FaJava, color: "#f89820" },
-      { name: "C++", level: 75, Icon: SiCplusplus, color: "#00599C" },
-      { name: "PHP", level: 80, Icon: SiPhp, color: "#777BB4" },
-    ],
-  },
-  {
-    category: "Frontend",
+    category: "Frontend Development",
     icon: "🎨",
     skills: [
       { name: "React.js", level: 90, Icon: SiReact, color: "#61DAFB" },
-      { name: "JavaScript", level: 90, Icon: SiJavascript, color: "#F7DF1E" },
+      { name: "TypeScript", level: 85, Icon: SiTypescript, color: "#3178C6" },
       { name: "HTML5", level: 92, Icon: SiHtml5, color: "#E34F26" },
-      { name: "CSS", level: 88, Icon: SiCss, color: "#1572B6" },
+      { name: "CSS3", level: 88, Icon: FaCss3Alt, color: "#1572B6" },
+      { name: "Tailwind CSS", level: 90, Icon: SiTailwindcss, color: "#06B6D4" },
+      { name: "PHP", level: 80, Icon: SiPhp, color: "#777BB4" },
     ],
   },
   {
-    category: "Backend",
+    category: "Backend Development",
     icon: "⚙️",
     skills: [
+      { name: "Spring Boot", level: 88, Icon: SiSpringboot, color: "#6DB33F" },
+      { name: "Spring Security", level: 85, Icon: SiSpringsecurity, color: "#6DB33F" },
       { name: "Node.js", level: 85, Icon: SiNodedotjs, color: "#339933" },
       { name: "Express.js", level: 85, Icon: SiExpress, color: "#000000" },
-      { name: "REST API Development", level: 88, Icon: FaNetworkWired, color: "#6366F1" },
-      { name: "PHP", level: 80, Icon: SiPhp, color: "#777BB4" },
     ],
   },
   {
     category: "Databases",
     icon: "🗄️",
     skills: [
-      { name: "MySQL", level: 85, Icon: SiMysql, color: "#4479A1" },
-      { name: "MongoDB", level: 80, Icon: SiMongodb, color: "#47A248" },
-      { name: "PostgreSQL", level: 82, Icon: SiPostgresql, color: "#4169E1" },
+      { name: "PostgreSQL", level: 85, Icon: SiPostgresql, color: "#4169E1" },
+      { name: "MySQL", level: 88, Icon: SiMysql, color: "#4479A1" },
+      { name: "MongoDB", level: 82, Icon: SiMongodb, color: "#47A248" },
+      { name: "SQL Server", level: 80, Icon: FaDatabase, color: "#CC292B" },
     ],
   },
   {
-    category: "Tools & Platforms",
+    category: "DevOps & Cloud",
+    icon: "🚀",
+    skills: [
+      { name: "Docker", level: 85, Icon: SiDocker, color: "#2496ED" },
+      { name: "Docker Desktop", level: 85, Icon: SiDocker, color: "#2496ED" },
+      { name: "Docker Compose", level: 82, Icon: SiDocker, color: "#2496ED" },
+      { name: "Kubernetes", level: 80, Icon: SiKubernetes, color: "#326CE5" },
+      { name: "Jenkins", level: 82, Icon: SiJenkins, color: "#D24939" },
+      { name: "CI/CD Pipelines", level: 80, Icon: FaInfinity, color: "#6366F1" },
+    ],
+  },
+  {
+    category: "Tools & API Testing",
     icon: "🛠️",
     skills: [
-      { name: "Git", level: 88, Icon: SiGit, color: "#F05032" },
-      { name: "GitHub", level: 90, Icon: SiGithub, color: "#181717" },
-      { name: "Visual Studio Code", level: 92, Icon: DiVisualstudio, color: "#007ACC" },
-      { name: "Figma", level: 80, Icon: SiFigma, color: "#F24E1E" },
+      { name: "Git", level: 90, Icon: SiGit, color: "#F05032" },
+      { name: "GitHub", level: 92, Icon: SiGithub, color: "#181717" },
+      { name: "Postman", level: 88, Icon: SiPostman, color: "#FF6C37" },
+      { name: "Swagger", level: 85, Icon: SiSwagger, color: "#85EA2D" },
     ],
   },
   {
-    category: "CS Fundamentals",
-    icon: "🧠",
+    category: "IDEs & Languages",
+    icon: "💻",
     skills: [
-      { name: "Problem Solving", level: 88, Icon: FaBrain, color: "#EC4899" },
-      { name: "Data Structures", level: 85, Icon: FaCode, color: "#10B981" },
-      { name: "Algorithms", level: 85, Icon: FaTerminal, color: "#F59E0B" },
-      { name: "OOP", level: 88, Icon: FaCode, color: "#6366F1" },
-      { name: "SDLC", level: 82, Icon: FaNetworkWired, color: "#3B82F6" },
+      { name: "VS Code", level: 92, Icon: DiVisualstudio, color: "#007ACC" },
+      { name: "IntelliJ IDEA", level: 88, Icon: SiJetbrains, color: "#000000" },
+      { name: "Java", level: 88, Icon: FaJava, color: "#F89820" },
+      { name: "JavaScript", level: 90, Icon: SiJavascript, color: "#F7DF1E" },
+      { name: "Python", level: 85, Icon: SiPython, color: "#3776AB" },
     ],
   },
 ];
@@ -110,7 +121,7 @@ const SkillBar = ({ skill, index }) => {
             {name}
           </span>
         </div>
-        <span className="text-gray-600 dark:text-gray-300 font-medium">
+        <span className="text-gray-600 dark:text-gray-300 font-medium text-sm">
           {level}%
         </span>
       </div>
@@ -150,8 +161,7 @@ const Skills = () => {
           </h2>
           <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-cyan-400 mx-auto mb-4 rounded-full"></div>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto font-medium">
-            Here are the technologies and tools I work with to bring ideas to
-            life
+            Here are the technologies, tools, and platforms I specialize in to build production-grade applications
           </p>
         </motion.div>
 

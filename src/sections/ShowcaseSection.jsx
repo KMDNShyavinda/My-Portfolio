@@ -17,6 +17,7 @@ import {
   FaCalculator,
   FaChartPie,
   FaChartLine,
+  FaUtensils,
 } from "react-icons/fa";
 import { SiFigma } from "react-icons/si";
 
@@ -24,13 +25,13 @@ import { SiFigma } from "react-icons/si";
 const projects = [
   {
     title: "Maison Ceylon — Restaurant Management System",
-    icon: FaPills,
+    icon: FaUtensils,
     desc: "Full-stack restaurant POS & management system with real-time KDS, inventory, and interactive floor plan.",
     longDesc:
       "Maison Ceylon is an enterprise-grade restaurant POS and management platform featuring role-based access control, a fast POS terminal, interactive floor plans, real-time Kitchen Display System (KDS) via WebSockets, and inventory/stock tracking.",
     tech: ["React", "Spring Boot", "PostgreSQL", "Tailwind CSS", "WebSockets"],
     githubLink: "https://github.com/KMDNShyavinda/restaurant",
-    liveLink: "#",
+    liveLink: "http://51.21.3.86/login",
     category: "Full-Stack",
     gradient: "from-yellow-500 to-amber-500",
     image: "/images/maison-ceylon-hero.png",
@@ -144,6 +145,7 @@ const projects = [
 const ProjectCard = ({ project, index, hoveredIndex, setHoveredIndex }) => {
   const Icon = project.icon;
   const isHovered = hoveredIndex === index;
+  const hasLiveLink = Boolean(project.liveLink && project.liveLink !== "#");
 
   return (
     <motion.div
@@ -188,7 +190,7 @@ const ProjectCard = ({ project, index, hoveredIndex, setHoveredIndex }) => {
 
             {/* Hover overlay with visual click support */}
             <div className="absolute inset-0 flex items-center justify-center gap-4 bg-black/25 opacity-0 group-hover:opacity-100 transition-all duration-300">
-              {project.liveLink && (
+              {hasLiveLink && (
                 <a
                   href={project.liveLink}
                   target="_blank"
@@ -251,7 +253,7 @@ const ProjectCard = ({ project, index, hoveredIndex, setHoveredIndex }) => {
           {/* Action buttons */}
           <div
             className={`grid gap-3 mt-6 ${
-              project.liveLink ? "grid-cols-2" : "grid-cols-1"
+              hasLiveLink ? "grid-cols-2" : "grid-cols-1"
             }`}
           >
             <a
@@ -267,7 +269,7 @@ const ProjectCard = ({ project, index, hoveredIndex, setHoveredIndex }) => {
               </span>
             </a>
 
-            {project.liveLink && (
+            {hasLiveLink && (
               <a
                 href={project.liveLink}
                 target="_blank"
