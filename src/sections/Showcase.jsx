@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { motion } from "framer-motion";
+import React, { useState, useMemo } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import AnimatedBackground from "../components/AnimatedBackground";
 import ProjectModal from "../components/ProjectModal";
 import { personalInfo } from "../constants";
@@ -20,6 +20,9 @@ import {
   FaChartLine,
   FaUtensils,
   FaSearchPlus,
+  FaSearch,
+  FaTimes,
+  FaFilter,
 } from "react-icons/fa";
 import { SiFigma } from "react-icons/si";
 
@@ -210,6 +213,17 @@ const projects = [
   },
 ];
 
+const filterCategories = [
+  "All",
+  "Full-Stack",
+  "React.js",
+  "Spring Boot",
+  "Node.js",
+  "Healthcare",
+  "UI/UX Design",
+  "Web App",
+];
+
 const ProjectCard = ({
   project,
   index,
@@ -223,10 +237,11 @@ const ProjectCard = ({
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.6, delay: (index % 3) * 0.1 }}
+      layout
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.9 }}
+      transition={{ duration: 0.4, delay: (index % 3) * 0.05 }}
       className="group relative"
       onMouseEnter={() => setHoveredIndex(index)}
       onMouseLeave={() => setHoveredIndex(null)}
@@ -238,7 +253,7 @@ const ProjectCard = ({
         />
 
         <div className="relative z-10 p-6 flex flex-col flex-1">
-          {/* Visual header (image or icon on gradient) */}
+          {/* Visual header */}
           <div
             onClick={() => onSelectProject(project)}
             className={`relative overflow-hidden rounded-2xl mb-6 aspect-[16/9] w-full flex items-center justify-center bg-gradient-to-br ${project.gradient} shadow-inner cursor-pointer`}
@@ -354,6 +369,31 @@ const ProjectCard = ({
 const Showcase = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [selectedProject, setSelectedProject] = useState(null);
+  const [activeFilter, setActiveFilter] = useState("All");
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const filteredProjects = useMemo(() => {
+    return projects.filter((project) => {
+      // Tag filter check
+      const matchesFilter =
+        activeFilter === "All" ||
+        project.category.toLowerCase() === activeFilter.toLowerCase() ||
+        project.tech.some(
+          (t) => t.toLowerCase() === activeFilter.toLowerCase()
+        );
+
+      // Search query check
+      const q = searchQuery.trim().toLowerCase();
+      const matchesSearch =
+        !q ||
+        project.title.toLowerCase().includes(q) ||
+        project.desc.toLowerCase().includes(q) ||
+        project.category.toLowerCase().includes(q) ||
+        project.tech.some((t) => t.toLowerCase().includes(q));
+
+      return matchesFilter && matchesSearch;
+    });
+  }, [activeFilter, searchQuery]);
 
   return (
     <section
@@ -367,12 +407,13 @@ const Showcase = () => {
       <AnimatedBackground />
 
       <div className="max-w-7xl mx-auto relative z-10">
+        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
           <div className="inline-flex items-center justify-center p-3 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 rounded-2xl mb-6">
             <FaCodeBranch className="text-3xl bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent" />
@@ -381,24 +422,138 @@ const Showcase = () => {
             Featured Projects
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto font-medium">
-            A selection of full-stack applications I've built, spanning
-            campus tools, healthcare, and data-driven dashboards.
+            A selection of full-stack applications I've built, spanning campus tools, healthcare, and data-driven dashboards.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {projects.map((project, index) => (
-            <ProjectCard
-              key={project.title}
-              project={project}
-              index={index}
-              hoveredIndex={hoveredIndex}
-              setHoveredIndex={setHoveredIndex}
-              onSelectProject={setSelectedProject}
+        {/* Filter & Search Bar Controls */}
+        <div className="space-y-6 mb-12 max-w-4xl mx-auto">
+          {/* Search Input Bar */}
+          <div className="relative">
+            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-400">
+              <FaSearch />
+            </div>
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search projects by title, category, or technology (e.g. Spring Boot, React, MongoDB)..."
+              className="w-full pl-11 pr-10 py-3.5 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md border border-gray-200/80 dark:border-gray-800 rounded-2xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 dark:focus:ring-cyan-400/50 transition-all font-medium text-sm md:text-base shadow-sm"
             />
-          ))}
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery("")}
+                className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
+              >
+                <FaTimes />
+              </button>
+            )}
+          </div>
+
+          {/* Technology & Category Filter Pills */}
+          <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none justify-start md:justify-center">
+            <span className="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider flex items-center gap-1 shrink-0 mr-1">
+              <FaFilter className="text-blue-500" /> Filter:
+            </span>
+            {filterCategories.map((cat) => {
+              const isActive = activeFilter === cat;
+              const count =
+                cat === "All"
+                  ? projects.length
+                  : projects.filter(
+                      (p) =>
+                        p.category.toLowerCase() === cat.toLowerCase() ||
+                        p.tech.some(
+                          (t) => t.toLowerCase() === cat.toLowerCase()
+                        )
+                    ).length;
+
+              return (
+                <button
+                  key={cat}
+                  onClick={() => setActiveFilter(cat)}
+                  className={`px-4 py-2 rounded-xl text-xs md:text-sm font-semibold transition-all duration-200 shrink-0 flex items-center gap-1.5 ${
+                    isActive
+                      ? "bg-gradient-to-r from-blue-500 to-indigo-500 text-white shadow-md shadow-blue-500/20"
+                      : "bg-white/60 dark:bg-gray-800/40 border border-gray-200/60 dark:border-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+                  }`}
+                >
+                  {cat}
+                  <span
+                    className={`px-1.5 py-0.2 rounded-md text-[10px] ${
+                      isActive
+                        ? "bg-white/20 text-white"
+                        : "bg-gray-200/60 dark:bg-gray-700/60 text-gray-500 dark:text-gray-400"
+                    }`}
+                  >
+                    {count}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Results Count Header */}
+          <div className="flex items-center justify-between text-xs font-bold text-gray-500 dark:text-gray-400 px-1">
+            <span>
+              Showing {filteredProjects.length} of {projects.length} projects
+            </span>
+            {(activeFilter !== "All" || searchQuery) && (
+              <button
+                onClick={() => {
+                  setActiveFilter("All");
+                  setSearchQuery("");
+                }}
+                className="text-blue-500 dark:text-cyan-400 hover:underline"
+              >
+                Clear all filters
+              </button>
+            )}
+          </div>
         </div>
 
+        {/* Project Cards Grid / Empty State */}
+        {filteredProjects.length === 0 ? (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center py-16 bg-white/40 dark:bg-gray-800/30 backdrop-blur-sm rounded-3xl border border-gray-200/50 dark:border-gray-800/80 max-w-xl mx-auto space-y-4"
+          >
+            <div className="text-4xl text-gray-400 dark:text-gray-500">🔍</div>
+            <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+              No matching projects found
+            </h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400 max-w-md mx-auto font-medium">
+              We couldn't find any projects matching "{searchQuery || activeFilter}". Try adjusting your filter or search query.
+            </p>
+            <button
+              onClick={() => {
+                setActiveFilter("All");
+                setSearchQuery("");
+              }}
+              className="px-5 py-2.5 bg-blue-500 hover:bg-blue-600 text-white font-semibold text-xs rounded-xl shadow-md transition-all"
+            >
+              Reset All Filters
+            </button>
+          </motion.div>
+        ) : (
+          <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+            <AnimatePresence>
+              {filteredProjects.map((project, index) => (
+                <ProjectCard
+                  key={project.title}
+                  project={project}
+                  index={index}
+                  hoveredIndex={hoveredIndex}
+                  setHoveredIndex={setHoveredIndex}
+                  onSelectProject={setSelectedProject}
+                />
+              ))}
+            </AnimatePresence>
+          </motion.div>
+        )}
+
+        {/* Bottom CTA Card */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -411,8 +566,7 @@ const Showcase = () => {
               Explore More of My Work
             </h3>
             <p className="text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto text-sm font-medium">
-              Discover additional projects, contributions, and professional
-              experiences across various platforms.
+              Discover additional projects, contributions, and professional experiences across various platforms.
             </p>
 
             <div className="flex flex-col sm:flex-row justify-center gap-4">
