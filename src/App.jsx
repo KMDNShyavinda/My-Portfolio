@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { MotionConfig } from "framer-motion";
 import { Helmet } from "react-helmet-async";
 
 // Modular Component & Section Imports
-import { Navbar, Footer, TawkTo } from "@/components";
+import { Navbar, Footer, TawkTo, ResumeModal } from "@/components";
 import {
   Hero,
   About,
@@ -22,6 +22,8 @@ import { personalInfo } from "@/constants";
 const SITE_URL = "https://your-portfolio-domain.example.com";
 
 const App = () => {
+  const [isResumeOpen, setIsResumeOpen] = useState(false);
+
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Person",
@@ -82,9 +84,9 @@ const App = () => {
         Skip to main content
       </a>
 
-      <Navbar />
+      <Navbar onOpenResume={() => setIsResumeOpen(true)} />
       <main id="main-content">
-        <Hero />
+        <Hero onOpenResume={() => setIsResumeOpen(true)} />
         <About />
         <Skills />
         <Experience />
@@ -97,6 +99,12 @@ const App = () => {
       </main>
       <Footer />
       <TawkTo />
+
+      {/* Interactive In-App Resume Previewer Modal */}
+      <ResumeModal
+        isOpen={isResumeOpen}
+        onClose={() => setIsResumeOpen(false)}
+      />
     </MotionConfig>
   );
 };
