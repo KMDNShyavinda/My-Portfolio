@@ -5,3 +5,4 @@ export { default as TawkTo } from "./TawkTo";
 export { default as ResumeModal } from "./ResumeModal";
 export { default as ProjectModal } from "./ProjectModal";
 export { default as CommandPalette } from "./CommandPalette";
+export { default as TerminalModal } from "./TerminalModal";

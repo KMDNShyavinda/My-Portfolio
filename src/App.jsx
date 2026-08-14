@@ -9,6 +9,7 @@ import {
   TawkTo,
   ResumeModal,
   CommandPalette,
+  TerminalModal,
 } from "@/components";
 import {
   Hero,
@@ -30,12 +31,20 @@ const SITE_URL = "https://your-portfolio-domain.example.com";
 const App = () => {
   const [isResumeOpen, setIsResumeOpen] = useState(false);
   const [isPaletteOpen, setIsPaletteOpen] = useState(false);
+  const [isTerminalOpen, setIsTerminalOpen] = useState(false);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
       if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
         e.preventDefault();
         setIsPaletteOpen((prev) => !prev);
+      }
+      if (
+        (e.key === "`" || e.key === "~") &&
+        !["INPUT", "TEXTAREA"].includes(document.activeElement?.tagName)
+      ) {
+        e.preventDefault();
+        setIsTerminalOpen((prev) => !prev);
       }
     };
     window.addEventListener("keydown", handleKeyDown);
@@ -105,6 +114,7 @@ const App = () => {
       <Navbar
         onOpenResume={() => setIsResumeOpen(true)}
         onOpenPalette={() => setIsPaletteOpen(true)}
+        onOpenTerminal={() => setIsTerminalOpen(true)}
       />
       <main id="main-content">
         <Hero onOpenResume={() => setIsResumeOpen(true)} />
@@ -131,6 +141,14 @@ const App = () => {
       <CommandPalette
         isOpen={isPaletteOpen}
         onClose={() => setIsPaletteOpen(false)}
+        onOpenResume={() => setIsResumeOpen(true)}
+        onOpenTerminal={() => setIsTerminalOpen(true)}
+      />
+
+      {/* Interactive Developer Terminal CLI Modal (Easter Egg) */}
+      <TerminalModal
+        isOpen={isTerminalOpen}
+        onClose={() => setIsTerminalOpen(false)}
         onOpenResume={() => setIsResumeOpen(true)}
       />
     </MotionConfig>

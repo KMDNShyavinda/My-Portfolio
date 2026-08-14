@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "../context/ThemeContext";
 import { personalInfo } from "../constants";
-import { FaSearch } from "react-icons/fa";
+import { FaSearch, FaTerminal } from "react-icons/fa";
 
 // ThemeSwitcher Component
 const ThemeSwitcher = () => {
@@ -36,7 +36,7 @@ const ThemeSwitcher = () => {
   );
 };
 
-const Navbar = ({ onOpenResume, onOpenPalette }) => {
+const Navbar = ({ onOpenResume, onOpenPalette, onOpenTerminal }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -107,6 +107,18 @@ const Navbar = ({ onOpenResume, onOpenPalette }) => {
               <FaSearch className="text-xs" />
               <kbd className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 rounded text-[10px] font-mono border border-gray-200 dark:border-gray-700">
                 Ctrl K
+              </kbd>
+            </motion.button>
+            <motion.button
+              onClick={onOpenTerminal}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+              className="px-3 py-1.5 rounded-full border border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-300 bg-white/60 dark:bg-gray-900/60 hover:text-green-500 dark:hover:text-green-400 hover:border-green-500/60 dark:hover:border-green-400/60 font-semibold text-[13px] xl:text-sm flex items-center gap-1.5 transition-all duration-300 shadow-sm"
+              title="Interactive Terminal CLI (` / ~)"
+            >
+              <FaTerminal className="text-xs text-green-500" />
+              <kbd className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 rounded text-[10px] font-mono border border-gray-200 dark:border-gray-700">
+                ~
               </kbd>
             </motion.button>
             <motion.button

@@ -20,9 +20,10 @@ import {
   FaGraduationCap,
   FaAward,
   FaEnvelope,
+  FaTerminal,
 } from "react-icons/fa";
 
-const CommandPalette = ({ isOpen, onClose, onOpenResume }) => {
+const CommandPalette = ({ isOpen, onClose, onOpenResume, onOpenTerminal }) => {
   const [query, setQuery] = useState("");
   const [selectedIndex, setSelectedIndex] = useState(0);
   const { theme, setTheme } = useTheme();
@@ -139,6 +140,18 @@ const CommandPalette = ({ isOpen, onClose, onOpenResume }) => {
       },
       {
         category: "Quick Actions",
+        id: "act-terminal",
+        title: "Launch Developer Terminal CLI (` / ~)",
+        subtitle: "Open interactive UNIX hacker terminal modal",
+        icon: FaTerminal,
+        color: "text-green-500",
+        action: () => {
+          onClose();
+          if (onOpenTerminal) onOpenTerminal();
+        },
+      },
+      {
+        category: "Quick Actions",
         id: "act-resume",
         title: "Preview Curriculum Vitae / Resume",
         subtitle: "Open interactive PDF viewer modal",
@@ -186,7 +199,7 @@ const CommandPalette = ({ isOpen, onClose, onOpenResume }) => {
         },
       },
     ],
-    [theme, setTheme, onClose, onOpenResume]
+    [theme, setTheme, onClose, onOpenResume, onOpenTerminal]
   );
 
   const filteredCommands = useMemo(() => {
