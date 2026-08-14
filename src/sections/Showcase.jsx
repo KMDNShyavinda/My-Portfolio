@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import AnimatedBackground from "../components/AnimatedBackground";
+import ProjectModal from "../components/ProjectModal";
 import { personalInfo } from "../constants";
 import {
   FaGithub,
@@ -18,10 +19,11 @@ import {
   FaChartPie,
   FaChartLine,
   FaUtensils,
+  FaSearchPlus,
 } from "react-icons/fa";
 import { SiFigma } from "react-icons/si";
 
-// Projects directly mapped from the user's CV
+// Projects directly mapped from the user's CV with case study & architecture details
 const projects = [
   {
     title: "Maison Ceylon — Restaurant Management System",
@@ -29,6 +31,15 @@ const projects = [
     desc: "Full-stack restaurant POS & management system with real-time KDS, inventory, and interactive floor plan.",
     longDesc:
       "Maison Ceylon is an enterprise-grade restaurant POS and management platform featuring role-based access control, a fast POS terminal, interactive floor plans, real-time Kitchen Display System (KDS) via WebSockets, and inventory/stock tracking.",
+    architecture:
+      "Built with a decoupled architecture: React & Tailwind frontend communicating via RESTful APIs and STOMP WebSockets to a Spring Boot backend, backed by PostgreSQL for transactional ACID compliance.",
+    features: [
+      "Role-Based Access Control (Admin, Cashier, Kitchen Staff)",
+      "Real-Time Kitchen Display System (KDS) via WebSockets",
+      "Interactive Restaurant Table Floor Plan",
+      "Automated Inventory & Ingredient Stock Tracking",
+      "Instant Thermal Receipt Printing & Order Billing",
+    ],
     tech: ["React", "Spring Boot", "PostgreSQL", "Tailwind CSS", "WebSockets"],
     githubLink: "https://github.com/KMDNShyavinda/restaurant",
     liveLink: "http://51.21.3.86/login",
@@ -42,6 +53,14 @@ const projects = [
     desc: "A full-stack judicial case, evidence, and prison management system streamlining the criminal justice lifecycle.",
     longDesc:
       "Streamlines the criminal justice lifecycle through secure digital workflows, role-based access control (Citizen, Police, Prosecutor, Court, Judge, Prison), digital evidence handling, and automated case tracking from incident filing to inmate release.",
+    architecture:
+      "MERN stack architecture with Node.js/Express REST endpoints, MongoDB database schemas for complex case documents, and JWT role-based security layers.",
+    features: [
+      "Multi-Actor Workflows (Police, Prosecutors, Judges, Prison Admins)",
+      "Tamper-Evident Digital Evidence Vault & Chain of Custody",
+      "Automated Hearing Schedules & Warrant Dispatch",
+      "Inmate Record Tracking & Sentence Milestone Alerts",
+    ],
     tech: ["React.js", "Node.js", "Express.js", "MongoDB"],
     githubLink: "https://github.com/KMDNShyavinda/integrated-judicial-management-system",
     liveLink: "#",
@@ -55,6 +74,13 @@ const projects = [
     desc: "A smart timber volume calculator and universal unit conversion system for accurate measurement, inventory & pricing.",
     longDesc:
       "Enables accurate cubic volume calculations, multi-unit conversions (CFT, m³, CF, Kg), timber species pricing management, and calculation history tracking tailored for timber businesses and industrial supply chains.",
+    architecture:
+      "Client-side high-precision math engine synchronized with Node.js/Express endpoints and MongoDB storage for persistent quotation logs.",
+    features: [
+      "Multi-Unit Cubic Volume Engine (CFT, Cubic Meters, Weight)",
+      "Custom Timber Species Price Index",
+      "Exportable Calculation Summaries & Invoices",
+    ],
     tech: ["React.js", "Node.js", "Express.js", "MongoDB"],
     githubLink: "https://github.com/KMDNShyavinda/TimberCalc-Pro",
     liveLink: "#",
@@ -68,6 +94,13 @@ const projects = [
     desc: "A responsive, user-friendly mobile prototype design for a railway ticket booking system.",
     longDesc:
       "Applied modern UI/UX principles, including accessibility standards, visual hierarchies, and consistent design patterns, to deliver a polished Figma prototype demonstrating end-to-end booking flows across screens.",
+    architecture:
+      "User-centered design (UCD) process featuring wireframes, component design systems, accessibility contrast checks, and interactive prototype flows in Figma.",
+    features: [
+      "End-to-End Ticket Search & Seat Selection Flow",
+      "Live Train Schedule & Route Map Views",
+      "Accessibility-Compliant Color Palette & Mobile Layouts",
+    ],
     tech: ["Figma", "UI/UX Design"],
     githubLink: "https://github.com/KMDNShyavinda/Sri-Lanka-Railway-website-UI-for-Mobile-Clone-design-via-Figma",
     liveLink: "#",
@@ -81,6 +114,13 @@ const projects = [
     desc: "A MERN team management platform featuring role-based access, automated weekly reporting, Gemini AI assistant & analytics.",
     longDesc:
       "Built with React, TypeScript, Node.js/Express, MongoDB, and Gemini AI. Provides team submission tracking, efficiency analytics, project progress monitoring, and an interactive AI assistant for status inquiries.",
+    architecture:
+      "React + TypeScript client connecting to Node.js backend with Google Gemini AI API integration for natural language status summarization.",
+    features: [
+      "AI-Powered Weekly Progress Summaries via Gemini AI",
+      "Role-Based Team & Project Dashboards",
+      "Automated Report Generation & Export",
+    ],
     tech: ["React.js", "TypeScript", "Node.js", "MongoDB", "Gemini AI"],
     githubLink: "https://github.com/KMDNShyavinda/weekly-report-dashboard",
     liveLink: "#",
@@ -94,6 +134,13 @@ const projects = [
     desc: "A web platform for safe medication dosage management, prescription tracking, and guidance.",
     longDesc:
       "Designed a reliable database for drug information and patient records. Integrates dosage calculation, safety alerts, and report generation to support clinical decisions and reduce dosage errors.",
+    architecture:
+      "Healthcare-oriented web application built on Node.js/Express REST APIs and MongoDB for fast drug lookup and patient prescription logs.",
+    features: [
+      "Automated Dosage Calculation & Safety Alert Engine",
+      "Drug Interaction Index & Warnings",
+      "Clinical Patient Prescription Reports",
+    ],
     tech: ["React.js", "Node.js", "Express.js", "MongoDB"],
     githubLink: "https://github.com/KMDNShyavinda/safeDose-MedGuide",
     liveLink: "#",
@@ -107,6 +154,13 @@ const projects = [
     desc: "A full-stack Mini ERP & task management platform with JWT auth, CRUD workflows, and interactive analytics dashboards.",
     longDesc:
       "Built with React, TypeScript, Node.js/Express, and MongoDB. Features secure JWT authentication, team productivity analytics, Recharts data visualization (status & priority breakdowns), and a responsive dark burgundy theme.",
+    architecture:
+      "Single Page Application (SPA) in React & TypeScript backed by Express REST API, JWT session management, and Recharts interactive charting.",
+    features: [
+      "JWT Session Authentication & Password Encryption",
+      "Interactive Productivity Analytics via Recharts",
+      "Priority & Status Kanban Management",
+    ],
     tech: ["React.js", "TypeScript", "Node.js", "MongoDB", "Tailwind CSS"],
     githubLink: "https://github.com/KMDNShyavinda/task-analytics-management-system",
     liveLink: "https://task-analytics-management-system.vercel.app/login",
@@ -120,6 +174,13 @@ const projects = [
     desc: "A web-based platform for managing university events, registrations, scheduling, and attendance tracking.",
     longDesc:
       "Features a structured PostgreSQL database schema to ensure data integrity across concurrent events. Allows administrators to easily manage events and generate attendance reports for post-event record-keeping.",
+    architecture:
+      "Relational backend utilizing PostgreSQL relational schemas for event registrations, student profiles, and attendance logs.",
+    features: [
+      "Concurrent Student Registration & Ticket Issuance",
+      "Event Scheduler & Hall Allocation",
+      "PostgreSQL Attendance Integrity Tracking",
+    ],
     tech: ["Python", "Node.js", "PostgreSQL"],
     githubLink: "https://github.com/KMDNShyavinda/University-Event-Management-System",
     liveLink: "#",
@@ -133,6 +194,13 @@ const projects = [
     desc: "A full-stack web application handling reservations, room availability, customer records, and billing.",
     longDesc:
       "Developed a full-stack system streamlining hotel administration. Features complete CRUD operations with a MongoDB backend, custom dashboards, and user-friendly forms that reduce manual booking errors and improve operations.",
+    architecture:
+      "Full-stack MERN solution with Express routing, MongoDB document store for room catalog & booking records, and React admin portal.",
+    features: [
+      "Room Availability Calendar & Booking Workflow",
+      "Guest Check-in / Check-out Management",
+      "Automated Billing & Invoice Summary",
+    ],
     tech: ["React.js", "Node.js", "Express.js", "MongoDB"],
     githubLink: "https://github.com/KMDNShyavinda/hotelManagement",
     liveLink: "#",
@@ -142,7 +210,13 @@ const projects = [
   },
 ];
 
-const ProjectCard = ({ project, index, hoveredIndex, setHoveredIndex }) => {
+const ProjectCard = ({
+  project,
+  index,
+  hoveredIndex,
+  setHoveredIndex,
+  onSelectProject,
+}) => {
   const Icon = project.icon;
   const isHovered = hoveredIndex === index;
   const hasLiveLink = Boolean(project.liveLink && project.liveLink !== "#");
@@ -166,7 +240,8 @@ const ProjectCard = ({ project, index, hoveredIndex, setHoveredIndex }) => {
         <div className="relative z-10 p-6 flex flex-col flex-1">
           {/* Visual header (image or icon on gradient) */}
           <div
-            className={`relative overflow-hidden rounded-2xl mb-6 aspect-[16/9] w-full flex items-center justify-center bg-gradient-to-br ${project.gradient} shadow-inner`}
+            onClick={() => onSelectProject(project)}
+            className={`relative overflow-hidden rounded-2xl mb-6 aspect-[16/9] w-full flex items-center justify-center bg-gradient-to-br ${project.gradient} shadow-inner cursor-pointer`}
           >
             {project.image ? (
               <img
@@ -182,40 +257,38 @@ const ProjectCard = ({ project, index, hoveredIndex, setHoveredIndex }) => {
               {project.category}
             </div>
 
-            {project.isPlaceholder && (
-              <div className="absolute top-3 right-3 px-3 py-1 bg-white/90 dark:bg-gray-900/90 text-gray-800 dark:text-gray-100 text-xs font-semibold rounded-lg">
-                Sample
-              </div>
-            )}
-
-            {/* Hover overlay with visual click support */}
-            <div className="absolute inset-0 flex items-center justify-center gap-4 bg-black/25 opacity-0 group-hover:opacity-100 transition-all duration-300">
+            {/* Hover overlay */}
+            <div className="absolute inset-0 flex items-center justify-center gap-3 bg-black/40 opacity-0 group-hover:opacity-100 transition-all duration-300 backdrop-blur-[2px]">
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onSelectProject(project);
+                }}
+                className="px-4 py-2 bg-white/20 hover:bg-white/30 backdrop-blur-md rounded-xl text-white text-xs font-bold transition-colors border border-white/20 flex items-center gap-1.5"
+              >
+                <FaSearchPlus /> Case Study
+              </button>
               {hasLiveLink && (
                 <a
                   href={project.liveLink}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
                   aria-label={`View live demo of ${project.title}`}
-                  className="p-3 bg-white/20 hover:bg-white/30 backdrop-blur-md rounded-full text-white transition-colors border border-white/10"
+                  className="p-2.5 bg-white/20 hover:bg-white/30 backdrop-blur-md rounded-xl text-white transition-colors border border-white/20"
                 >
-                  <FaEye className="text-lg" />
+                  <FaEye className="text-sm" />
                 </a>
               )}
-              <a
-                href={project.githubLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`View source code of ${project.title} on GitHub`}
-                className="p-3 bg-white/20 hover:bg-white/30 backdrop-blur-md rounded-full text-white transition-colors border border-white/10"
-              >
-                <FaCode className="text-lg" />
-              </a>
             </div>
           </div>
 
           {/* Details */}
           <div className="space-y-4 flex-1">
-            <h3 className="text-xl font-bold text-gray-950 dark:text-white flex items-center gap-2 group-hover:text-blue-600 dark:group-hover:text-cyan-400 transition-colors duration-300">
+            <h3
+              onClick={() => onSelectProject(project)}
+              className="text-xl font-bold text-gray-950 dark:text-white flex items-center gap-2 group-hover:text-blue-600 dark:group-hover:text-cyan-400 transition-colors duration-300 cursor-pointer"
+            >
               {project.title}
             </h3>
 
@@ -251,37 +324,26 @@ const ProjectCard = ({ project, index, hoveredIndex, setHoveredIndex }) => {
           </div>
 
           {/* Action buttons */}
-          <div
-            className={`grid gap-3 mt-6 ${
-              hasLiveLink ? "grid-cols-2" : "grid-cols-1"
-            }`}
-          >
+          <div className="grid grid-cols-2 gap-3 mt-6">
+            <button
+              onClick={() => onSelectProject(project)}
+              className="group/btn relative inline-flex items-center justify-center w-full px-3.5 py-3 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 hover:from-blue-500 hover:to-indigo-500 text-blue-600 dark:text-cyan-400 hover:text-white font-semibold rounded-xl border border-blue-500/20 dark:border-cyan-400/20 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300"
+            >
+              <span className="relative flex items-center justify-center gap-1.5 text-xs md:text-sm">
+                <FaSearchPlus /> Case Study
+              </span>
+            </button>
+
             <a
               href={project.githubLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="group/btn relative inline-flex items-center justify-center w-full px-4 py-3 bg-white/70 dark:bg-gray-900/70 hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-800 dark:text-gray-100 font-semibold rounded-xl border border-gray-200/80 dark:border-gray-700/80 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 overflow-hidden"
+              className="group/btn relative inline-flex items-center justify-center w-full px-3.5 py-3 bg-white/70 dark:bg-gray-900/70 hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-800 dark:text-gray-100 font-semibold rounded-xl border border-gray-200/80 dark:border-gray-700/80 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300"
             >
-              <span className="relative flex items-center justify-center gap-2 z-10 text-sm">
-                <FaGithub />
-                Code
-                <FaArrowRight className="text-xs transition-transform duration-300 group-hover/btn:translate-x-0.5" />
+              <span className="relative flex items-center justify-center gap-1.5 text-xs md:text-sm">
+                <FaGithub /> Code
               </span>
             </a>
-
-            {hasLiveLink && (
-              <a
-                href={project.liveLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`group/btn relative inline-flex items-center justify-center w-full px-4 py-3 bg-gradient-to-r ${project.gradient} text-white font-semibold rounded-xl shadow-md hover:shadow-lg hover:scale-[1.02] transition-all duration-300 overflow-hidden`}
-              >
-                <span className="relative flex items-center justify-center gap-2 z-10 text-sm">
-                  <FaExternalLinkAlt className="text-xs" />
-                  Live Demo
-                </span>
-              </a>
-            )}
           </div>
         </div>
       </div>
@@ -291,6 +353,7 @@ const ProjectCard = ({ project, index, hoveredIndex, setHoveredIndex }) => {
 
 const Showcase = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [selectedProject, setSelectedProject] = useState(null);
 
   return (
     <section
@@ -331,6 +394,7 @@ const Showcase = () => {
               index={index}
               hoveredIndex={hoveredIndex}
               setHoveredIndex={setHoveredIndex}
+              onSelectProject={setSelectedProject}
             />
           ))}
         </div>
@@ -377,6 +441,13 @@ const Showcase = () => {
           </div>
         </motion.div>
       </div>
+
+      {/* Interactive Project Case Study & Architecture Modal */}
+      <ProjectModal
+        project={selectedProject}
+        isOpen={Boolean(selectedProject)}
+        onClose={() => setSelectedProject(null)}
+      />
     </section>
   );
 };
