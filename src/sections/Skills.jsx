@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import AnimatedBackground from "../components/AnimatedBackground";
+import SkillModal from "../components/SkillModal";
 import {
   SiJavascript,
   SiPython,
@@ -28,7 +29,7 @@ import {
   SiGitlab,
   SiGithubactions,
 } from "react-icons/si";
-import { FaJava, FaBrain, FaInfinity, FaDatabase, FaCss3Alt, FaAws } from "react-icons/fa";
+import { FaJava, FaBrain, FaInfinity, FaDatabase, FaCss3Alt, FaAws, FaInfoCircle } from "react-icons/fa";
 import { DiVisualstudio } from "react-icons/di";
 import { TbApi } from "react-icons/tb";
 
@@ -107,40 +108,46 @@ const skillCategories = [
   },
 ];
 
-const SkillBar = ({ skill, index }) => {
+const SkillBar = ({ skill, index, onSelectSkill }) => {
   const { name, level, Icon, color } = skill;
   const isBlackIcon = color === "#000000";
+
   return (
     <motion.div
       initial={{ opacity: 0, x: -20 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
-      transition={{ delay: index * 0.08 }}
-      className="mb-4"
+      transition={{ delay: index * 0.05 }}
+      onClick={() => onSelectSkill(skill)}
+      className="group mb-4 p-2.5 rounded-2xl hover:bg-white/60 dark:hover:bg-gray-800/60 border border-transparent hover:border-blue-500/20 dark:hover:border-cyan-400/20 transition-all duration-200 cursor-pointer"
+      title={`Click to view ${name} engineering breakdown & projects`}
     >
       <div className="flex justify-between items-center mb-2">
         <div className="flex items-center space-x-3">
           <Icon
-            className={`w-5 h-5 shrink-0 ${
+            className={`w-5 h-5 shrink-0 transition-transform duration-200 group-hover:scale-110 ${
               isBlackIcon ? "text-gray-900 dark:text-white" : ""
             }`}
             style={isBlackIcon ? undefined : { color }}
             aria-hidden="true"
           />
-          <span className="font-semibold text-gray-800 dark:text-white">
+          <span className="font-semibold text-gray-800 dark:text-white group-hover:text-blue-600 dark:group-hover:text-cyan-400 transition-colors">
             {name}
           </span>
         </div>
-        <span className="text-gray-600 dark:text-gray-300 font-medium text-sm">
-          {level}%
-        </span>
+        <div className="flex items-center space-x-2">
+          <FaInfoCircle className="text-xs text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+          <span className="text-gray-600 dark:text-gray-300 font-medium text-sm">
+            {level}%
+          </span>
+        </div>
       </div>
       <div className="w-full bg-gray-200 dark:bg-gray-800 rounded-full h-2">
         <motion.div
           initial={{ width: 0 }}
           whileInView={{ width: `${level}%` }}
           viewport={{ once: true }}
-          transition={{ duration: 1, delay: index * 0.08 }}
+          transition={{ duration: 1, delay: index * 0.05 }}
           className="h-2 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 shadow-sm"
         />
       </div>
@@ -149,6 +156,8 @@ const SkillBar = ({ skill, index }) => {
 };
 
 const Skills = () => {
+  const [selectedSkill, setSelectedSkill] = useState(null);
+
   return (
     <section
       id="skills"
@@ -171,7 +180,7 @@ const Skills = () => {
           </h2>
           <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-cyan-400 mx-auto mb-4 rounded-full"></div>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto font-medium">
-            Here are the technologies, tools, and platforms I specialize in to build production-grade applications
+            Click any skill card below to open its engineering breakdown, tools, and associated portfolio projects.
           </p>
         </motion.div>
 
@@ -193,15 +202,27 @@ const Skills = () => {
                 </h3>
               </div>
 
-              <div className="space-y-5">
+              <div className="space-y-3">
                 {category.skills.map((skill, index) => (
-                  <SkillBar key={skill.name} skill={skill} index={index} />
+                  <SkillBar
+                    key={skill.name}
+                    skill={skill}
+                    index={index}
+                    onSelectSkill={setSelectedSkill}
+                  />
                 ))}
               </div>
             </motion.div>
           ))}
         </div>
       </div>
+
+      {/* Interactive Skill Detail Modal */}
+      <SkillModal
+        skill={selectedSkill}
+        isOpen={Boolean(selectedSkill)}
+        onClose={() => setSelectedSkill(null)}
+      />
     </section>
   );
 };
