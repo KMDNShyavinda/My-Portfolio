@@ -24,9 +24,13 @@ import {
   SiJetbrains,
   SiJenkins,
   SiKubernetes,
+  SiApachemaven,
+  SiGitlab,
+  SiGithubactions,
 } from "react-icons/si";
-import { FaJava, FaBrain, FaInfinity, FaDatabase, FaCss3Alt } from "react-icons/fa";
+import { FaJava, FaBrain, FaInfinity, FaDatabase, FaCss3Alt, FaAws } from "react-icons/fa";
 import { DiVisualstudio } from "react-icons/di";
+import { TbApi } from "react-icons/tb";
 
 // Skill categories incorporating user skills
 const skillCategories = [
@@ -46,8 +50,11 @@ const skillCategories = [
     category: "Backend Development",
     icon: "⚙️",
     skills: [
+      { name: "Java", level: 88, Icon: FaJava, color: "#F89820" },
       { name: "Spring Boot", level: 88, Icon: SiSpringboot, color: "#6DB33F" },
       { name: "Spring Security", level: 85, Icon: SiSpringsecurity, color: "#6DB33F" },
+      { name: "REST API", level: 88, Icon: TbApi, color: "#009688" },
+      { name: "Maven", level: 82, Icon: SiApachemaven, color: "#C71A36" },
       { name: "Node.js", level: 85, Icon: SiNodedotjs, color: "#339933" },
       { name: "Express.js", level: 85, Icon: SiExpress, color: "#000000" },
     ],
@@ -66,21 +73,24 @@ const skillCategories = [
     category: "DevOps & Cloud",
     icon: "🚀",
     skills: [
+      { name: "AWS", level: 82, Icon: FaAws, color: "#FF9900" },
       { name: "Docker", level: 85, Icon: SiDocker, color: "#2496ED" },
       { name: "Docker Desktop", level: 85, Icon: SiDocker, color: "#2496ED" },
       { name: "Docker Compose", level: 82, Icon: SiDocker, color: "#2496ED" },
       { name: "Kubernetes", level: 80, Icon: SiKubernetes, color: "#326CE5" },
       { name: "Jenkins", level: 82, Icon: SiJenkins, color: "#D24939" },
-      { name: "CI/CD Pipelines", level: 80, Icon: FaInfinity, color: "#6366F1" },
+      { name: "GitLab CI", level: 80, Icon: SiGitlab, color: "#FC6D26" },
+      { name: "GitHub Actions", level: 82, Icon: SiGithubactions, color: "#2088FF" },
+      { name: "CI/CD Pipelines", level: 85, Icon: FaInfinity, color: "#6366F1" },
     ],
   },
   {
-    category: "Tools & API Testing",
+    category: "Tools & Testing",
     icon: "🛠️",
     skills: [
       { name: "Git", level: 90, Icon: SiGit, color: "#F05032" },
       { name: "GitHub", level: 92, Icon: SiGithub, color: "#181717" },
-      { name: "Postman", level: 88, Icon: SiPostman, color: "#FF6C37" },
+      { name: "Postman (API Testing)", level: 88, Icon: SiPostman, color: "#FF6C37" },
       { name: "Swagger", level: 85, Icon: SiSwagger, color: "#85EA2D" },
     ],
   },
