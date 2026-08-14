@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import AnimatedBackground from "../components/AnimatedBackground";
 import emailjs from "@emailjs/browser";
 import { personalInfo } from "../constants";
+import { useToast } from "../context/ToastContext";
 import {
   FaEnvelope,
   FaPhoneAlt,
@@ -12,10 +13,12 @@ import {
   FaFacebook,
   FaWhatsapp,
   FaInstagram,
+  FaCopy,
 } from "react-icons/fa";
 import { FaThreads } from "react-icons/fa6";
 
 const Contact = () => {
+  const { copyToClipboard, showToast } = useToast();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -55,9 +58,8 @@ const Contact = () => {
     e.preventDefault();
 
     if (!isEmailConfigured) {
-      // No EmailJS credentials set yet — fail gracefully with a clear
-      // message instead of attempting a request that's guaranteed to fail.
       setSubmitStatus("not-configured");
+      showToast("EmailJS service pending configuration. Contact via email directly!", "info");
       return;
     }
 
@@ -83,9 +85,11 @@ const Contact = () => {
       );
 
       setSubmitStatus("success");
+      showToast("✅ Message sent successfully!", "success");
       setFormData({ name: "", email: "", subject: "", message: "" });
     } catch {
       setSubmitStatus("error");
+      showToast("❌ Failed to send message. Please try emailing directly.", "info");
     } finally {
       setIsSubmitting(false);
     }
@@ -96,6 +100,7 @@ const Contact = () => {
       Icon: FaEnvelope,
       title: "Email",
       value: personalInfo.email,
+      copyValue: personalInfo.email,
       link: `mailto:${personalInfo.email}`,
       color: "from-blue-500 to-cyan-500",
     },
@@ -103,6 +108,7 @@ const Contact = () => {
       Icon: FaPhoneAlt,
       title: "Phone",
       value: personalInfo.phone,
+      copyValue: personalInfo.phone,
       link: `tel:${personalInfo.phone.replace(/\s+/g, "")}`,
       color: "from-green-500 to-emerald-500",
     },
@@ -110,6 +116,7 @@ const Contact = () => {
       Icon: FaWhatsapp,
       title: "WhatsApp",
       value: personalInfo.phone,
+      copyValue: personalInfo.whatsapp,
       link: personalInfo.whatsapp,
       color: "from-teal-500 to-green-500",
     },
@@ -117,6 +124,7 @@ const Contact = () => {
       Icon: FaMapMarkerAlt,
       title: "Location",
       value: personalInfo.location,
+      copyValue: personalInfo.location,
       link: "#",
       color: "from-purple-500 to-pink-500",
     },
@@ -124,6 +132,7 @@ const Contact = () => {
       Icon: FaLinkedin,
       title: "LinkedIn",
       value: personalInfo.linkedin.replace(/^https?:\/\//, ""),
+      copyValue: personalInfo.linkedin,
       link: personalInfo.linkedin,
       color: "from-orange-500 to-red-500",
     },
@@ -188,8 +197,7 @@ const Contact = () => {
           </h2>
           <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-cyan-400 mx-auto mb-4 rounded-full"></div>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto font-medium">
-            I'm always open to discussing new opportunities, collaborations,
-            and interesting projects
+            I'm always open to discussing new opportunities, collaborations, and interesting projects
           </p>
         </motion.div>
 
@@ -210,8 +218,7 @@ const Contact = () => {
             animate={{ opacity: 1, y: 0 }}
             className="max-w-2xl mx-auto mb-6 p-4 bg-red-500/10 border border-red-500/30 text-red-700 dark:text-red-400 rounded-xl text-center font-medium"
           >
-            ❌ Sorry, there was an error sending your message. Please try
-            again or email me directly.
+            ❌ Sorry, there was an error sending your message. Please try again or email me directly.
           </motion.div>
         )}
 
@@ -221,8 +228,7 @@ const Contact = () => {
             animate={{ opacity: 1, y: 0 }}
             className="max-w-2xl mx-auto mb-6 p-4 bg-amber-500/10 border border-amber-500/30 text-amber-800 dark:text-amber-400 rounded-xl text-center font-medium"
           >
-            ✉️ The contact form isn't connected yet — please reach out
-            directly via{" "}
+            ✉️ The contact form isn't connected yet — please reach out directly via{" "}
             <a href={`mailto:${personalInfo.email}`} className="underline font-bold text-amber-900 dark:text-amber-300">
               email
             </a>{" "}
@@ -244,38 +250,46 @@ const Contact = () => {
                 Let's Connect
               </h3>
               <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-6 font-medium">
-                Whether you have a project in mind, want to collaborate, or
-                just want to say hello, I'd love to hear from you. Feel free
-                to reach out through any of the following channels.
+                Whether you have a project in mind, want to collaborate, or just want to say hello, I'd love to hear from you. Click any detail below to 1-click copy!
               </p>
             </div>
 
             <div className="space-y-4">
               {contactInfo.map((info, index) => (
-                <motion.a
+                <motion.div
                   key={info.title}
-                  href={info.link}
                   initial={{ opacity: 0, y: 15 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   whileHover={{ x: 6, scale: 1.01 }}
-                  className="flex items-center gap-4 p-4 bg-white/40 dark:bg-gray-800/30 backdrop-blur-sm rounded-3xl border border-gray-200/50 dark:border-gray-800/80 hover:border-blue-500/20 dark:hover:border-cyan-500/20 transition-all duration-300 group cursor-pointer"
+                  onClick={() => copyToClipboard(info.copyValue, info.title)}
+                  className="flex items-center justify-between p-4 bg-white/40 dark:bg-gray-800/30 backdrop-blur-sm rounded-3xl border border-gray-200/50 dark:border-gray-800/80 hover:border-blue-500/20 dark:hover:border-cyan-500/20 transition-all duration-300 group cursor-pointer"
+                  title={`Click to copy ${info.title} to clipboard`}
                 >
-                  <div
-                    className={`w-12 h-12 bg-gradient-to-r ${info.color} rounded-2xl flex items-center justify-center shadow-md group-hover:scale-105 transition-transform duration-300`}
-                  >
-                    <info.Icon className="w-5 h-5 text-white" />
-                  </div>
-                  <div>
-                    <div className="font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-cyan-400 transition-colors">
-                      {info.title}
+                  <div className="flex items-center gap-4">
+                    <div
+                      className={`w-12 h-12 bg-gradient-to-r ${info.color} rounded-2xl flex items-center justify-center shadow-md group-hover:scale-105 transition-transform duration-300`}
+                    >
+                      <info.Icon className="w-5 h-5 text-white" />
                     </div>
-                    <div className="text-gray-600 dark:text-gray-400 break-all text-sm font-medium mt-0.5">
-                      {info.value}
+                    <div>
+                      <div className="font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-cyan-400 transition-colors flex items-center gap-2">
+                        {info.title}
+                        <span className="text-[10px] font-bold px-2 py-0.5 bg-gray-100 dark:bg-gray-800 rounded-md text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity">
+                          Click to Copy
+                        </span>
+                      </div>
+                      <div className="text-gray-600 dark:text-gray-400 break-all text-sm font-medium mt-0.5">
+                        {info.value}
+                      </div>
                     </div>
                   </div>
-                </motion.a>
+
+                  <div className="p-2.5 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-400 group-hover:text-blue-500 dark:group-hover:text-cyan-400 transition-colors">
+                    <FaCopy className="text-xs" />
+                  </div>
+                </motion.div>
               ))}
             </div>
 
