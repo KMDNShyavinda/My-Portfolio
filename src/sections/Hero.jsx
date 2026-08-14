@@ -441,32 +441,23 @@ const Hero = ({ onOpenResume }) => {
               initial={{ y: 30, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.7 }}
-              className="flex flex-col sm:flex-row gap-3.5 justify-center lg:justify-start"
+              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
             >
               <motion.button
                 onClick={onOpenResume}
                 whileHover={{ scale: 1.04, y: -3, transition: { type: "spring", stiffness: 400, damping: 15 } }}
                 whileTap={{ scale: 0.96 }}
-                className="bg-gradient-to-r from-blue-500 via-indigo-500 to-cyan-500 border border-blue-400/20 dark:border-cyan-400/10 text-white px-5 py-3.5 rounded-xl font-semibold text-base shadow-md hover:shadow-[0_8px_25px_-5px_rgba(99,102,241,0.4)] transition-all duration-350 text-center flex items-center justify-center gap-2 cursor-pointer"
+                className="bg-gradient-to-r from-blue-500 via-indigo-500 to-cyan-500 border border-blue-400/20 dark:border-cyan-400/10 text-white px-6 py-3.5 rounded-xl font-semibold text-base shadow-md hover:shadow-[0_8px_25px_-5px_rgba(99,102,241,0.4)] transition-all duration-350 text-center flex items-center justify-center gap-2 cursor-pointer"
               >
-                👁️ Preview Resume
+                📄 View Resume
               </motion.button>
-              <motion.a
-                href={personalInfo.cvPath}
-                download={personalInfo.cvDownloadName}
-                whileHover={{ scale: 1.04, y: -3, transition: { type: "spring", stiffness: 400, damping: 15 } }}
-                whileTap={{ scale: 0.96 }}
-                className="border border-gray-300 dark:border-gray-700 bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm text-gray-700 dark:text-gray-300 px-5 py-3.5 rounded-xl font-semibold text-base hover:text-blue-500 dark:hover:text-cyan-400 hover:border-blue-500/60 dark:hover:border-cyan-400/60 hover:bg-blue-500/5 dark:hover:bg-cyan-400/5 transition-all duration-350 text-center shadow-sm"
-              >
-                📄 Download CV
-              </motion.a>
               <motion.a
                 href="#projects"
                 whileHover={{ scale: 1.04, y: -3, transition: { type: "spring", stiffness: 400, damping: 15 } }}
                 whileTap={{ scale: 0.96 }}
-                className="border border-gray-300 dark:border-gray-700 bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm text-gray-700 dark:text-gray-300 px-5 py-3.5 rounded-xl font-semibold text-base hover:text-blue-500 dark:hover:text-cyan-400 hover:border-blue-500/60 dark:hover:border-cyan-400/60 hover:bg-blue-500/5 dark:hover:bg-cyan-400/5 transition-all duration-350 text-center shadow-sm"
+                className="border border-gray-300 dark:border-gray-700 bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm text-gray-700 dark:text-gray-300 px-6 py-3.5 rounded-xl font-semibold text-base hover:text-blue-500 dark:hover:text-cyan-400 hover:border-blue-500/60 dark:hover:border-cyan-400/60 hover:bg-blue-500/5 dark:hover:bg-cyan-400/5 transition-all duration-350 text-center shadow-sm"
               >
-                🚀 Projects
+                🚀 View Projects
               </motion.a>
             </motion.div>
 
