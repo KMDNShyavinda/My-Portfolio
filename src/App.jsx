@@ -2,23 +2,20 @@ import React from "react";
 import { MotionConfig } from "framer-motion";
 import { Helmet } from "react-helmet-async";
 
-// Layout & Integration Components
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import TawkTo from "./components/TawkTo";
-
-// Page Section Components
-import Hero from "./sections/Hero";
-import About from "./sections/About";
-import Skills from "./sections/Skills";
-import Experience from "./sections/Experience";
-import ShowcaseSection from "./sections/ShowcaseSection";
-import Services from "./sections/Services";
-import Certificates from "./sections/Certificates";
-import Achievements from "./sections/Achievements";
-import Contact from "./sections/Contact";
-
-import { personalInfo } from "./constants";
+// Modular Component & Section Imports
+import { Navbar, Footer, TawkTo } from "@/components";
+import {
+  Hero,
+  About,
+  Skills,
+  Experience,
+  Showcase,
+  Services,
+  Certificates,
+  Achievements,
+  Contact,
+} from "@/sections";
+import { personalInfo } from "@/constants";
 
 // TODO: replace with your real deployed domain once you have one.
 const SITE_URL = "https://your-portfolio-domain.example.com";
@@ -90,7 +87,7 @@ const App = () => {
         <About />
         <Skills />
         <Experience />
-        <ShowcaseSection />
+        <Showcase />
         <Services />
         <Certificates />
         <Achievements />

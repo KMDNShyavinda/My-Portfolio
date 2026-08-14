@@ -289,7 +289,7 @@ const ProjectCard = ({ project, index, hoveredIndex, setHoveredIndex }) => {
   );
 };
 
-const ShowcaseSection = () => {
+const Showcase = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
   return (
@@ -381,4 +381,4 @@ const ShowcaseSection = () => {
   );
 };
 
-export default ShowcaseSection;
+export default Showcase;
