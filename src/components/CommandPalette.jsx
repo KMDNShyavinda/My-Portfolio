@@ -164,18 +164,6 @@ const CommandPalette = ({ isOpen, onClose, onOpenResume, onOpenTerminal }) => {
       },
       {
         category: "Quick Actions",
-        id: "act-theme",
-        title: `Switch Theme (Current: ${theme})`,
-        subtitle: "Toggle between Dark and Light mode",
-        icon: theme === "dark" ? FaSun : FaMoon,
-        color: "text-amber-400",
-        action: () => {
-          setTheme(theme === "dark" ? "light" : "dark");
-          onClose();
-        },
-      },
-      {
-        category: "Quick Actions",
         id: "act-github-profile",
         title: "Open GitHub Profile",
         subtitle: "@KMDNShyavinda on GitHub",

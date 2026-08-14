@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useTheme } from "../context/ThemeContext";
 import { useSound } from "../context/SoundContext";
-import { personalInfo } from "../constants";
 import { FaSearch, FaTerminal, FaVolumeUp, FaVolumeMute } from "react-icons/fa";
 
 // SoundSwitcher Component
@@ -28,39 +26,7 @@ const SoundSwitcher = () => {
   );
 };
 
-// ThemeSwitcher Component
-const ThemeSwitcher = () => {
-  const { theme, setTheme } = useTheme();
-
-  return (
-    <div className="flex items-center space-x-1 bg-gray-100 dark:bg-gray-800 rounded-full p-1">
-      {["light", "system", "dark"].map((t) => (
-        <button
-          key={t}
-          onClick={() => setTheme(t)}
-          aria-label={`${t} theme`}
-          aria-pressed={theme === t}
-          className={`px-2.5 py-1 rounded-full text-sm font-medium transition-all duration-200 ${
-            theme === t
-              ? "bg-white dark:bg-gray-700 text-gray-900 dark:text-white shadow-sm"
-              : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-white/50 dark:hover:bg-gray-700/50"
-          }`}
-          title={
-            t === "light"
-              ? "Light Mode"
-              : t === "dark"
-              ? "Dark Mode"
-              : "System Theme"
-          }
-        >
-          {t === "light" ? "☀️" : t === "dark" ? "🌙" : "💻"}
-        </button>
-      ))}
-    </div>
-  );
-};
-
-const Navbar = ({ onOpenResume, onOpenPalette, onOpenTerminal }) => {
+const Navbar = ({ onOpenPalette, onOpenTerminal }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -91,16 +57,7 @@ const Navbar = ({ onOpenResume, onOpenPalette, onOpenTerminal }) => {
     >
       <div className="container mx-auto px-6">
         <div className="flex justify-between items-center">
-          {/* Brand */}
-          <motion.a
-            href="#home"
-            whileHover={{ scale: 1.05 }}
-            className="text-2xl font-bold gradient-text font-['JetBrains_Mono']"
-          >
-            Dinuka<span className="text-gray-400 dark:text-gray-500">.</span>
-          </motion.a>
-
-          {/* Desktop Menu */}
+          {/* Desktop Navigation Items */}
           <div className="hidden lg:flex items-center space-x-2 xl:space-x-3">
             {navItems.map((item, index) => (
               <motion.a
@@ -111,26 +68,25 @@ const Navbar = ({ onOpenResume, onOpenPalette, onOpenTerminal }) => {
                 transition={{ delay: index * 0.08 }}
                 whileHover={{ scale: 1.06, y: -2, transition: { type: "spring", stiffness: 400, damping: 15 } }}
                 whileTap={{ scale: 0.95 }}
-                className="px-3 py-1.5 rounded-full border border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-cyan-400 hover:border-blue-500/60 dark:hover:border-cyan-400/60 hover:bg-blue-500/5 dark:hover:bg-cyan-400/5 hover:shadow-[0_4px_12px_-2px_rgba(59,130,246,0.25)] dark:hover:shadow-[0_4px_12px_-2px_rgba(34,211,238,0.2)] text-[13px] xl:text-sm font-semibold transition-all duration-300"
+                className="px-3.5 py-1.5 rounded-full border border-gray-800 text-gray-300 hover:text-cyan-400 hover:border-cyan-400/60 hover:bg-cyan-400/5 hover:shadow-[0_4px_12px_-2px_rgba(34,211,238,0.2)] text-[13px] xl:text-sm font-semibold transition-all duration-300"
               >
                 {item.name}
               </motion.a>
             ))}
           </div>
 
-          {/* Right side controls */}
+          {/* Right side controls (Sound, Ctrl+K Search, Terminal CLI) */}
           <div className="hidden lg:flex items-center space-x-3">
             <SoundSwitcher />
-            <ThemeSwitcher />
             <motion.button
               onClick={onOpenPalette}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
-              className="px-3 py-1.5 rounded-full border border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-300 bg-white/60 dark:bg-gray-900/60 hover:text-blue-500 dark:hover:text-cyan-400 hover:border-blue-500/60 dark:hover:border-cyan-400/60 font-semibold text-[13px] xl:text-sm flex items-center gap-1.5 transition-all duration-300 shadow-sm"
+              className="px-3 py-1.5 rounded-full border border-gray-800 text-gray-300 bg-gray-900/60 hover:text-cyan-400 hover:border-cyan-400/60 font-semibold text-[13px] xl:text-sm flex items-center gap-1.5 transition-all duration-300 shadow-sm"
               title="Quick Search (Ctrl + K)"
             >
               <FaSearch className="text-xs" />
-              <kbd className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 rounded text-[10px] font-mono border border-gray-200 dark:border-gray-700">
+              <kbd className="px-1.5 py-0.5 bg-gray-800 text-gray-400 rounded text-[10px] font-mono border border-gray-700">
                 Ctrl K
               </kbd>
             </motion.button>
@@ -138,29 +94,23 @@ const Navbar = ({ onOpenResume, onOpenPalette, onOpenTerminal }) => {
               onClick={onOpenTerminal}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
-              className="px-3 py-1.5 rounded-full border border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-300 bg-white/60 dark:bg-gray-900/60 hover:text-green-500 dark:hover:text-green-400 hover:border-green-500/60 dark:hover:border-green-400/60 font-semibold text-[13px] xl:text-sm flex items-center gap-1.5 transition-all duration-300 shadow-sm"
+              className="px-3 py-1.5 rounded-full border border-gray-800 text-gray-300 bg-gray-900/60 hover:text-green-400 hover:border-green-400/60 font-semibold text-[13px] xl:text-sm flex items-center gap-1.5 transition-all duration-300 shadow-sm"
               title="Interactive Terminal CLI (` / ~)"
             >
               <FaTerminal className="text-xs text-green-500" />
-              <kbd className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 rounded text-[10px] font-mono border border-gray-200 dark:border-gray-700">
+              <kbd className="px-1.5 py-0.5 bg-gray-800 text-gray-400 rounded text-[10px] font-mono border border-gray-700">
                 ~
               </kbd>
-            </motion.button>
-            <motion.button
-              onClick={onOpenResume}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.98 }}
-              className="px-4 py-2 rounded-full border border-blue-500/30 dark:border-cyan-400/30 text-blue-600 dark:text-cyan-400 bg-blue-500/10 dark:bg-cyan-400/10 hover:bg-blue-500 hover:text-white dark:hover:bg-cyan-400 dark:hover:text-gray-950 font-semibold text-[13px] xl:text-sm transition-all duration-300 shadow-sm flex items-center gap-1.5"
-            >
-              👁️ Resume
             </motion.button>
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="flex lg:hidden items-center space-x-4">
-            <ThemeSwitcher />
+          <div className="flex lg:hidden items-center justify-between w-full">
+            <span className="text-sm font-bold text-gray-400 uppercase tracking-widest font-mono">
+              Navigation
+            </span>
             <button
-              className="text-gray-600 dark:text-gray-300 hover:text-gray-950 dark:hover:text-white"
+              className="text-gray-300 hover:text-white"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
               aria-expanded={isMobileMenuOpen}
@@ -198,29 +148,19 @@ const Navbar = ({ onOpenResume, onOpenPalette, onOpenTerminal }) => {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              className="lg:hidden mt-4 glass-effect rounded-2xl p-4 border border-gray-200/50 dark:border-gray-800/50"
+              className="lg:hidden mt-4 glass-effect rounded-2xl p-4 border border-gray-800/50"
             >
               <div className="flex flex-col space-y-4">
                 {navItems.map((item) => (
                   <a
                     key={item.name}
                     href={item.href}
-                    className="text-gray-600 dark:text-gray-300 hover:text-gray-950 dark:hover:text-white font-semibold transition-colors text-center py-2"
+                    className="text-gray-300 hover:text-white font-semibold transition-colors text-center py-2"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {item.name}
                   </a>
                 ))}
-                <motion.button
-                  whileTap={{ scale: 0.98 }}
-                  className="border border-blue-500/30 dark:border-cyan-400/30 bg-blue-500/10 dark:bg-cyan-400/10 text-blue-600 dark:text-cyan-400 py-2.5 rounded-full font-semibold mt-4 text-center block shadow-sm transition-all duration-300"
-                  onClick={() => {
-                    setIsMobileMenuOpen(false);
-                    if (onOpenResume) onOpenResume();
-                  }}
-                >
-                  👁️ Preview Resume
-                </motion.button>
               </div>
             </motion.div>
           )}

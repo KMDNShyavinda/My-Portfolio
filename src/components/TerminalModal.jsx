@@ -174,12 +174,10 @@ GitHub   : ${personalInfo.github}
         break;
 
       case "theme":
-        const newTheme = theme === "dark" ? "light" : "dark";
-        setTheme(newTheme);
         newLogs.push({
           id: Date.now() + 1,
           type: "output",
-          text: `Theme switched to ${newTheme.toUpperCase()} mode.`,
+          text: "Portfolio is permanently locked to DARK MODE 🌙 for optimal engineering aesthetics.",
         });
         break;
 
