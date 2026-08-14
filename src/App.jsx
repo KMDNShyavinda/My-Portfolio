@@ -1,9 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { MotionConfig } from "framer-motion";
 import { Helmet } from "react-helmet-async";
 
 // Modular Component & Section Imports
-import { Navbar, Footer, TawkTo, ResumeModal } from "@/components";
+import {
+  Navbar,
+  Footer,
+  TawkTo,
+  ResumeModal,
+  CommandPalette,
+} from "@/components";
 import {
   Hero,
   About,
@@ -23,6 +29,18 @@ const SITE_URL = "https://your-portfolio-domain.example.com";
 
 const App = () => {
   const [isResumeOpen, setIsResumeOpen] = useState(false);
+  const [isPaletteOpen, setIsPaletteOpen] = useState(false);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        setIsPaletteOpen((prev) => !prev);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   const structuredData = {
     "@context": "https://schema.org",
@@ -84,7 +102,10 @@ const App = () => {
         Skip to main content
       </a>
 
-      <Navbar onOpenResume={() => setIsResumeOpen(true)} />
+      <Navbar
+        onOpenResume={() => setIsResumeOpen(true)}
+        onOpenPalette={() => setIsPaletteOpen(true)}
+      />
       <main id="main-content">
         <Hero onOpenResume={() => setIsResumeOpen(true)} />
         <About />
@@ -104,6 +125,13 @@ const App = () => {
       <ResumeModal
         isOpen={isResumeOpen}
         onClose={() => setIsResumeOpen(false)}
+      />
+
+      {/* Developer Spotlight Command Palette (Ctrl + K) */}
+      <CommandPalette
+        isOpen={isPaletteOpen}
+        onClose={() => setIsPaletteOpen(false)}
+        onOpenResume={() => setIsResumeOpen(true)}
       />
     </MotionConfig>
   );
