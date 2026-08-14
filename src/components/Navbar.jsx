@@ -1,8 +1,32 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "../context/ThemeContext";
+import { useSound } from "../context/SoundContext";
 import { personalInfo } from "../constants";
-import { FaSearch, FaTerminal } from "react-icons/fa";
+import { FaSearch, FaTerminal, FaVolumeUp, FaVolumeMute } from "react-icons/fa";
+
+// SoundSwitcher Component
+const SoundSwitcher = () => {
+  const { soundEnabled, toggleSound, playSound } = useSound();
+
+  return (
+    <button
+      onClick={() => {
+        toggleSound();
+        if (!soundEnabled) playSound("click");
+      }}
+      aria-label={soundEnabled ? "Mute UI Sound Effects" : "Unmute UI Sound Effects"}
+      className={`p-2 rounded-full border transition-all duration-200 ${
+        soundEnabled
+          ? "bg-blue-500/10 border-blue-500/30 text-blue-500 dark:text-cyan-400 shadow-sm"
+          : "bg-gray-100 dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-400"
+      }`}
+      title={soundEnabled ? "Mute UI Sound Effects" : "Unmute UI Sound Effects"}
+    >
+      {soundEnabled ? <FaVolumeUp className="text-sm" /> : <FaVolumeMute className="text-sm" />}
+    </button>
+  );
+};
 
 // ThemeSwitcher Component
 const ThemeSwitcher = () => {
@@ -96,6 +120,7 @@ const Navbar = ({ onOpenResume, onOpenPalette, onOpenTerminal }) => {
 
           {/* Right side controls */}
           <div className="hidden lg:flex items-center space-x-3">
+            <SoundSwitcher />
             <ThemeSwitcher />
             <motion.button
               onClick={onOpenPalette}
