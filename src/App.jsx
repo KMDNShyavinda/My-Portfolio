@@ -10,6 +10,7 @@ import {
   Skills,
   Experience,
   Showcase,
+  GithubStats,
   Services,
   Certificates,
   Achievements,
@@ -88,6 +89,7 @@ const App = () => {
         <Skills />
         <Experience />
         <Showcase />
+        <GithubStats />
         <Services />
         <Certificates />
         <Achievements />

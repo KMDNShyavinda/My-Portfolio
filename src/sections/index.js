@@ -3,6 +3,7 @@ export { default as About } from "./About";
 export { default as Skills } from "./Skills";
 export { default as Experience } from "./Experience";
 export { default as Showcase } from "./Showcase";
+export { default as GithubStats } from "./GithubStats";
 export { default as Services } from "./Services";
 export { default as Certificates } from "./Certificates";
 export { default as Achievements } from "./Achievements";
