@@ -134,7 +134,7 @@ const Navbar = ({ onOpenPalette, onOpenTerminal }) => {
                 </div>
               </div>
               <span className="font-bold text-sm tracking-tight text-white hidden sm:inline font-mono">
-                {personalInfo.name.split(" ")[0]}
+                Shyavinda
               </span>
             </a>
 
