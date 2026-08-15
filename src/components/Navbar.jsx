@@ -35,7 +35,7 @@ const AvailabilityBadge = ({ isMobile = false, onClick }) => {
       onClick={onClick}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.96 }}
-      className={`group relative inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-emerald-500/40 bg-emerald-500/10 text-emerald-300 hover:border-emerald-400 hover:bg-emerald-500/20 font-medium text-xs xl:text-[13px] transition-all duration-300 shadow-[0_0_12px_-3px_rgba(16,185,129,0.3)] ${
+      className={`group relative inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-emerald-500/40 bg-emerald-500/10 text-emerald-300 hover:border-emerald-400 hover:bg-emerald-500/20 font-medium text-xs transition-all duration-300 shadow-[0_0_12px_-3px_rgba(16,185,129,0.3)] ${
         isMobile ? "w-full justify-center py-2.5 text-sm" : ""
       }`}
       title={availabilityStatus.fullText}
@@ -44,7 +44,7 @@ const AvailabilityBadge = ({ isMobile = false, onClick }) => {
         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
         <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500 shadow-[0_0_8px_rgba(52,211,153,0.8)]"></span>
       </span>
-      <span className="font-semibold tracking-wide text-emerald-400 group-hover:text-emerald-300">
+      <span className="font-semibold tracking-wide text-emerald-400 group-hover:text-emerald-300 whitespace-nowrap">
         {availabilityStatus.badgeText}
       </span>
     </motion.a>
@@ -69,7 +69,7 @@ const SoundSwitcher = () => {
       }`}
       title={soundEnabled ? "Mute UI Sound Effects" : "Unmute UI Sound Effects"}
     >
-      {soundEnabled ? <FaVolumeUp className="text-sm" /> : <FaVolumeMute className="text-sm" />}
+      {soundEnabled ? <FaVolumeUp className="text-xs" /> : <FaVolumeMute className="text-xs" />}
     </button>
   );
 };
@@ -84,7 +84,7 @@ const Navbar = ({ onOpenPalette, onOpenTerminal }) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Primary links visible directly on top bar
+  // Primary links visible directly on top pill bar
   const primaryNavItems = [
     { name: "Home", href: "#home" },
     { name: "About", href: "#about" },
@@ -109,35 +109,50 @@ const Navbar = ({ onOpenPalette, onOpenTerminal }) => {
 
   return (
     <>
+      {/* Floating Island Capsule Container */}
       <motion.nav
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        className={`fixed w-full z-50 transition-all duration-500 ${
-          isScrolled ? "glass-effect py-2.5" : "bg-transparent py-4"
-        }`}
+        className="fixed top-0 left-0 right-0 z-50 pointer-events-none px-4 pt-3.5"
       >
-        <div className="container mx-auto px-6">
-          <div className="flex justify-between items-center">
-            {/* Primary Desktop Nav Items (Top Row - Clean 5 items) */}
-            <div className="hidden lg:flex items-center space-x-2 xl:space-x-3">
-              {primaryNavItems.map((item, index) => (
-                <motion.a
+        <div className="max-w-6xl mx-auto pointer-events-auto">
+          <div
+            className={`flex items-center justify-between px-5 py-2 rounded-full transition-all duration-500 border ${
+              isScrolled
+                ? "bg-gray-950/90 border-gray-800 shadow-2xl backdrop-blur-xl shadow-cyan-500/5 py-2"
+                : "bg-gray-900/80 border-gray-800/80 backdrop-blur-md py-2.5"
+            }`}
+          >
+            {/* Left Side: Brand Identity Logo Badge */}
+            <a
+              href="#home"
+              className="flex items-center gap-2.5 text-gray-200 hover:text-white transition-colors group"
+            >
+              <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-blue-500 via-indigo-500 to-cyan-400 p-[1.5px] shadow-sm group-hover:scale-105 transition-transform">
+                <div className="w-full h-full bg-gray-950 rounded-full flex items-center justify-center font-mono font-bold text-xs text-cyan-400">
+                  {personalInfo.initials}
+                </div>
+              </div>
+              <span className="font-bold text-sm tracking-tight text-white hidden sm:inline font-mono">
+                {personalInfo.name.split(" ")[0]}
+              </span>
+            </a>
+
+            {/* Center: Primary Desktop Nav Links (Clean 5 items) */}
+            <div className="hidden lg:flex items-center space-x-1.5 xl:space-x-2">
+              {primaryNavItems.map((item) => (
+                <a
                   key={item.name}
                   href={item.href}
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.08 }}
-                  whileHover={{ scale: 1.06, y: -2, transition: { type: "spring", stiffness: 400, damping: 15 } }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-3.5 py-1.5 rounded-full border border-gray-800 text-gray-300 hover:text-cyan-400 hover:border-cyan-400/60 hover:bg-cyan-400/5 hover:shadow-[0_4px_12px_-2px_rgba(34,211,238,0.2)] text-[13px] xl:text-sm font-semibold transition-all duration-300"
+                  className="px-3 py-1.5 rounded-full border border-transparent text-gray-300 hover:text-cyan-400 hover:border-cyan-500/30 hover:bg-cyan-500/10 text-xs xl:text-sm font-semibold transition-all duration-200"
                 >
                   {item.name}
-                </motion.a>
+                </a>
               ))}
             </div>
 
-            {/* Top Bar Controls & Sidebar Toggle */}
-            <div className="hidden lg:flex items-center space-x-3">
+            {/* Right Side: Quick Controls & Sidebar Drawer Toggle */}
+            <div className="hidden lg:flex items-center space-x-2.5">
               <AvailabilityBadge />
               <SoundSwitcher />
 
@@ -145,11 +160,11 @@ const Navbar = ({ onOpenPalette, onOpenTerminal }) => {
                 onClick={onOpenPalette}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.98 }}
-                className="px-3 py-1.5 rounded-full border border-gray-800 text-gray-300 bg-gray-900/60 hover:text-cyan-400 hover:border-cyan-400/60 font-semibold text-[13px] xl:text-sm flex items-center gap-1.5 transition-all duration-300 shadow-sm"
+                className="px-2.5 py-1.5 rounded-full border border-gray-800 text-gray-300 bg-gray-900/60 hover:text-cyan-400 hover:border-cyan-500/50 font-semibold text-xs flex items-center gap-1.5 transition-all duration-200"
                 title="Quick Search (Ctrl + K)"
               >
-                <FaSearch className="text-xs" />
-                <kbd className="px-1.5 py-0.5 bg-gray-800 text-gray-400 rounded text-[10px] font-mono border border-gray-700">
+                <FaSearch className="text-[11px]" />
+                <kbd className="px-1.5 py-0.5 bg-gray-800 text-gray-400 rounded text-[9px] font-mono border border-gray-700">
                   Ctrl K
                 </kbd>
               </motion.button>
@@ -159,26 +174,32 @@ const Navbar = ({ onOpenPalette, onOpenTerminal }) => {
                 onClick={() => setIsSidebarOpen(true)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.96 }}
-                className="px-3.5 py-1.5 rounded-full border border-cyan-500/40 bg-cyan-500/10 text-cyan-400 hover:border-cyan-400 hover:bg-cyan-500/20 font-semibold text-[13px] flex items-center gap-2 transition-all duration-300 shadow-sm"
+                className="px-3.5 py-1.5 rounded-full border border-cyan-500/40 bg-cyan-500/10 text-cyan-400 hover:border-cyan-400 hover:bg-cyan-500/20 font-semibold text-xs flex items-center gap-2 transition-all duration-300 shadow-sm"
                 title="Open Side Menu"
               >
-                <FaBars className="text-sm" />
+                <FaBars className="text-xs" />
                 <span>Menu</span>
               </motion.button>
             </div>
 
             {/* Mobile Header (Brand & Menu Button) */}
             <div className="flex lg:hidden items-center justify-between w-full">
-              <span className="text-sm font-bold text-gray-300 font-mono tracking-wider flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-                {personalInfo.name}
-              </span>
+              <a href="#home" className="flex items-center gap-2">
+                <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-blue-500 to-cyan-400 p-[1.5px]">
+                  <div className="w-full h-full bg-gray-950 rounded-full flex items-center justify-center font-mono font-bold text-[10px] text-cyan-400">
+                    {personalInfo.initials}
+                  </div>
+                </div>
+                <span className="text-xs font-bold text-gray-200 font-mono tracking-wider">
+                  {personalInfo.name}
+                </span>
+              </a>
               <button
-                className="p-2 rounded-xl bg-gray-800/80 text-gray-300 hover:text-white border border-gray-700"
+                className="p-1.5 rounded-xl bg-gray-800/80 text-gray-300 hover:text-white border border-gray-700"
                 onClick={() => setIsSidebarOpen(true)}
                 aria-label="Open mobile menu"
               >
-                <FaBars className="w-5 h-5" />
+                <FaBars className="w-4 h-4" />
               </button>
             </div>
           </div>
