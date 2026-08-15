@@ -364,11 +364,13 @@ const Hero = ({ onOpenResume }) => {
                 className="absolute inset-0 z-40 pointer-events-none"
               >
                 {/* Status Badge (Positioned at bottom-right of the circle, counter-rotates to stay upright) */}
-                <div
+                <a
+                  href="#contact"
                   ref={badgeRef}
-                  className="absolute bottom-[12%] right-[12%] translate-x-1/4 translate-y-1/4 inline-flex items-center gap-2 bg-[#0b0e1f]/90 border border-[#6366f1] py-1.5 px-3.5 md:py-2 md:px-4.5 rounded-full shadow-lg pointer-events-auto backdrop-blur-sm shadow-indigo-500/30"
+                  title={personalInfo.availabilityStatus?.fullText || "Available for Hire"}
+                  className="absolute bottom-[12%] right-[12%] translate-x-1/4 translate-y-1/4 inline-flex items-center gap-2 bg-[#0b0e1f]/90 hover:bg-[#111636] border border-emerald-500/60 py-1.5 px-3.5 md:py-2 md:px-4.5 rounded-full shadow-lg pointer-events-auto backdrop-blur-sm shadow-emerald-500/20 transition-all duration-300 group/badge"
                 >
-                  {/* Indigo Pulsing Dot wrapper */}
+                  {/* Emerald Pulsing Dot wrapper */}
                   <span className="relative flex h-2.5 w-2.5">
                     <motion.span
                       animate={{
@@ -380,19 +382,19 @@ const Hero = ({ onOpenResume }) => {
                         repeat: Infinity,
                         ease: "easeInOut",
                       }}
-                      className="absolute inline-flex h-full w-full rounded-full bg-indigo-400"
+                      className="absolute inline-flex h-full w-full rounded-full bg-emerald-400"
                       style={{
-                        boxShadow: "0 0 6px 2px rgba(99, 102, 241, 0.5)"
+                        boxShadow: "0 0 6px 2px rgba(52, 211, 153, 0.5)"
                       }}
                     />
-                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-indigo-400" />
+                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400" />
                   </span>
 
                   {/* Badge Text */}
-                  <span className="text-[11px] md:text-[12px] font-bold text-indigo-200 tracking-wide whitespace-nowrap">
-                    Open to work
+                  <span className="text-[11px] md:text-[12px] font-bold text-emerald-300 group-hover/badge:text-emerald-200 tracking-wide whitespace-nowrap">
+                    {personalInfo.availabilityStatus?.badgeText || "Available for Hire"}
                   </span>
-                </div>
+                </a>
               </div>
 
             </motion.div>

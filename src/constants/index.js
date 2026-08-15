@@ -30,4 +30,14 @@ export const personalInfo = {
   // CV file — replace public/files/Dinuka_Niroshan_CV.pdf with your real resume
   cvPath: "/files/Shyavinda_SE.pdf",
   cvDownloadName: "Shyavinda_SE.pdf",
+
+  // Live availability status badge settings
+  availabilityStatus: {
+    isAvailable: true,
+    badgeText: "Available for Hire",
+    fullText: "Available for Full-Time & Freelance Roles",
+    locationText: "Remote / Hybrid",
+  },
 };
+
+export { articlesData } from "./articles";

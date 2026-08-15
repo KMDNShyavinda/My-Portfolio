@@ -3,6 +3,35 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useSound } from "../context/SoundContext";
 import { FaSearch, FaTerminal, FaVolumeUp, FaVolumeMute } from "react-icons/fa";
 
+import { personalInfo } from "../constants";
+
+// AvailabilityBadge Component
+const AvailabilityBadge = ({ isMobile = false, onClick }) => {
+  const { availabilityStatus } = personalInfo;
+  if (!availabilityStatus?.isAvailable) return null;
+
+  return (
+    <motion.a
+      href="#contact"
+      onClick={onClick}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.96 }}
+      className={`group relative inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-emerald-500/40 bg-emerald-500/10 text-emerald-300 hover:border-emerald-400 hover:bg-emerald-500/20 font-medium text-xs xl:text-[13px] transition-all duration-300 shadow-[0_0_12px_-3px_rgba(16,185,129,0.3)] ${
+        isMobile ? "w-full justify-center py-2.5 text-sm" : ""
+      }`}
+      title={availabilityStatus.fullText}
+    >
+      <span className="relative flex h-2.5 w-2.5">
+        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+        <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500 shadow-[0_0_8px_rgba(52,211,153,0.8)]"></span>
+      </span>
+      <span className="font-semibold tracking-wide text-emerald-400 group-hover:text-emerald-300">
+        {availabilityStatus.badgeText}
+      </span>
+    </motion.a>
+  );
+};
+
 // SoundSwitcher Component
 const SoundSwitcher = () => {
   const { soundEnabled, toggleSound, playSound } = useSound();
@@ -44,6 +73,7 @@ const Navbar = ({ onOpenPalette, onOpenTerminal }) => {
     { name: "Projects", href: "#projects" },
     { name: "Services", href: "#services" },
     { name: "Certificates", href: "#certificates" },
+    { name: "Articles", href: "#articles" },
     { name: "Contact", href: "#contact" },
   ];
 
@@ -75,8 +105,9 @@ const Navbar = ({ onOpenPalette, onOpenTerminal }) => {
             ))}
           </div>
 
-          {/* Right side controls (Sound, Ctrl+K Search, Terminal CLI) */}
-          <div className="hidden lg:flex items-center space-x-3">
+          {/* Right side controls (Availability Badge, Sound, Ctrl+K Search, Terminal CLI) */}
+          <div className="hidden lg:flex items-center space-x-2 xl:space-x-3">
+            <AvailabilityBadge />
             <SoundSwitcher />
             <motion.button
               onClick={onOpenPalette}
@@ -151,6 +182,7 @@ const Navbar = ({ onOpenPalette, onOpenTerminal }) => {
               className="lg:hidden mt-4 glass-effect rounded-2xl p-4 border border-gray-800/50"
             >
               <div className="flex flex-col space-y-4">
+                <AvailabilityBadge isMobile onClick={() => setIsMobileMenuOpen(false)} />
                 {navItems.map((item) => (
                   <a
                     key={item.name}
