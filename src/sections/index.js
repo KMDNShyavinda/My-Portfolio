@@ -8,4 +8,5 @@ export { default as Testimonials } from "./Testimonials";
 export { default as Services } from "./Services";
 export { default as Certificates } from "./Certificates";
 export { default as Achievements } from "./Achievements";
+export { default as Articles } from "./Articles";
 export { default as Contact } from "./Contact";

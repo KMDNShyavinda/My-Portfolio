@@ -22,6 +22,7 @@ import {
   Services,
   Certificates,
   Achievements,
+  Articles,
   Contact,
 } from "@/sections";
 import { personalInfo } from "@/constants";
@@ -128,6 +129,7 @@ const App = () => {
         <Services />
         <Certificates />
         <Achievements />
+        <Articles />
         <Contact />
       </main>
       <Footer />
