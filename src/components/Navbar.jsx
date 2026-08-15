@@ -123,18 +123,18 @@ const Navbar = ({ onOpenPalette, onOpenTerminal }) => {
                 : "bg-gray-900/80 border-gray-800/80 backdrop-blur-md py-2.5"
             }`}
           >
-            {/* Left Side: Brand Identity Logo Badge */}
+            {/* Left Side: Modern Developer Tech Logo */}
             <a
               href="#home"
               className="flex items-center gap-2.5 text-gray-200 hover:text-white transition-colors group"
             >
-              <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-blue-500 via-indigo-500 to-cyan-400 p-[1.5px] shadow-sm group-hover:scale-105 transition-transform">
-                <div className="w-full h-full bg-gray-950 rounded-full flex items-center justify-center font-mono font-bold text-xs text-cyan-400">
-                  {personalInfo.initials}
+              <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-cyan-500 via-blue-500 to-indigo-500 p-[1.5px] shadow-md shadow-cyan-500/20 group-hover:scale-105 transition-transform">
+                <div className="w-full h-full bg-gray-950 rounded-[10px] flex items-center justify-center font-mono font-bold text-xs text-cyan-400">
+                  &lt;/&gt;
                 </div>
               </div>
-              <span className="font-bold text-sm tracking-tight text-white hidden sm:inline font-mono">
-                Shyavinda
+              <span className="font-bold text-sm tracking-tight text-white font-mono flex items-center">
+                Shyavinda<span className="text-cyan-400 font-bold">.dev</span>
               </span>
             </a>
 
@@ -185,13 +185,13 @@ const Navbar = ({ onOpenPalette, onOpenTerminal }) => {
             {/* Mobile Header (Brand & Menu Button) */}
             <div className="flex lg:hidden items-center justify-between w-full">
               <a href="#home" className="flex items-center gap-2">
-                <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-blue-500 to-cyan-400 p-[1.5px]">
-                  <div className="w-full h-full bg-gray-950 rounded-full flex items-center justify-center font-mono font-bold text-[10px] text-cyan-400">
-                    {personalInfo.initials}
+                <div className="w-7 h-7 rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-500 p-[1.5px]">
+                  <div className="w-full h-full bg-gray-950 rounded-[9px] flex items-center justify-center font-mono font-bold text-[10px] text-cyan-400">
+                    &lt;/&gt;
                   </div>
                 </div>
                 <span className="text-xs font-bold text-gray-200 font-mono tracking-wider">
-                  {personalInfo.name}
+                  Shyavinda<span className="text-cyan-400">.dev</span>
                 </span>
               </a>
               <button
