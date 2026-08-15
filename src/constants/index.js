@@ -41,3 +41,4 @@ export const personalInfo = {
 };
 
 export { articlesData } from "./articles";
+export { snippetsData } from "./snippets";

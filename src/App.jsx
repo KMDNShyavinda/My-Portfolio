@@ -23,6 +23,7 @@ import {
   Certificates,
   Achievements,
   Articles,
+  CodeSnippets,
   Contact,
 } from "@/sections";
 import { personalInfo } from "@/constants";
@@ -130,6 +131,7 @@ const App = () => {
         <Certificates />
         <Achievements />
         <Articles />
+        <CodeSnippets />
         <Contact />
       </main>
       <Footer />

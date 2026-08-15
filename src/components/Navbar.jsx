@@ -74,6 +74,7 @@ const Navbar = ({ onOpenPalette, onOpenTerminal }) => {
     { name: "Services", href: "#services" },
     { name: "Certificates", href: "#certificates" },
     { name: "Articles", href: "#articles" },
+    { name: "Code", href: "#snippets" },
     { name: "Contact", href: "#contact" },
   ];
 
